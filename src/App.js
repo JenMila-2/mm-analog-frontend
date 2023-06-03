@@ -11,6 +11,7 @@ function App() {
       <Button color="create-account">Create Account</Button>
       <Button color="login-large">Log in</Button>
       <Button color="nav-button-small">Folders</Button>
+        <Button color="more-button">More</Button>
     </div>
   );
 }

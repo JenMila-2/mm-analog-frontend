@@ -1,0 +1,25 @@
+:root {
+    --errie-black: #1C1C1C;
+    --platinum: #DADDD8;
+    --alabaster: #ECEBE4;
+    --anti-flash-white: #EEF0F2;
+    --ghost-white: #FAFAFF;
+    --grey: #959595;
+    --white-light-background: #F3F5F6;
+    --white: #FFFFFF;
+    --hover-alabaster: #C5C3B6D6;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Open Sans", sans-serif;
+    color: var(--errie-black);
+}

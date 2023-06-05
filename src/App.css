@@ -10,16 +10,25 @@
     --hover-alabaster: #C5C3B6D6;
 }
 
-html, body {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: "Open Sans", sans-serif;
     color: var(--errie-black);
+}
+
+h1 {
+    font-family: Alata, sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.home, .explore-gallery, .about, .login, .signup, .photo-gallery, .account-settings, .projects, .logoff, .page-not-found {
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
 }

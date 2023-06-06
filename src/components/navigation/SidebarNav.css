@@ -35,7 +35,7 @@
     font-weight: bold;
 }
 
-.sidebar-item-title {
+.left-sidebar-item-title {
     padding-left: 16px;
 }
 
@@ -43,7 +43,8 @@
     background-color: var(--hover-alabaster);
 }
 
-.arrow-icon {
+.left-menu-icon {
     padding-left: 20px;
+    font-size: 20px;
     cursor: pointer;
 }

@@ -1,21 +1,36 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { SidebarData} from "./SidebarData";
 import {NavLink} from "react-router-dom";
 import './SidebarNav.css'
-import {MdKeyboardDoubleArrowLeft} from "react-icons/md";
+import {CgMenuGridR} from "react-icons/cg";
 
 const SidebarNav = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(true)
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const leftSidebarClose = useRef(null);
     const toggleSidebarOpen = () => {
         setSidebarOpen(!sidebarOpen)
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (leftSidebarClose.current && !leftSidebarClose.current.contains(event.target)) {
+                setSidebarOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <>
-        <div className={`left-sidebar-nav ${sidebarOpen ? '' : 'sidebarClosed'} `}>
-           <div className="left-sidebar-container">
-                <div className="arrow-icon" onClick={toggleSidebarOpen}>
-                    <MdKeyboardDoubleArrowLeft />
+        <div ref={leftSidebarClose} className={`left-sidebar-nav ${sidebarOpen ? '' : 'sidebarClosed'} `}>
+           <nav className="left-sidebar-container">
+                <div className="left-menu-icon" onClick={toggleSidebarOpen}>
+                    <CgMenuGridR />
                 </div>
                <ul className="left-sidebar-menu">
                    {SidebarData.map((item, index) => (
@@ -23,17 +38,17 @@ const SidebarNav = () => {
                            <NavLink
                                exact
                                to={item.path}
-                               className="sidebar-item-link"
+                               className="left-sidebar-item-link"
                                acttiveClassName="active"
                                onClick={toggleSidebarOpen}
                                >
-                           <div className="sidebar-item-icon">{item.icon}</div>
-                           {sidebarOpen && <div className="sidebar-item-title">{item.title}</div>}
+                           <div className="left-sidebar-item-icon">{item.icon}</div>
+                           {sidebarOpen && <div className="left-sidebar-item-title">{item.title}</div>}
                            </NavLink>
                        </li>
                    ))}
                </ul>
-            </div>
+            </nav>
         </div>
         </>
     );

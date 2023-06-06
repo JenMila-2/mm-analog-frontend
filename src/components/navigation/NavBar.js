@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { SidebarData } from "./SidebarData";
+import {NavBarData} from "./NavBarData";
 import './NavBar.css';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const NavBar = ({ loggedIn }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -37,14 +37,14 @@ const NavBar = ({ loggedIn }) => {
             </nav>
             <aside ref={sidebarClose} className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
                 <ul className="sidebar-menu">
-                    {SidebarData.map((item, index) => {
+                    {NavBarData.map((item, index) => {
                         if ((item.loggedIn && loggedIn) || item.public) {
                             return (
                                 <li key={index} className="sidebar-item">
-                                    <Link to={item.path} onClick={() => setSidebarOpen(false)}>
+                                    <NavLink to={item.path} onClick={() => setSidebarOpen(false)}>
                                         <span className="sidebar-item-icon">{item.icon}</span>
                                         <span className="sidebar-item-title">{item.title}</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             );
                         }

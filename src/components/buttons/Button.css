@@ -1,0 +1,62 @@
+.main--button {
+    padding: 8px 10px 8px 10px;
+    border-radius: 6px;
+    border: 0 solid var(--errie-black);
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    font-family: "Open Sans", sans-serif;
+    outline: none;
+    text-align: center;
+}
+
+.main--button:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.main--button:disabled {
+    cursor: not-allowed;
+    background-color: var(--alabaster);
+    color: var(--platinum);
+}
+
+.signup {
+    background-color: var(--errie-black);
+    color: var(--white);
+}
+
+.login {
+    background-color: var(--alabaster);
+    color: var(--errie-black);
+}
+
+.create-account, .login-large {
+    background-color: var(--errie-black);
+    color: var(--white);
+    width: 350px;
+    height: 40px;
+}
+
+.nav-button-small {
+    background-color: var(--alabaster);
+    color: var(--errie-black);
+    border-radius: 50px;
+    width: 80px;
+}
+
+.nav-button-small:hover {
+    background-color: var(--hover-alabaster);
+}
+
+.nav-button-small:active {
+    border: 1px solid var(--grey);
+}
+
+.more-button {
+    background-color: var(--white);
+    border: 2px solid var(--platinum);
+    font-weight: bold;
+    color: var(--grey);
+    width: 400px;
+    height: 40px;
+}

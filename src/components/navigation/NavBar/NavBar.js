@@ -1,12 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import {NavBarData} from "./NavBarData";
+import {loggedInNavItems, publicNavItems} from "../NavBar/NavBarData";
 import './NavBar.css';
 import {NavLink} from "react-router-dom";
+import {AuthContext} from "../../../context/AuthContext";
 
-const NavBar = ({ loggedIn }) => {
+const NavBar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const sidebarClose = useRef(null);
+    const {isAuth} = useContext(AuthContext);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -26,6 +28,8 @@ const NavBar = ({ loggedIn }) => {
         };
     }, []);
 
+    const navigationItems = isAuth ? loggedInNavItems : publicNavItems;
+
     return (
         <>
             <nav className="navbar">
@@ -37,19 +41,14 @@ const NavBar = ({ loggedIn }) => {
             </nav>
             <aside ref={sidebarClose} className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
                 <ul className="sidebar-menu">
-                    {NavBarData.map((item, index) => {
-                        if ((item.loggedIn && loggedIn) || item.public) {
-                            return (
-                                <li key={index} className="sidebar-item">
-                                    <NavLink to={item.path} onClick={() => setSidebarOpen(false)}>
-                                        <span className="sidebar-item-icon">{item.icon}</span>
-                                        <span className="sidebar-item-title">{item.title}</span>
-                                    </NavLink>
-                                </li>
-                            );
-                        }
-                        return null;
-                    })}
+                    {navigationItems.map((item, index) => (
+                        <li key={index} className="sidebar-item">
+                            <NavLink to={item.path} onClick={() => setSidebarOpen(false)}>
+                                <span className="sidebar-item-icon">{item.icon}</span>
+                                <span className="sidebar-item-title">{item.title}</span>
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
             </aside>
             <div className="logo-name">mm-analog.</div>

@@ -1,8 +1,8 @@
 import React from 'react';
-import './Button.css';
+import styles from './Button.module.css';
 
 function Button({children, color, clickHandler, disabled}) {
-    const buttonClassName = `main--button ${color}`;
+    const buttonClassName = `${styles['main--button']} ${styles[color]}`;
 
 
     return (

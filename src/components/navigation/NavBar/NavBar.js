@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import {loggedInNavItems, publicNavItems} from "../NavBar/NavBarData";
+import {loggedInNavItems, publicNavItems} from "./NavBarData";
 import './NavBar.css';
 import {NavLink} from "react-router-dom";
 import {AuthContext} from "../../../context/AuthContext";

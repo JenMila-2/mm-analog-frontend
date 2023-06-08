@@ -4,7 +4,6 @@ import styles from './Button.module.css';
 function Button({children, color, clickHandler, disabled}) {
     const buttonClassName = `${styles['main--button']} ${styles[color]}`;
 
-
     return (
         <button
             type="button"

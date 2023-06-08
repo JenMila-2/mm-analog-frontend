@@ -20,18 +20,27 @@
     color: var(--platinum);
 }
 
+.explore {
+    background-color: var(--errie-black);
+    color: var(--white);
+    font-size: 16px;
+}
+
 .signup {
     background-color: var(--errie-black);
     color: var(--white);
+    font-size: 15px;
 }
 
 .login {
     background-color: var(--alabaster);
     color: var(--errie-black);
+    font-size: 15px;
 }
 
 .create-account, .login-large {
     background-color: var(--errie-black);
+    font-size: 16px;
     color: var(--white);
     width: 350px;
     height: 40px;

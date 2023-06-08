@@ -9,19 +9,21 @@
 }
 
 .section-content {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    background-color: var(--white-light-background);
+    padding: 80px;
 }
 
 .section-heading {
     font-size: 42px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-family: Alata, sans-serif;
 }
 
 .section-text {
     font-size: 16px;
     margin-bottom: 25px;
-    padding: 0 15% 0 15%;
+    padding: 0 18% 0 18%;
 }
 
 .sub-section-text {
@@ -36,22 +38,19 @@
     width: 100%;
     display: flex;
     justify-content: center;
-}
-
-.image1, .image2 {
-    position: absolute;
-    max-width: 100%;
-    height: auto;
+    margin-top: 450px;
+    padding: 80px;
 }
 
 .image1 {
-    z-index: 1;
-    top: 0;
-    left: 0;
+    width: 587px;
+    height: 402px;
+    z-index: 3;
+    margin-right: -60px;
 }
-
 .image2 {
+    width:410px;
+    height: 586px;
     z-index: 2;
-    top: 0;
-    left: 0;
+    margin-top: -90px;
 }

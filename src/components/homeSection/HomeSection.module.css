@@ -11,6 +11,7 @@
 .section-content {
     margin-bottom: 20px;
     background-color: var(--white-light-background);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
     padding: 80px;
 }
 
@@ -34,8 +35,6 @@
 }
 
 .images {
-    position: relative;
-    width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 450px;
@@ -49,7 +48,7 @@
     margin-right: -60px;
 }
 .image2 {
-    width:410px;
+    width: 410px;
     height: 586px;
     z-index: 2;
     margin-top: -90px;

@@ -1,0 +1,52 @@
+footer {
+    margin-top: auto;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--errie-black);
+    width: 100%;
+    padding: 60px;
+}
+
+.log-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logo {
+    color: var(--white);
+    font-size: 24px;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.website-copyright {
+    display: flex;
+    color: var(--white);
+}
+
+.copyright-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -40px;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: var(--white);
+    padding-right: 10px;
+}
+
+.link-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -40px;
+}

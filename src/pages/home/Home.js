@@ -3,6 +3,7 @@ import HeroSection from "../../components/header/HeroSection";
 import HomeSection from "../../components/homeSection/HomeSection";
 import image1 from '../../assets/Tibor_Krizsak _1.jpg';
 import image2 from '../../assets/Robin_Spielmann_1.jpg';
+import Footer from "../../components/footer/Footer";
 
 
 function Home() {
@@ -32,6 +33,7 @@ function Home() {
                 imageSource1={image1}
                 imageSource2={image2}
             />
+            <Footer />
         </>
     )
 }

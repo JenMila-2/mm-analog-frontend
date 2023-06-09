@@ -19,6 +19,9 @@
 body {
     font-family: "Open Sans", sans-serif;
     color: var(--errie-black);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -27,8 +30,8 @@ h1 {
     font-weight: 900;
 }
 
-.home, .explore-gallery, .about, .login, .signup, .photo-gallery, .account-settings, .projects, .logoff, .page-not-found {
-    display: flex;
-    font-size: 2rem;
-    justify-content: center;
+
+img {
+    width: 100%;
 }
+

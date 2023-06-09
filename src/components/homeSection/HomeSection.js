@@ -5,12 +5,15 @@ import { useNavigate } from 'react-router-dom';
 
 const HomeSection = ({heading, text, subtext, altText, buttonLabel, buttonColor, buttonPath, imageSource1, imageSource2}) => {
     const navigate = useNavigate();
+
     return (
         <section className={styles['section-container']}>
             {imageSource1 && imageSource2 && (
-                <div className={styles.images}>
-                    <img src={imageSource1} alt={altText} className={styles.image1} />
-                    <img src={imageSource2} alt={altText} className={styles.image2} />
+                <div className={styles['image-outer-container']}>
+                    <div className={styles['image-inner-container']}>
+                        <img src={imageSource1} alt={altText} className={styles.image1} />
+                        <img src={imageSource2} alt={altText} className={styles.image2} />
+                    </div>
                 </div>
             )}
             <div className={styles['section-content']}>
@@ -19,10 +22,9 @@ const HomeSection = ({heading, text, subtext, altText, buttonLabel, buttonColor,
                 <Button type="button" color={buttonColor} clickHandler={() => navigate(buttonPath)}>
                     {buttonLabel}
                 </Button>
-                <p className={styles['sub-section-text']}>{subtext}</p>
+                <p className={styles['section-sub-text']}>{subtext}</p>
             </div>
         </section>
-
     );
 };
 

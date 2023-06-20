@@ -1,5 +1,5 @@
 
-h1 {
+.page-title {
     font-family: Alata, sans-serif;
     color: var(--errie-black);
     font-size: 80px;
@@ -33,14 +33,14 @@ h1 {
     height: auto;
 }
 
-.sub-text {
-    margin-top: 10px;
-    font-size: 16px;
-}
-
 .sub-text-container {
     margin-left: 50%;
     margin-top: 30px;
+}
+
+.sub-text {
+    margin-top: 10px;
+    font-size: 16px;
 }
 
 .side-text-right {

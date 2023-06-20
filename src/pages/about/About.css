@@ -1,8 +1,78 @@
+
 h1 {
     font-family: Alata, sans-serif;
     color: var(--errie-black);
+    font-size: 80px;
+    font-weight: 500;
 }
 
-body {
+.about-section {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    text-align: center;
+    margin: 0 0 60px 60px;
+    max-width: 800px;
+    padding: 50px;
+}
+
+.quote {
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.image-container {
+    position: relative;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.photographer-portrait {
+    max-width: 50%;
+    height: auto;
+}
+
+.sub-text {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.sub-text-container {
+    margin-left: 50%;
+    margin-top: 30px;
+}
+
+.side-text-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-family: "Open Sans", sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    padding-right: 80px;
+}
+
+.side-text-left {
+    position: absolute;
+    top: 0;
+    transform: translateY(180%);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    font-family: "Open Sans", sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    padding-left: 80px;
 }

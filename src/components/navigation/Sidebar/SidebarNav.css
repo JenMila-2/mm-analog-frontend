@@ -1,5 +1,5 @@
 .left-sidebar-nav {
-    width: 250px;
+    width: 240px;
     position: fixed;
     transition: width 0.3s ease-in-out;
     height: 100vh;
@@ -8,12 +8,6 @@
     margin-left: 15px;
     margin-top: 5%;
     border-radius: 5px;
-}
-
-.sidebarClosed {
-    composes: left-sidebar-nav;
-    transition: width 0.3s ease-in-out;
-    width: 60px;
 }
 
 .left-sidebar-item {
@@ -44,7 +38,7 @@
 }
 
 .left-menu-icon {
-    padding-left: 20px;
+    margin-left: 50px;
     font-size: 20px;
     cursor: pointer;
 }

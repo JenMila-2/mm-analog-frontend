@@ -3,7 +3,7 @@ import React from 'react';
 export const SidebarData = [
     {
         title: "My Projects",
-        path: "/projectfolderss"
+        path: "/projectfolders"
     },
 
     {

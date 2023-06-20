@@ -17,12 +17,12 @@ function Home() {
                     buttonLabel="Create an account"
                     buttonColor="create-account"
                     buttonPath="/signup"
-                    subtext="Join our community!"
+                    subtext="Keep track of your photo projects and manage your film stock inventory!"
                 />
                 <HomeSection
                     heading="Get inspired"
                     text="“There is a creative fraction of a second when you are taking a picture. Your eye must see a composition or an expression that life itself offers you, and you must know with intuition when to click the camera. That is the moment the photographer is creative. Oop! The Moment! Once you miss it, it is gone forever.” | Henri Cartier-Bresson"
-                    subtext="Keep track of your photo projects and manage your film stock inventory."
+                    subtext="Keep film photography alive!"
                     buttonLabel="Create an account"
                     buttonColor="create-account"
                     buttonPath="/signup"

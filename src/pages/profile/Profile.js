@@ -2,15 +2,15 @@ import React from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 
 
-function Account() {
+function Profile() {
     return (
         <>
             <SidebarNav />
-            <section className="account-settings">
-                <h1>Account</h1>
+            <section className="profile-settings">
+                <h1>Profile</h1>
             </section>
             </>
     )
 }
 
-export default Account;
+export default Profile;

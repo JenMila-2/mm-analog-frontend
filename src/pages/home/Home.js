@@ -22,10 +22,10 @@ function Home() {
                 <HomeSection
                     heading="Get inspired"
                     text="“There is a creative fraction of a second when you are taking a picture. Your eye must see a composition or an expression that life itself offers you, and you must know with intuition when to click the camera. That is the moment the photographer is creative. Oop! The Moment! Once you miss it, it is gone forever.” | Henri Cartier-Bresson"
-                    buttonLabel="Explore"
-                    buttonColor="explore"
-                    buttonPath="/exploregalleries"
-                    subtext="Browse through galleries and get inspired!"
+                    subtext="Keep track of your photo projects and manage your film stock inventory."
+                    buttonLabel="Create an account"
+                    buttonColor="create-account"
+                    buttonPath="/signup"
                     imageSource1={image1}
                     imageSource2={image2}
                 />

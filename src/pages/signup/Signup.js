@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import coverImage from '../../assets/Florian_Weichert_1.jpg';
-import './Signup.css';
+import styles from './Signup.module.css';
 import axios from 'axios';
 import Button from "../../components/buttons/Button";
 
@@ -30,7 +30,6 @@ function Signup() {
         toggleLoading(true);
 
         try {
-            // koppelen aan backend zodra backend gereed is
             await axios.post('https://localhost:8080/users/register', {
                 name: name,
                 username: username,
@@ -49,14 +48,14 @@ function Signup() {
     }
 
     return (
-        <div className="signup-container">
-            <div className="left-section">
+        <div className={styles['signup-container']}>
+            <div className={styles['left-section']}>
                 <img src={coverImage} alt="Clouds"/>
             </div>
-            <div className="right-section">
+            <div className={styles['right-section']}>
                 <h1>Create an account</h1>
-                    <p className="sub-text">Welcome. Nice to see you!</p>
-                <form className="signup-form" onSubmit={handleSubmit}>
+                    <p className={styles['sub-text']}>Welcome. Nice to see you!</p>
+                <form className={styles['signup-form']} onSubmit={handleSubmit}>
                     <label htmlFor="name-field">
                         Name
                         <input
@@ -101,13 +100,13 @@ function Signup() {
                     <Button
                         type="button"
                         color="create-account"
-                        className="create-account-button"
+                        className={styles['create-account-button']}
                         disabled={loading}
                     >
                         Create an account
                     </Button>
                 </form>
-                <p>Already have an account? <Link to="/login">Log in</Link>!</p>
+                <p>Already have an account? <Link className={styles['login-link']} to="/login">Log in</Link>!</p>
             </div>
         </div>
     )

@@ -62,3 +62,9 @@ form input {
 .sub-text {
     padding-top: 10px;
 }
+
+.signup-link {
+    color: var(--errie-black);
+    text-decoration: none;
+    font-weight: bold;
+}

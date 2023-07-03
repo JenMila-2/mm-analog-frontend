@@ -4,7 +4,7 @@ import coverImage2 from '../../assets/Danny_Feng_1.jpg';
 import {AuthContext} from "../../context/AuthContext";
 import axios from 'axios';
 import Button from "../../components/buttons/Button";
-import './Login.css';
+import styles from './Login.module.css';
 
 
 function Login() {
@@ -44,14 +44,14 @@ function Login() {
     }
 
     return (
-        <div className="login-container">
-            <div className="left-section">
+        <div className={styles['login-container']}>
+            <div className={styles['left-section']}>
                 <img src={coverImage2} alt="Pink Flowers"/>
             </div>
-            <div className="right-section-login">
+            <div className={styles['right-section-login']}>
                 <h1>Welcome back</h1>
                 <p>Nice to see you again!</p>
-                <form className="login-form" onSubmit={handleSubmit}>
+                <form className={styles['login-form']} onSubmit={handleSubmit}>
                     <label htmlFor="username-field">
                         Username
                         <input
@@ -76,12 +76,12 @@ function Login() {
                     <Button
                         type="button"
                         color="login-large"
-                        className="login-button"
+                        className={styles['login-button']}
                     >
                         Log in
                     </Button>
                 </form>
-                <p>Don't have an account? <Link to="/signup">Sign up</Link>!</p>
+                <p>Don't have an account? <Link className={styles['signup-link']} to="/signup">Sign up</Link>!</p>
             </div>
         </div>
     )

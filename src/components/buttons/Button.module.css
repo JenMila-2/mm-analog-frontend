@@ -71,3 +71,11 @@
     width: 400px;
     height: 40px;
 }
+
+.submit-button {
+    background-color: var(--errie-black);
+    font-size: 16px;
+    color: var(--white);
+    width: 100%;
+    height: 45px;
+}

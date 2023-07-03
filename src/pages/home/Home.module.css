@@ -1,0 +1,55 @@
+form {
+    padding: 20px;
+    width: 60%;
+}
+
+form label {
+    margin: 4px 0;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+}
+
+form input {
+    width:100%;
+    padding: 6px 8px;
+    margin: 6px 0;
+    border-radius: 4px;
+    border: 1px solid var(--grey);
+}
+
+textarea {
+    width:100%;
+    padding: 6px 8px;
+    margin: 6px 0;
+    border-radius: 4px;
+    border: 1px solid var(--grey);
+}
+
+.submit-button {
+    margin-top: 50px;
+    max-width: 100%;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.contact-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.contact-form-container {
+    margin-bottom: 20px;
+}
+
+.contact-form-title {
+    font-size: 44px;
+}

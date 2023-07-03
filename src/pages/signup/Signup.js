@@ -16,7 +16,7 @@ function Signup() {
     const [loading, toggleLoading] = useState(false);
 
     const source = axios.CancelToken.source();
-    const history = useNavigate;
+    const navigate = useNavigate;
 
     useEffect(() => {
         return function cleanup() {
@@ -31,7 +31,7 @@ function Signup() {
 
         try {
             // koppelen aan backend zodra backend gereed is
-            await axios.post('', {
+            await axios.post('https://localhost:8080/users/register', {
                 name: name,
                 username: username,
                 email: email,
@@ -40,14 +40,13 @@ function Signup() {
                 cancelToken: source.token,
                 });
 
-            history.push('./login');
+            navigate.push('./login');
         } catch(e) {
             console.error(e);
             toggleError(true);
         }
         toggleLoading(false);
     }
-
 
     return (
         <div className="signup-container">
@@ -101,7 +100,8 @@ function Signup() {
                     {error && <p className="error">Email already exist. Please try another email.</p>}
                     <Button
                         type="button"
-                        className="create-account"
+                        color="create-account"
+                        className="create-account-button"
                         disabled={loading}
                     >
                         Create an account

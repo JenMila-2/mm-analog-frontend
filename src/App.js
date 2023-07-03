@@ -8,6 +8,7 @@ import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
 import PhotoProjects from "./pages/photoProject/PhotoProjects";
 import PhotoLog from "./pages/photoLog/PhotoLog";
+import FilmDevelopmentLog from "./pages/filmDevelopmentLog/FilmDevelopmentLog";
 import Profile from "./pages/profile/Profile";
 import NavBar from "./components/navigation/NavBar/NavBar";
 import {AuthContext} from "./context/AuthContext";
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/projectfolders" element={<PhotoProjects/>}/>
                 <Route path="/photologs" element={<PhotoLog/>}/>
                 <Route path="/filmstockinventories" element={<FilmStockInventory/>}/>
+                <Route path="/filmdevelopmentlogs" element={<FilmDevelopmentLog/>}/>
                 <Route path="/profilesettings" element={<Profile/>}/>
                 <Route path="/logoff" />
             </Routes>

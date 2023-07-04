@@ -30,7 +30,6 @@ function App() {
                 <Route path="/filmstockinventories" element={<FilmStockInventory/>}/>
                 <Route path="/filmdevelopmentlogs" element={<FilmDevelopmentLog/>}/>
                 <Route path="/profilesettings" element={<Profile/>}/>
-                <Route path="/logoff" />
             </Routes>
         </>
     );

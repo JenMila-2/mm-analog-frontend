@@ -64,7 +64,12 @@ export const loggedInNavItems = [
     },
 
     {
+        title: "Film Development Log",
+        path: "/filmdevelopmentlogs",
+    },
+
+    {
         title: "Log off",
-        path: "/logoff",
+        path: "/",
     },
 ];

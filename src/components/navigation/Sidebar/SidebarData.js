@@ -17,13 +17,18 @@ export const SidebarData = [
     },
 
     {
+        title: "Film Development Log",
+        path: "/filmdevelopmentlogs"
+    },
+
+    {
         title: "Profile",
         path: "/profilesettings"
     },
 
     {
         title: "Log off",
-        path: "/logoff"
+        path: "/"
     },
 
     {

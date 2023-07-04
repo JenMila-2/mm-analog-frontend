@@ -4,8 +4,7 @@ import HomeSection from "../../components/homeSection/HomeSection";
 import image1 from '../../assets/Tibor_Krizsak _1.jpg';
 import image2 from '../../assets/Robin_Spielmann_1.jpg';
 import Footer from "../../components/footer/Footer";
-import styles from './Home.module.css';
-import Button from "../../components/buttons/Button";
+import ContactForm from "../../components/forms/contactForm/ContactForm";
 
 
 function Home() {
@@ -31,42 +30,7 @@ function Home() {
                     imageSource1={image1}
                     imageSource2={image2}
                 />
-                <div className={styles['contact-form-container']}>
-                    <h2 className={styles['contact-form-title']}>contact us</h2>
-                    <form className={styles['contact-form-inner-container']} action="">
-                        <label htmlFor="name-field">
-                            Name
-                            <input
-                                type="text"
-                                id="name-field"
-                                name="name"
-                            />
-                        </label>
-                        <label htmlFor="email-field">
-                            Email
-                            <input
-                                type="email"
-                                id="email-field"
-                                name="email"
-                            />
-                        </label>
-                        <label htmlFor="message-field">
-                            Message
-                            <textarea
-                                name="message"
-                                id="message-field"
-                                cols="40"
-                                rows="10" />
-                        </label>
-                        <Button
-                            type="button"
-                            color="submit-button"
-                            className={styles['submit-button']}
-                            >
-                            Submit
-                        </Button>
-                    </form>
-                </div>
+                <ContactForm className="contact-form" />
                 <Footer />
             </div>
         </>

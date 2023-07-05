@@ -3,13 +3,13 @@ import {Link} from 'react-router-dom';
 import coverImage2 from '../../assets/Danny_Feng_1.jpg';
 import {AuthContext} from "../../context/AuthContext";
 import axios from 'axios';
-import Button from "../../components/buttons/Button";
 import styles from './Login.module.css';
 
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [addSuccess, toggleAddSuccess] = useState(false);
     const [error, toggleError] = useState(false);
 
     const {login} = useContext(AuthContext);
@@ -21,24 +21,22 @@ function Login() {
         }
     }, []);
 
-    async function handleSubmit(e) {
+    async function logInUser(e) {
         e.preventDefault();
-
+        console.log(username);
         toggleError(false);
 
         try {
-            const response = await axios.post('https://localhost:8080/users/{username}', {
+            const response = await axios.post('http://localhost:8080/authenticate', {
                 username: username,
                 password: password,
             }, {
                 cancelToken: source.token,
                 });
-
-            console.log(response.data)
-
-            login(response.data.accessToken);
+            login(response.data.jwt);
+            console.log(response.data);
         } catch (e) {
-            console.error(e);
+            console.error('Oops, an error occurred!', e);
             toggleError(true);
         }
     }
@@ -51,7 +49,7 @@ function Login() {
             <div className={styles['right-section-login']}>
                 <h1>Welcome back</h1>
                 <p>Nice to see you again!</p>
-                <form className={styles['login-form']} onSubmit={handleSubmit}>
+                <form className={styles['login-form']} onSubmit={logInUser}>
                     <label htmlFor="username-field">
                         Username
                         <input
@@ -59,6 +57,7 @@ function Login() {
                             id="username-field"
                             name="username"
                             value={username}
+                            placeholder="Username"
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </label>
@@ -69,20 +68,18 @@ function Login() {
                             id="password-field"
                             name="password"
                             value={password}
+                            placeholder="•••••••••••••••"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
                     {error && <p className="error">Username does not match password.</p> }
-                    <Button
-                        type="button"
-                        color="login-large"
-                        className={styles['login-button']}
-                    >
+                    <button type="submit" className={styles['login-button']}>
                         Log in
-                    </Button>
+                    </button>
                 </form>
                 <p>Don't have an account? <Link className={styles['signup-link']} to="/signup">Sign up</Link>!</p>
             </div>
+            {addSuccess === true && <p>Log in to your account was successful!</p>}
         </div>
     )
 }

@@ -2,12 +2,11 @@ import React, {createContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
-import isTokenValid from "../helpers/isTokenValid";
 
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
-    const [isAuth, toggleAuth] = useState({
+    const [isAuth, toggleIsAuth] = useState({
         isAuth: false,
         user: null,
         status: 'pending'
@@ -17,11 +16,11 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         const token = localStorage.getItem('token');
 
-        if (token && isTokenValid(token)) {
+        if (token) {
             const decoded = jwt_decode(token);
-            fetchUserData(decoded.sub, token);
-        } else {
-            toggleAuth({
+            void fetchUserData(decoded.sub, token);
+            } else {
+            toggleIsAuth({
                 isAuth: false,
                 user: null,
                 status: 'done'
@@ -32,47 +31,51 @@ function AuthContextProvider({children}) {
     function login(JWT) {
         localStorage.setItem('token', JWT);
         const decoded = jwt_decode(JWT);
-
-        fetchUserData(decoded.sub, JWT, '/profile');
+        void fetchUserData(decoded.sub, JWT);
     }
 
     function logoff() {
         localStorage.clear();
-        toggleAuth({
+        toggleIsAuth({
             isAuth: false,
             user: null,
             status: 'done'
         });
-
         console.log('User is logged off!');
-        navigate('./');
+        navigate('/');
     }
 
-    async function fetchUserData(username, token, redirectUrl) {
+    async function fetchUserData(username, token) {
         try {
-            const result = await axios.get('https://localhost:8080/users/{username}', {
+            const response = await axios.get(`http://localhost:8080/users/${username}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
             });
+            console.log(response.data);
 
-            toggleAuth({
+            toggleIsAuth({
+                ...isAuth,
                 isAuth: true,
                 user: {
-                    username: result.data.username,
-                    email: result.data.email,
+                    username: response.data.username,
+                    name: response.data.name,
+                    email: response.data.email,
+                    password: response.data,
+                    role: response.data.authorities[0].authority,
                 },
                 status: 'done',
             });
 
-            if (redirectUrl) {
-                navigate(redirectUrl);
+            if (response.data.authorities[0].authority === "ROLE_ADMIN") {
+                navigate('/admin');
+            } else {
+                navigate('/profilesettings')
             }
-
         } catch (e) {
                 console.error(e);
-                toggleAuth({
+                toggleIsAuth({
                     isAuth: false,
                     user: null,
                     status: 'done',
@@ -81,7 +84,7 @@ function AuthContextProvider({children}) {
         }
 
         const contextData = {
-        isAuth: isAuth.isAuth,
+            isAuth: isAuth.isAuth,
             user: isAuth.user,
             login: login,
             logoff: logoff,

@@ -5,6 +5,7 @@ import image1 from '../../assets/Tibor_Krizsak _1.jpg';
 import image2 from '../../assets/Robin_Spielmann_1.jpg';
 import Footer from "../../components/footer/Footer";
 import ContactForm from "../../components/forms/contactForm/ContactForm";
+import styles from "../home/Home.module.css";
 
 
 function Home() {
@@ -30,7 +31,7 @@ function Home() {
                     imageSource1={image1}
                     imageSource2={image2}
                 />
-                <ContactForm className="contact-form" />
+                <ContactForm className={styles['contact-form']} />
                 <Footer />
             </div>
         </>

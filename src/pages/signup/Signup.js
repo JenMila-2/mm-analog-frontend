@@ -3,20 +3,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import coverImage from '../../assets/Florian_Weichert_1.jpg';
 import styles from './Signup.module.css';
 import axios from 'axios';
-import Button from "../../components/buttons/Button";
 
 function Signup() {
 
-    const [name, setName] = useState('');
     const [username, setUsername] = useState('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+    const [addSuccess, toggleAddSucces] = useState(false);
 
     const source = axios.CancelToken.source();
-    const navigate = useNavigate;
+    const navigate = useNavigate();
 
     useEffect(() => {
         return function cleanup() {
@@ -24,22 +24,26 @@ function Signup() {
         }
     }, []);
 
-    async function handleSubmit(e) {
+    async function addNewUser(e) {
         e.preventDefault();
+        console.log(name, username, email);
+
         toggleError(false);
         toggleLoading(true);
 
         try {
-            await axios.post('https://localhost:8080/users/register', {
+            const response = await axios.post('http://localhost:8080/users/register', {
                 name: name,
                 username: username,
                 email: email,
                 password: password,
+                role: ["user"]
                 }, {
                 cancelToken: source.token,
                 });
-
-            navigate.push('./login');
+            console.log(response.data);
+            toggleAddSucces(true);
+            navigate(`/login`);
         } catch(e) {
             console.error(e);
             toggleError(true);
@@ -55,7 +59,7 @@ function Signup() {
             <div className={styles['right-section']}>
                 <h1>Create an account</h1>
                     <p className={styles['sub-text']}>Welcome. Nice to see you!</p>
-                <form className={styles['signup-form']} onSubmit={handleSubmit}>
+                <form className={styles['signup-form']} onSubmit={addNewUser}>
                     <label htmlFor="name-field">
                         Name
                         <input
@@ -63,6 +67,7 @@ function Signup() {
                             id="name-field"
                             name="name"
                             value={name}
+                            placeholder="Name"
                             onChange={(e) => setName(e.target.value)}
                         />
                     </label>
@@ -71,8 +76,9 @@ function Signup() {
                         <input
                             type="text"
                             id="username-field"
-                            name="username"
+                            name="Username"
                             value={username}
+                            placeholder="username"
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </label>
@@ -83,6 +89,7 @@ function Signup() {
                             id="email-field"
                             name="email"
                             value={email}
+                            placeholder="Email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
@@ -93,21 +100,18 @@ function Signup() {
                             id="password-field"
                             name="password"
                             value={password}
+                            placeholder="•••••••••••••••"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
                     {error && <p className="error">Email already exist. Please try another email.</p>}
-                    <Button
-                        type="button"
-                        color="create-account"
-                        className={styles['create-account-button']}
-                        disabled={loading}
-                    >
-                        Create an account
-                    </Button>
+                    <button type="submit" className={styles['create-account-button']}>
+                        Create account
+                    </button>
                 </form>
                 <p>Already have an account? <Link className={styles['login-link']} to="/login">Log in</Link>!</p>
             </div>
+            {addSuccess === true && <p>Yeaahh, your account is created!</p>}
         </div>
     )
 }

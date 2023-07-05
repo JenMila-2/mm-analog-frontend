@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router-dom";
 import Home from './pages/home/Home';
 import About from './pages/about/About';
 import FilmStockInventory from "./pages/filmStockInventory/FilmStockInventory";
@@ -12,6 +12,7 @@ import FilmDevelopmentLog from "./pages/filmDevelopmentLog/FilmDevelopmentLog";
 import Profile from "./pages/profile/Profile";
 import NavBar from "./components/navigation/NavBar/NavBar";
 import {AuthContext} from "./context/AuthContext";
+import Admin from "./pages/admin/Admin";
 
 function App() {
     const { isAuth } = useContext(AuthContext);
@@ -25,11 +26,12 @@ function App() {
                 <Route path="/contact" />
                 <Route path="/signup" element={<Signup/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/projectfolders" element={<ProjectFolder/>}/>
-                <Route path="/photologs" element={<PhotoLog/>}/>
-                <Route path="/filmstockinventories" element={<FilmStockInventory/>}/>
-                <Route path="/filmdevelopmentlogs" element={<FilmDevelopmentLog/>}/>
-                <Route path="/profilesettings" element={<Profile/>}/>
+                <Route path="/projectfolders" element={isAuth ? <ProjectFolder/> : <Navigate to="/"/>}/>
+                <Route path="/photologs" element={isAuth ? <PhotoLog/> : <Navigate to="/"/>}/>
+                <Route path="/filmstockinventories" element={isAuth ? <FilmStockInventory/> : <Navigate to="/"/>}/>
+                <Route path="/filmdevelopmentlogs" element={isAuth ? <FilmDevelopmentLog/> : <Navigate to="/"/>}/>
+                <Route path="/profilesettings" element={isAuth ? <Profile/> : <Navigate to="/"/>}/>
+                <Route path="/admin" element={isAuth ? <Admin/> : <Navigate to="/"/>}/>
             </Routes>
         </>
     );

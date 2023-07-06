@@ -1,0 +1,38 @@
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 42px;
+}
+
+.profile-settings-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 75%;
+}
+
+.profile-settings-inner-container {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 60px 0 60px;
+    margin-top: 60px;
+}
+
+.user-details-field {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin-top: 20px;
+}
+
+.delete-account-message {
+    color: crimson;
+    font-weight: bold;
+}

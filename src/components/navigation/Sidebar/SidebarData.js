@@ -12,18 +12,18 @@ export const SidebarData = [
     },
 
     {
-        title: "Film Stock Inventory",
+        title: "Stock Inventory",
         path: "/filmstockinventories"
     },
 
     {
-        title: "Film Development Log",
+        title: "Development Log",
         path: "/filmdevelopmentlogs"
     },
 
     {
         title: "Profile",
-        path: "/profilesettings"
+        path: "/profile"
     },
 
     {

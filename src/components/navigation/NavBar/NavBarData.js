@@ -60,7 +60,7 @@ export const loggedInNavItems = [
 
     {
         title: "Profile",
-        path: "/profilesettings",
+        path: "/profile",
     },
 
     {

@@ -2,6 +2,7 @@ import React, {createContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import isTokenValid from "../helpers/isTokenValid";
 
 export const AuthContext = createContext({});
 
@@ -16,9 +17,9 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         const token = localStorage.getItem('token');
 
-        if (token) {
-            const decoded = jwt_decode(token);
-            void fetchUserData(decoded.sub, token);
+        if (token && isTokenValid(token)) {
+            const decodedToken = jwt_decode(token);
+            void getUserData(decodedToken.sub, token);
             } else {
             toggleIsAuth({
                 isAuth: false,
@@ -28,24 +29,25 @@ function AuthContextProvider({children}) {
         }
     }, []);
 
-    function login(JWT) {
-        localStorage.setItem('token', JWT);
-        const decoded = jwt_decode(JWT);
-        void fetchUserData(decoded.sub, JWT);
+    function login(token) {
+        const decodedToken = jwt_decode(token);
+        localStorage.setItem('token', token);
+        void getUserData(decodedToken.sub, token, "/profile");
     }
 
-    function logoff() {
+    function logoff(e) {
         localStorage.clear();
+        e.preventDefault();
         toggleIsAuth({
             isAuth: false,
             user: null,
-            status: 'done'
+            status: 'done',
         });
         console.log('User is logged off!');
         navigate('/');
     }
 
-    async function fetchUserData(username, token) {
+    async function getUserData(username, token, redirectUrl) {
         try {
             const response = await axios.get(`http://localhost:8080/users/${username}`, {
                 headers: {
@@ -53,8 +55,6 @@ function AuthContextProvider({children}) {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(response.data);
-
             toggleIsAuth({
                 ...isAuth,
                 isAuth: true,
@@ -62,24 +62,16 @@ function AuthContextProvider({children}) {
                     username: response.data.username,
                     name: response.data.name,
                     email: response.data.email,
-                    password: response.data,
-                    role: response.data.authorities[0].authority,
                 },
                 status: 'done',
             });
 
-            if (response.data.authorities[0].authority === "ROLE_ADMIN") {
-                navigate('/admin');
-            } else {
-                navigate('/profilesettings')
+            if (redirectUrl) {
+                navigate(redirectUrl);
             }
-        } catch (e) {
-                console.error(e);
-                toggleIsAuth({
-                    isAuth: false,
-                    user: null,
-                    status: 'done',
-                });
+        }  catch (e) {
+                console.error("An error occurred", e);
+                localStorage.clear();
             }
         }
 

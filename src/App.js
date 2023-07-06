@@ -30,7 +30,8 @@ function App() {
                 <Route path="/photologs" element={isAuth ? <PhotoLog/> : <Navigate to="/"/>}/>
                 <Route path="/filmstockinventories" element={isAuth ? <FilmStockInventory/> : <Navigate to="/"/>}/>
                 <Route path="/filmdevelopmentlogs" element={isAuth ? <FilmDevelopmentLog/> : <Navigate to="/"/>}/>
-                <Route path="/profilesettings" element={isAuth ? <Profile/> : <Navigate to="/"/>}/>
+                {/*<Route path="/profile" element={isAuth ? <Profile/> : <Navigate to="/"/>}/>*/}
+                <Route path="/profile" element={<Profile/>}/>
                 <Route path="/admin" element={isAuth ? <Admin/> : <Navigate to="/"/>}/>
             </Routes>
         </>

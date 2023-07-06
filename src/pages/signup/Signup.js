@@ -12,24 +12,22 @@ function Signup() {
     const [password, setPassword] = useState('');
 
     const [error, toggleError] = useState(false);
-    const [loading, toggleLoading] = useState(false);
     const [addSuccess, toggleAddSucces] = useState(false);
 
     const source = axios.CancelToken.source();
     const navigate = useNavigate();
 
     useEffect(() => {
-        return function cleanup() {
+        /*return function cleanup() {
             source.cancel();
-        }
+        }*/
     }, []);
 
     async function addNewUser(e) {
         e.preventDefault();
         console.log(name, username, email);
 
-        toggleError(false);
-        toggleLoading(true);
+        //toggleError(false);
 
         try {
             const response = await axios.post('http://localhost:8080/users/register', {
@@ -43,12 +41,11 @@ function Signup() {
                 });
             console.log(response.data);
             toggleAddSucces(true);
-            navigate(`/login`);
+            navigate('/login');
         } catch(e) {
-            console.error(e);
+            console.error("Oops, an error occurred!", e);
             toggleError(true);
         }
-        toggleLoading(false);
     }
 
     return (
@@ -59,6 +56,7 @@ function Signup() {
             <div className={styles['right-section']}>
                 <h1>Create an account</h1>
                     <p className={styles['sub-text']}>Welcome. Nice to see you!</p>
+                {addSuccess === true && <p>Yeaahh, your account has been created!</p>}
                 <form className={styles['signup-form']} onSubmit={addNewUser}>
                     <label htmlFor="name-field">
                         Name
@@ -68,6 +66,7 @@ function Signup() {
                             name="name"
                             value={name}
                             placeholder="Name"
+                            required="This field cannot be empty"
                             onChange={(e) => setName(e.target.value)}
                         />
                     </label>
@@ -79,6 +78,7 @@ function Signup() {
                             name="Username"
                             value={username}
                             placeholder="username"
+                            required="This field cannot be empty"
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </label>
@@ -90,6 +90,7 @@ function Signup() {
                             name="email"
                             value={email}
                             placeholder="Email"
+                            required="Please enter a valid email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
@@ -101,6 +102,7 @@ function Signup() {
                             name="password"
                             value={password}
                             placeholder="•••••••••••••••"
+                            required="Your password should contain at least 7 characters"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
@@ -111,7 +113,6 @@ function Signup() {
                 </form>
                 <p>Already have an account? <Link className={styles['login-link']} to="/login">Log in</Link>!</p>
             </div>
-            {addSuccess === true && <p>Yeaahh, your account is created!</p>}
         </div>
     )
 }

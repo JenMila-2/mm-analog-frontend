@@ -16,7 +16,6 @@ const SidebarNav = () => {
                                 className="left-sidebar-item-link"
                                 activeClassName="active"
                             >
-                                <div className="left-sidebar-item-icon">{item.icon}</div>
                                 <div className="left-sidebar-item-title">{item.title}</div>
                             </NavLink>
                         </li>

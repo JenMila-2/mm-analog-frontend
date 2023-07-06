@@ -1,37 +1,42 @@
-
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
-import {Link} from 'react-router-dom';
 import {AuthContext} from "../../context/AuthContext";
 import axios from 'axios';
+import styles from './Profile.module.css';
+import {useNavigate} from "react-router-dom";
+import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 
 
 function Profile() {
-    const [profileData, setProfileData] = useState({});
-    const { user } = useContext(AuthContext);
+    const [userData, setUserData] = useState();
+    const {user} = useContext(AuthContext);
+    const [isAdmin, toggleAdmin] = useState(false);
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const source = axios.CancelToken.source();
 
-        async function fetchProfileData() {
-            const token = localStorage.getItem('token');
-
+        async function getData(username, token) {
             try {
-                const response = await axios.get('', {
+                const response = await axios.get(`http://localhost:8080/users/${username}`, {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer $(token)`,
-                    },
-                    cancelToken: source.token,
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+                setUserData(response.data);
+                response.data.authority.map((userRole) => {
+                    if (userRole.authority === "ROLE_ADMIN") {
+                        return toggleAdmin(true);
+                    }
                 });
 
-                setProfileData(response.data);
             } catch (e) {
                 console.error(e);
             }
         }
-        void fetchProfileData();
-
+        void getData(user, token);
         return function cleanup() {
             source.cancel();
         }
@@ -39,23 +44,33 @@ function Profile() {
 
     return (
         <>
-            <SidebarNav />
-            <section className="profile-settings">
-                <h1>Profile</h1>
-                <p>Name: {user.name}</p>
-                <p>Username: {user.username}</p>
-                <p>Email: {user.email}</p>
-                <p>Authority: {user.authority}</p>
+            <div className={styles['title-container']}>
+            <h1 className={styles.title}>Profile</h1>
+            <p>{}</p>
+            </div>
+            <DividerNavBar />
+            <section className={styles['profile-settings-container']}>
+                <SidebarNav />
+                <div className={styles['profile-settings-inner-container']}>
+                    <div className={styles['user-details-field']}>
+                        <p>Username</p>
+                        <p></p>
+                    </div>
+                    <div className={styles['user-details-field']}>
+                        <p>Email</p>
+                        <p></p>
+                    </div>
+                    <div className={styles['user-details-field']}>
+                        <p>Password</p>
+                        <p></p>
+                    </div>
+                    <div className={styles['user-details-field']}>
+                        <p><strong>Danger zone!</strong></p>
+                        <p className={styles['delete-account-message']}>Delete my account</p>
+                    </div>
+                </div>
             </section>
-
-            {Object.keys(profileData).length > 0 &&
-                <section>
-                    <h2>Secret content</h2>
-                    <h3>{profileData.title}</h3>
-                    <p>{profileData.content}</p>
-                </section>
-            }
-            </>
+        </>
     )
 }
 

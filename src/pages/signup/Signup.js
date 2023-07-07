@@ -3,19 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import coverImage from '../../assets/Florian_Weichert_1.jpg';
 import styles from './Signup.module.css';
 import axios from 'axios';
+import {useForm} from "react-hook-form";
 
 function Signup() {
+    const {register, formState: {errors}, handleSubmit} = useForm();
+    const [error, toggleError] = useState(false);
+    const [addSuccess, toggleAddSucces] = useState(false);
+    const source = axios.CancelToken.source();
+    const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const [error, toggleError] = useState(false);
-    const [addSuccess, toggleAddSucces] = useState(false);
-
-    const source = axios.CancelToken.source();
-    const navigate = useNavigate();
 
     useEffect(() => {
         /*return function cleanup() {
@@ -23,18 +23,16 @@ function Signup() {
         }*/
     }, []);
 
+    const [users, setUsers] = useState([]);
+
     async function addNewUser(e) {
-        e.preventDefault();
-        console.log(name, username, email);
-
-        //toggleError(false);
-
+        //e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/users/register', {
-                name: name,
-                username: username,
-                email: email,
-                password: password,
+                name: e.name,
+                username: e.username,
+                email: e.email,
+                password: e.password,
                 role: ["user"]
                 }, {
                 cancelToken: source.token,
@@ -42,8 +40,8 @@ function Signup() {
             console.log(response.data);
             toggleAddSucces(true);
             navigate('/login');
-        } catch(e) {
-            console.error("Oops, an error occurred!", e);
+        } catch(error) {
+            console.error("Oops, an error occurred!", error);
             toggleError(true);
         }
     }
@@ -57,17 +55,21 @@ function Signup() {
                 <h1>Create an account</h1>
                     <p className={styles['sub-text']}>Welcome. Nice to see you!</p>
                 {addSuccess === true && <p>Yeaahh, your account has been created!</p>}
-                <form className={styles['signup-form']} onSubmit={addNewUser}>
+                <form className={styles['signup-form']} onSubmit={handleSubmit(addNewUser)}>
                     <label htmlFor="name-field">
                         Name
                         <input
                             type="text"
                             id="name-field"
-                            name="name"
-                            value={name}
+                            {...register("name", {
+                                required: "This field cannot be empty",
+                                maxLength: {
+                                    value: 75,
+                                    message: "Name cannot contain more than 75 characters",
+                                },
+                            })}
                             placeholder="Name"
-                            required="This field cannot be empty"
-                            onChange={(e) => setName(e.target.value)}
+                            autoComplete="off"
                         />
                     </label>
                     <label htmlFor="username-field">
@@ -75,11 +77,15 @@ function Signup() {
                         <input
                             type="text"
                             id="username-field"
-                            name="Username"
-                            value={username}
-                            placeholder="username"
-                            required="This field cannot be empty"
-                            onChange={(e) => setUsername(e.target.value)}
+                            {...register("username", {
+                                required: "This field cannot be empty",
+                                maxLength: {
+                                    value: 75,
+                                    message: "Username cannot contain more than 75 characters",
+                                },
+                            })}
+                            placeholder="Username"
+                            autoComplete="off"
                         />
                     </label>
                     <label htmlFor="email-field">
@@ -87,11 +93,15 @@ function Signup() {
                         <input
                             type="email"
                             id="email-field"
-                            name="email"
-                            value={email}
+                            {...register("email", {
+                                required: "This field cannot be empty",
+                                maxLength: {
+                                    value: 75,
+                                    message: "Email cannot contain more than 75 characters",
+                                },
+                            })}
                             placeholder="Email"
-                            required="Please enter a valid email"
-                            onChange={(e) => setEmail(e.target.value)}
+                            autoComplete="off"
                         />
                     </label>
                     <label htmlFor="password-field">
@@ -99,11 +109,15 @@ function Signup() {
                         <input
                             type="password"
                             id="password-field"
-                            name="password"
-                            value={password}
-                            placeholder="•••••••••••••••"
-                            required="Your password should contain at least 7 characters"
-                            onChange={(e) => setPassword(e.target.value)}
+                            {...register("password", {
+                                required: "This field cannot be empty",
+                                minLength: {
+                                    value: 7,
+                                    message: "Password must contain at least 7 characters",
+                                },
+                            })}
+                            placeholder="Password"
+                            autoComplete="off"
                         />
                     </label>
                     {error && <p className="error">Email already exist. Please try another email.</p>}

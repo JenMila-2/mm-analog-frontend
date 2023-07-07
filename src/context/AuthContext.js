@@ -6,7 +6,7 @@ import isTokenValid from "../helpers/isTokenValid";
 
 export const AuthContext = createContext({});
 
-function AuthContextProvider({children}) {
+function AuthContextProvider({ children }) {
     const [isAuth, toggleIsAuth] = useState({
         isAuth: false,
         user: null,
@@ -55,6 +55,7 @@ function AuthContextProvider({children}) {
                     Authorization: `Bearer ${token}`,
                 },
             });
+
             toggleIsAuth({
                 ...isAuth,
                 isAuth: true,
@@ -62,15 +63,17 @@ function AuthContextProvider({children}) {
                     username: response.data.username,
                     name: response.data.name,
                     email: response.data.email,
+                    role: response.data.authorities[0].authority,
                 },
                 status: 'done',
             });
-
-            if (redirectUrl) {
-                navigate(redirectUrl);
+            if (response.data.authorities[0].authority === "ROLE_ADMIN") {
+                navigate('/admin');
+            } else {
+                navigate('/profile')
             }
         }  catch (e) {
-                console.error("An error occurred", e);
+                console.error("Oops, an error occurred", e);
                 localStorage.clear();
             }
         }

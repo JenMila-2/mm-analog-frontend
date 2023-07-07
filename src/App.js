@@ -13,6 +13,7 @@ import Profile from "./pages/profile/Profile";
 import NavBar from "./components/navigation/NavBar/NavBar";
 import {AuthContext} from "./context/AuthContext";
 import Admin from "./pages/admin/Admin";
+import PrivateRoute from "./helpers/PrivateRoute";
 
 function App() {
     const { isAuth } = useContext(AuthContext);

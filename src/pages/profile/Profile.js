@@ -44,29 +44,33 @@ function Profile() {
 
     return (
         <>
-            <div className={styles['title-container']}>
+            <main className={styles['title-container']}>
             <h1 className={styles.title}>Profile</h1>
             <p>{}</p>
-            </div>
+            </main>
             <DividerNavBar />
             <section className={styles['profile-settings-container']}>
                 <SidebarNav />
                 <div className={styles['profile-settings-inner-container']}>
                     <div className={styles['user-details-field']}>
                         <p>Username</p>
-                        <p></p>
+                        <p className={styles['user-details-text']}></p>
+                        <span className={styles['change-link']}>Change</span>
                     </div>
                     <div className={styles['user-details-field']}>
                         <p>Email</p>
                         <p></p>
+                        <span className={styles['change-link']}>Change</span>
                     </div>
                     <div className={styles['user-details-field']}>
                         <p>Password</p>
                         <p></p>
+                        <span className={styles['change-link']}>Change</span>
                     </div>
                     <div className={styles['user-details-field']}>
                         <p><strong>Danger zone!</strong></p>
                         <p className={styles['delete-account-message']}>Delete my account</p>
+                        <span className={styles['change-link']}>Delete!</span>
                     </div>
                 </div>
             </section>

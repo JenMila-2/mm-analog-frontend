@@ -83,3 +83,10 @@ form input {
     text-decoration: none;
     font-weight: bold;
 }
+
+.error-label {
+    color: var(--crimson);
+    font-size: 12px;
+    padding-bottom: 8px;
+    margin-top: -4px;
+}

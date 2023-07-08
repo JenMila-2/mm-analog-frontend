@@ -16,6 +16,7 @@
     cursor: pointer;
     color: var(--errie-black);
     overflow: hidden;
+    border-radius: 8px;
 }
 
 .left-sidebar-item a {
@@ -33,5 +34,5 @@
 }
 
 .left-sidebar-item:hover {
-    background-color: var(--hover-alabaster);
+    background-color: var(--hover-baby-powder);
 }

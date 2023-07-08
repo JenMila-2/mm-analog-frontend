@@ -47,7 +47,7 @@ function AuthContextProvider({ children }) {
         navigate('/');
     }
 
-    async function getUserData(username, token, redirectUrl) {
+    async function getUserData(username, token) {
         try {
             const response = await axios.get(`http://localhost:8080/users/${username}`, {
                 headers: {

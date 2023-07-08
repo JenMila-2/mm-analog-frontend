@@ -6,8 +6,10 @@
     --ghost-white: #FAFAFF;
     --grey: #959595;
     --white-light-background: #F3F5F6;
-    --white: rgb(255, 255, 255);
-    --hover-alabaster: rgb(204, 204, 201);
+    --white: #FFF;
+    --hover-raisin-black: #1E1E24;
+    --hover-baby-powder: #F7F9F7;
+    --crimson: #DC143CFF;
 }
 
 * {

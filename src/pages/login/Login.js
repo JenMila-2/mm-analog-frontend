@@ -53,12 +53,12 @@ function Login() {
                             type="text"
                             id="username-field"
                             {...register("username", {
-                            required: "This field cannot be empty"
+                            required: "Username is required"
                             })}
                             placeholder="Username"
                         />
                     </label>
-                    {errors.username && <p className={styles['error-message-label']} >{error.username.message}</p>}
+                    {errors.username && <p className={styles['error-label']} >{errors.username.message}</p>}
                     <label htmlFor="password-field">
                         Password
                         <input
@@ -70,7 +70,7 @@ function Login() {
                             placeholder="•••••••••••••••"
                         />
                     </label>
-                    {errors.password && <p className={styles['error-message-label']} >{error.password.message}</p>}
+                    {errors.password && <p className={styles['error-label']} >{errors.password.message}</p>}
                     <button
                         type="submit"
                         className={styles['login-button']}>
@@ -80,6 +80,7 @@ function Login() {
                         :
                 <p>Don't have an account? <Link className={styles['signup-link']} to="/signup">Sign up</Link>!</p>
                     }
+                    {error && <p className={styles['error-label']}>Oops, something went wrong. Please check your credentials and try again.</p> }
             </div>
             {addSuccess === true && <p>Log in to your account was successful!</p>}
         </main>

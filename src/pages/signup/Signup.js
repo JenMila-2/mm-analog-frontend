@@ -12,11 +12,6 @@ function Signup() {
     const source = axios.CancelToken.source();
     const navigate = useNavigate();
 
-    const [username, setUsername] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
     useEffect(() => {
         /*return function cleanup() {
             source.cancel();
@@ -62,7 +57,7 @@ function Signup() {
                             type="text"
                             id="name-field"
                             {...register("name", {
-                                required: "This field cannot be empty",
+                                required: "Name is required",
                                 maxLength: {
                                     value: 75,
                                     message: "Name cannot contain more than 75 characters",
@@ -72,13 +67,14 @@ function Signup() {
                             autoComplete="off"
                         />
                     </label>
+                    {errors.name && <p className={styles['error-label']}>{errors.name.message}</p>}
                     <label htmlFor="username-field">
                         Username
                         <input
                             type="text"
                             id="username-field"
                             {...register("username", {
-                                required: "This field cannot be empty",
+                                required: "Username is required",
                                 maxLength: {
                                     value: 75,
                                     message: "Username cannot contain more than 75 characters",
@@ -88,13 +84,14 @@ function Signup() {
                             autoComplete="off"
                         />
                     </label>
+                    {errors.username && <p className={styles['error-label']}>{errors.username.message}</p>}
                     <label htmlFor="email-field">
                         Email
                         <input
                             type="email"
                             id="email-field"
                             {...register("email", {
-                                required: "This field cannot be empty",
+                                required: "Email is required",
                                 maxLength: {
                                     value: 75,
                                     message: "Email cannot contain more than 75 characters",
@@ -104,13 +101,15 @@ function Signup() {
                             autoComplete="off"
                         />
                     </label>
+                    {errors.email && <p className={styles['error-label']}>{errors.email.message}</p>}
+                    {error && <p className={styles['error-label']}>Email already exist. Please try another email.</p>}
                     <label htmlFor="password-field">
                         Password
                         <input
                             type="password"
                             id="password-field"
                             {...register("password", {
-                                required: "This field cannot be empty",
+                                required: "Password is required",
                                 minLength: {
                                     value: 7,
                                     message: "Password must contain at least 7 characters",
@@ -120,7 +119,7 @@ function Signup() {
                             autoComplete="off"
                         />
                     </label>
-                    {error && <p className="error">Email already exist. Please try another email.</p>}
+                    {errors.password && <p className={styles['error-label']}>{errors.password.message}</p>}
                     <button type="submit" className={styles['create-account-button']}>
                         Create account
                     </button>

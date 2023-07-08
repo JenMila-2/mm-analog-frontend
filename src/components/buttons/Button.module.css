@@ -56,7 +56,8 @@
 }
 
 .nav-button-small:hover {
-    background-color: var(--hover-alabaster);
+    background-color: var(--hover-raisin-black);
+    color: var(--white);
 }
 
 .nav-button-small:active {

@@ -8,7 +8,7 @@ import {useForm} from 'react-hook-form';
 
 
 function Login() {
-    const {register, formState: {errors}, handleSubmit} = useForm();
+    const {register, formState: {errors}, reset, handleSubmit} = useForm();
     const {login, logoff, isAuth} = useContext(AuthContext);
     const [error, toggleError] = useState(false);
     const [addSuccess, toggleAddSuccess] = useState(false);
@@ -21,16 +21,16 @@ function Login() {
         }
     }, []);
 
-    async function logInUser(e) {
+    async function logInUser(data) {
         try {
             const response = await axios.post('http://localhost:8080/authenticate', {
-                username: e.username,
-                password: e.password,
-            }, {
-                cancelToken: source.token,
-                });
-            login(response.data.jwt);
-            toggleAddSuccess(true);
+                username: data.username,
+                password: data.password,
+            })
+            console.log(response)
+            const JWT = response.data.jwt;
+            login(JWT);
+            reset();
         } catch (error) {
             console.error('Oops, an error occurred!', error);
             toggleError(true);
@@ -78,10 +78,16 @@ function Login() {
                     </button>
                 </form>
                         :
-                <p>Don't have an account? <Link className={styles['signup-link']} to="/signup">Sign up</Link>!</p>
+                        <button
+                            type="button"
+                            className={styles['login-button']}
+                            onClick={logoff}>
+                            Log off
+                        </button>
                     }
                     {error && <p className={styles['error-label']}>Oops, something went wrong. Please check your credentials and try again.</p> }
-            </div>
+                    <p>Don't have an account? <Link className={styles['signup-link']} to="/signup">Sign up</Link>!</p>
+                </div>
             {addSuccess === true && <p>Log in to your account was successful!</p>}
         </main>
     );

@@ -7,7 +7,7 @@ import isTokenValid from "../helpers/isTokenValid";
 export const AuthContext = createContext({});
 
 function AuthContextProvider({ children }) {
-    const [isAuth, toggleIsAuth] = useState({
+    const [auth, setAuth] = useState({
         isAuth: false,
         user: null,
         status: 'pending'
@@ -16,12 +16,11 @@ function AuthContextProvider({ children }) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-
         if (token && isTokenValid(token)) {
             const decodedToken = jwt_decode(token);
-            void getUserData(decodedToken.sub, token);
+            void getUserData(decodedToken.id, token);
             } else {
-            toggleIsAuth({
+            setAuth({
                 isAuth: false,
                 user: null,
                 status: 'done'
@@ -29,16 +28,18 @@ function AuthContextProvider({ children }) {
         }
     }, []);
 
-    function login(token) {
-        const decodedToken = jwt_decode(token);
-        localStorage.setItem('token', token);
-        void getUserData(decodedToken.sub, token, "/profile");
+    function login(JWT) {
+        console.log("User was successfully logged in")
+        localStorage.setItem('token', JWT);
+        const decodedToken = jwt_decode(JWT);
+        console.log(decodedToken);
+        void getUserData(decodedToken.id, JWT);
     }
 
     function logoff(e) {
         localStorage.clear();
         e.preventDefault();
-        toggleIsAuth({
+        setAuth({
             isAuth: false,
             user: null,
             status: 'done',
@@ -47,23 +48,24 @@ function AuthContextProvider({ children }) {
         navigate('/');
     }
 
-    async function getUserData(username, token) {
+    async function getUserData(JWT, id) {
         try {
-            const response = await axios.get(`http://localhost:8080/users/${username}`, {
+            const response = await axios.get(`http://localhost:8080/users/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${JWT}`,
                 },
             });
-
-            toggleIsAuth({
-                ...isAuth,
+            console.log(response)
+            setAuth({
+                ...auth,
                 isAuth: true,
                 user: {
                     username: response.data.username,
                     name: response.data.name,
                     email: response.data.email,
                     role: response.data.authorities[0].authority,
+                    id: response.data.id,
                 },
                 status: 'done',
             });
@@ -79,15 +81,15 @@ function AuthContextProvider({ children }) {
         }
 
         const contextData = {
-            isAuth: isAuth.isAuth,
-            user: isAuth.user,
+            isAuth: auth.isAuth,
+            user: auth.user,
             login: login,
             logoff: logoff,
     };
 
     return (
         <AuthContext.Provider value={contextData}>
-            {isAuth.status === 'done' ? children : <p>Loading...</p>}
+            {auth.status === 'done' ? children : <p>Loading...</p>}
         </AuthContext.Provider>
     );
 }

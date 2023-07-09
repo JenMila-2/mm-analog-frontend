@@ -72,3 +72,12 @@
     width: 400px;
     height: 40px;
 }
+
+.login-welcome {
+    background-color: var(--errie-black);
+    color: var(--white);
+    font-size: 15px;
+    border-radius: 25px;
+    width: 250px;
+    height: 45px;
+}

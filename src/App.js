@@ -10,6 +10,7 @@ import ProjectFolder from './pages/projectFolder/projectFolder'
 import PhotoLog from "./pages/photoLog/PhotoLog";
 import FilmDevelopmentLog from "./pages/filmDevelopmentLog/FilmDevelopmentLog";
 import Profile from "./pages/profile/Profile";
+import Welcome from "./pages/welcome/Welcome";
 import NavBar from "./components/navigation/NavBar/NavBar";
 import {AuthContext} from "./context/AuthContext";
 import Admin from "./pages/admin/Admin";
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/contact" />
                 <Route path="/signup" element={<Signup/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/welcomepage" element={<Welcome/>}/>
                 <Route path="/projectfolders" element={isAuth ? <ProjectFolder/> : <Navigate to="/"/>}/>
                 <Route path="/photologs" element={isAuth ? <PhotoLog/> : <Navigate to="/"/>}/>
                 <Route path="/filmstockinventories" element={isAuth ? <FilmStockInventory/> : <Navigate to="/"/>}/>

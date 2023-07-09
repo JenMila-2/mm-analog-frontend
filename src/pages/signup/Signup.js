@@ -34,7 +34,7 @@ function Signup() {
                 });
             console.log(response.data);
             toggleAddSucces(true);
-            navigate('/login');
+            navigate('/welcomepage');
         } catch(error) {
             console.error("Oops, an error occurred!", error);
             toggleError(true);

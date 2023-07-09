@@ -44,12 +44,12 @@ function Profile() {
 
     return (
         <>
-            <main className={styles['title-container']}>
+            <header className={styles['title-container']}>
             <h1 className={styles.title}>Profile</h1>
             <p>{}</p>
-            </main>
+            </header>
             <DividerNavBar />
-            <section className={styles['profile-settings-container']}>
+            <main className={styles['profile-settings-container']}>
                 <SidebarNav />
                 <div className={styles['profile-settings-inner-container']}>
                     <div className={styles['user-details-field']}>
@@ -73,7 +73,7 @@ function Profile() {
                         <span className={styles['change-link']}>Delete!</span>
                     </div>
                 </div>
-            </section>
+            </main>
         </>
     )
 }

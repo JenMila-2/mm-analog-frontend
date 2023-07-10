@@ -42,7 +42,7 @@ function Signup() {
     }
 
     return (
-        <div className={styles['signup-container']}>
+        <main className={styles['signup-container']}>
             <div className={styles['left-section']}>
                 <img src={coverImage} alt="Clouds"/>
             </div>
@@ -126,7 +126,7 @@ function Signup() {
                 </form>
                 <p>Already have an account? <Link className={styles['login-link']} to="/login">Log in</Link>!</p>
             </div>
-        </div>
+        </main>
     )
 }
 

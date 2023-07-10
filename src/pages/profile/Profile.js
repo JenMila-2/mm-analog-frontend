@@ -50,7 +50,12 @@ function Profile() {
                 <h1 className={styles.title}>Profile</h1>
                 <p>{}</p>
             </header>
-            <DividerNavBar />
+            <DividerNavBar
+                label1="Projects"
+                label2="Inventory"
+                path1="/projectfolders"
+                path2="/filmstockinventories"
+            />
             <main className={styles['profile-settings-container']}>
                 <SidebarNav />
                 <div className={styles['profile-settings-inner-container']}>

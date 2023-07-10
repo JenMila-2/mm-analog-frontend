@@ -3,25 +3,24 @@ import {NavLink, useNavigate} from "react-router-dom";
 import styles from "./DividerNavBar.module.css";
 import Button from "../../buttons/Button";
 
-const DividerNavBar = () => {
-
+const DividerNavBar = ({label1, path1, label2, path2}) => {
     const navigate = useNavigate();
-    const handleProjectClick = () => {
-        navigate('/projectfolders')
+    const handleClickButtonOne = () => {
+        navigate(path1)
     }
 
-    const handleInventoryClick = () => {
-        navigate('/filmstockinventories')
+    const handleClickButtonTwo = () => {
+        navigate(path2)
     }
 
     return (
         <div className={styles['divider-navbar-container']}>
             <div className={styles.border}>
-                <Button type="button" color="nav-button-small" clickHandler={handleProjectClick}>
-                    Projects
+                <Button type="button" color="nav-button-small" clickHandler={handleClickButtonOne}>
+                    {label1}
                 </Button>
-                <Button type="button" color="nav-button-small" clickHandler={handleInventoryClick}>
-                    Inventory
+                <Button type="button" color="nav-button-small" clickHandler={handleClickButtonTwo}>
+                    {label2}
                 </Button>
             </div>
         </div>

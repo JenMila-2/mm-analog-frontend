@@ -6,9 +6,9 @@ function PhotoProject() {
     return (
         <>
             <SidebarNav />
-            <section className="projects">
+            <main className="projects">
             <h1>My Photo Projects</h1>
-            </section>
+            </main>
             </>
     )
 }

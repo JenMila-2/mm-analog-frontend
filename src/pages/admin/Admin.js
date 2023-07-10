@@ -3,9 +3,9 @@ import React from 'react';
 
 function Admin() {
     return (
-        <section className="admin">
+        <main className="admin">
             <h1>Admin</h1>
-        </section>
+        </main>
     )
 }
 

@@ -16,9 +16,10 @@ function AuthContextProvider({ children }) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
+
         if (token && isTokenValid(token)) {
             const decodedToken = jwt_decode(token);
-            void getUserData(decodedToken.id, token);
+            void getUserData(decodedToken.sub, token);
             } else {
             setAuth({
                 isAuth: false,
@@ -29,11 +30,12 @@ function AuthContextProvider({ children }) {
     }, []);
 
     function login(JWT) {
-        console.log("User was successfully logged in")
-        localStorage.setItem('token', JWT);
+        console.log("User was successfully logged in");
         const decodedToken = jwt_decode(JWT);
+        localStorage.setItem('token', JWT);
         console.log(decodedToken);
-        void getUserData(decodedToken.id, JWT);
+        void getUserData(decodedToken.sub, JWT);
+        navigate("/profile");
     }
 
     function logoff(e) {
@@ -48,7 +50,7 @@ function AuthContextProvider({ children }) {
         navigate('/');
     }
 
-    async function getUserData(JWT, id) {
+    async function getUserData(id, JWT) {
         try {
             const response = await axios.get(`http://localhost:8080/users/${id}`, {
                 headers: {
@@ -56,16 +58,17 @@ function AuthContextProvider({ children }) {
                     Authorization: `Bearer ${JWT}`,
                 },
             });
-            console.log(response)
+            console.log(response.data);
+
             setAuth({
                 ...auth,
                 isAuth: true,
                 user: {
                     username: response.data.username,
+                    password: response.data.password,
+                    role: response.data.authorities[0].authority,
                     name: response.data.name,
                     email: response.data.email,
-                    role: response.data.authorities[0].authority,
-                    id: response.data.id,
                 },
                 status: 'done',
             });
@@ -75,13 +78,17 @@ function AuthContextProvider({ children }) {
                 navigate('/profile')
             }
         }  catch (e) {
-                console.error("Oops, an error occurred", e);
-                localStorage.clear();
+            console.error("Oops, an error occurred", e);
+            localStorage.clear();
+            setAuth({
+                    ...auth,
+                    status: 'error',
+                });
             }
         }
 
         const contextData = {
-            isAuth: auth.isAuth,
+            auth: auth.isAuth,
             user: auth.user,
             login: login,
             logoff: logoff,

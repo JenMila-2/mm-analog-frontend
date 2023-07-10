@@ -29,13 +29,19 @@ function App() {
                 <Route path="/signup" element={<Signup/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/welcomepage" element={<Welcome/>}/>
-                <Route path="/projectfolders" element={isAuth ? <ProjectFolder/> : <Navigate to="/"/>}/>
+                <Route path="/projectfolders" element={<ProjectFolder/>}/>
+                <Route path="/photologs" element={<PhotoLog/>}/>
+                <Route path="/filmstockinventories" element={<FilmStockInventory/>}/>
+                <Route path="/filmdevelopmentlogs" element={<FilmDevelopmentLog/>}/>
+                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/admin" element={<Admin/>}/>
+
+                {/*<Route path="/projectfolders" element={isAuth ? <ProjectFolder/> : <Navigate to="/"/>}/>
                 <Route path="/photologs" element={isAuth ? <PhotoLog/> : <Navigate to="/"/>}/>
                 <Route path="/filmstockinventories" element={isAuth ? <FilmStockInventory/> : <Navigate to="/"/>}/>
                 <Route path="/filmdevelopmentlogs" element={isAuth ? <FilmDevelopmentLog/> : <Navigate to="/"/>}/>
-                {/*<Route path="/profile" element={isAuth ? <Profile/> : <Navigate to="/"/>}/>*/}
-                <Route path="/profile" element={<Profile/>}/>
-                <Route path="/admin" element={isAuth ? <Admin/> : <Navigate to="/"/>}/>
+                <Route path="/profile" element={isAuth ? <Profile/> : <Navigate to="/"/>}/>
+                <Route path="/admin" element={isAuth ? <Admin/> : <Navigate to="/"/>}/>*/}
             </Routes>
         </>
     );

@@ -8,32 +8,34 @@ import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavB
 
 
 function Profile() {
-    const [userData, setUserData] = useState();
-    const {user} = useContext(AuthContext);
-    const [isAdmin, toggleAdmin] = useState(false);
+    const {user, auth} = useContext(AuthContext);
     const token = localStorage.getItem('token');
+
+    const [isAdmin, toggleAdmin] = useState(false);
     const navigate = useNavigate();
+
+    const [userData, setUserData] = useState();
 
     useEffect(() => {
         const source = axios.CancelToken.source();
 
-        async function getData(username, token) {
+        async function getData(id, token) {
             try {
-                const response = await axios.get(`http://localhost:8080/users/${username}`, {
+                const response = await axios.get(`http://localhost:8080/users/${id}`, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
                     }
                 });
                 setUserData(response.data);
-                response.data.authority.map((userRole) => {
+                response.data.authorities.map((userRole) => {
                     if (userRole.authority === "ROLE_ADMIN") {
                         return toggleAdmin(true);
                     }
                 });
 
             } catch (e) {
-                console.error(e);
+                console.error("An error occurred!", e);
             }
         }
         void getData(user, token);
@@ -45,8 +47,8 @@ function Profile() {
     return (
         <>
             <header className={styles['title-container']}>
-            <h1 className={styles.title}>Profile</h1>
-            <p>{}</p>
+                <h1 className={styles.title}>Profile</h1>
+                <p>{}</p>
             </header>
             <DividerNavBar />
             <main className={styles['profile-settings-container']}>
@@ -79,3 +81,4 @@ function Profile() {
 }
 
 export default Profile;
+

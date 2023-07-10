@@ -9,7 +9,7 @@ import {useForm} from 'react-hook-form';
 
 function Login() {
     const {register, formState: {errors}, reset, handleSubmit} = useForm();
-    const {login, logoff, isAuth} = useContext(AuthContext);
+    const {login, logoff, auth} = useContext(AuthContext);
     const [error, toggleError] = useState(false);
     const [addSuccess, toggleAddSuccess] = useState(false);
     const source = axios.CancelToken.source();
@@ -21,15 +21,17 @@ function Login() {
         }
     }, []);
 
-    async function logInUser(data) {
+    async function loginUser(data) {
         try {
             const response = await axios.post('http://localhost:8080/authenticate', {
                 username: data.username,
                 password: data.password,
+            }, {
+                cancelToken: source.token,
             })
             console.log(response)
-            const JWT = response.data.jwt;
-            login(JWT);
+            login(response.data.jwt);
+            toggleAddSuccess(true);
             reset();
         } catch (error) {
             console.error('Oops, an error occurred!', error);
@@ -45,8 +47,8 @@ function Login() {
                 <div className={styles['right-section-login']}>
                 <h1>Welcome back</h1>
                 <p>Nice to see you again!</p>
-                    {!isAuth ?
-                <form className={styles['login-form']} onSubmit={handleSubmit(logInUser)}>
+                    {!auth ?
+                <form className={styles['login-form']} onSubmit={handleSubmit(loginUser)}>
                     <label htmlFor="username-field">
                         Username
                         <input

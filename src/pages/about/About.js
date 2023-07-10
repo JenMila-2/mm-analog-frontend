@@ -7,7 +7,7 @@ import portraitJensy from '../../assets/Self_Portrait_Jensy.jpg';
 function About() {
     return (
         <>
-            <section className={styles['about-section']}>
+            <main className={styles['about-section']}>
                 <h1 className={styles['page-title']}>About</h1>
                 <p className={styles.quote}>"Photography is a way of feeling, of touching, of loving. What you have caught on film is captured forever… It remembers little things, long after you have forgotten everything." - Aaron Siskind</p>
                 <div className={styles['image-container']}>
@@ -23,7 +23,7 @@ function About() {
                 <div className={styles['side-text-left']}>
                     <p>keep shooting film</p>
                 </div>
-            </section>
+            </main>
             <Footer />
         </>
     )

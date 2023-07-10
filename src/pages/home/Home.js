@@ -11,7 +11,7 @@ import styles from "../home/Home.module.css";
 function Home() {
     return (
         <>
-            <div className="home-container">
+            <main className="home-container">
                 <HeroSection />
                 <HomeSection
                     heading="get started"
@@ -33,7 +33,7 @@ function Home() {
                 />
                 <ContactForm className={styles['contact-form']} />
                 <Footer />
-            </div>
+            </main>
         </>
     )
 }

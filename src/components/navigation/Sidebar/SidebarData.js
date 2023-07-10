@@ -3,22 +3,32 @@ import React from 'react';
 export const SidebarData = [
     {
         title: "My Projects",
-        path: "/projects"
+        path: "/projectfolders"
     },
 
     {
-        title: "My Photo Gallery",
-        path: "/photogallery"
+        title: "Photo Log",
+        path: "/photologs"
     },
 
     {
-        title: "My Account",
-        path: "/accountsettings"
+        title: "Stock Inventory",
+        path: "/filmstockinventories"
+    },
+
+    {
+        title: "Development Log",
+        path: "/filmdevelopmentlogs"
+    },
+
+    {
+        title: "Profile",
+        path: "/profile"
     },
 
     {
         title: "Log off",
-        path: "/logoff"
+        path: "/"
     },
 
     {

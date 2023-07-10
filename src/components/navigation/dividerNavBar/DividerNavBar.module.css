@@ -1,0 +1,20 @@
+.divider-navbar-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    max-width: 100%;
+    margin-bottom: -50px;
+}
+
+.border {
+    display: flex;
+    position: sticky;
+    border-bottom: 1px solid lightgrey;
+    justify-content: flex-start;
+    width: 75%;
+    margin-left: 15%;
+    padding: 15px;
+    gap: 10px;
+}

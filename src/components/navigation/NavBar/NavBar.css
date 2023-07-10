@@ -33,6 +33,7 @@
 .sidebar-open {
     right: 0;
     transform: translateX(0);
+    z-index: 1;
 }
 
 .sidebar-menu {

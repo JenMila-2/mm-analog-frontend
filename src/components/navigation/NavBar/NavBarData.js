@@ -7,11 +7,6 @@ export const publicNavItems = [
     },
 
     {
-        title: "Explore galleries",
-        path: "/exploregalleries",
-    },
-
-    {
         title: "About",
         path: "/about",
     },
@@ -39,11 +34,6 @@ export const loggedInNavItems = [
     },
 
     {
-        title: "Explore galleries",
-        path: "/exploregalleries",
-    },
-
-    {
         title: "About",
         path: "/about",
     },
@@ -55,21 +45,31 @@ export const loggedInNavItems = [
 
     {
         title: "My projects",
-        path: "/projects",
+        path: "/projectfolders",
     },
 
     {
-        title: "My photo gallery",
-        path: "/photogallery",
+        title: "Photo log",
+        path: "/photologs",
     },
 
     {
-        title: "Account Settings",
-        path: "/accountsettings",
+        title: "Film stock inventory",
+        path: "/filmstockinventories",
+    },
+
+    {
+        title: "Profile",
+        path: "/profile",
+    },
+
+    {
+        title: "Film Development Log",
+        path: "/filmdevelopmentlogs",
     },
 
     {
         title: "Log off",
-        path: "/logoff",
+        path: "/",
     },
 ];

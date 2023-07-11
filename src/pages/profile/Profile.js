@@ -44,8 +44,8 @@ function Profile() {
             await axios.put(`http://localhost:8080/users/${user.username}`, {
                 name: c.name,
                 email: c.email,
-                password: user.password,
-                username: user.username,
+                password: c.password,
+                username: c.username,
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -76,7 +76,7 @@ function Profile() {
             />
             <main className={styles['profile-settings-container']}>
                 <SidebarNav />
-                <form className={styles['profile-settings-inner-container']} onSubmit={changeUserDetails}>
+                <form className={styles['profile-settings-inner-container']} onSubmit={handleSubmit(changeUserDetails)}>
                     <div className={styles['user-details-field']}>
                         <label htmlFor="username-field">
                             Username

@@ -2,13 +2,8 @@ import React from 'react';
 
 export const SidebarData = [
     {
-        title: "My Projects",
+        title: "Projects",
         path: "/projectfolders"
-    },
-
-    {
-        title: "Photo Log",
-        path: "/photologs"
     },
 
     {

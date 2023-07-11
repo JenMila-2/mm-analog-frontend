@@ -18,7 +18,6 @@ function Profile() {
 
     useEffect(() => {
         const source = axios.CancelToken.source();
-
         async function getData(id, token) {
             try {
                 const response = await axios.get(`http://localhost:8080/users/${id}`, {
@@ -33,7 +32,6 @@ function Profile() {
                         return toggleAdmin(true);
                     }
                 });
-
             } catch (e) {
                 console.error("An error occurred!", e);
             }

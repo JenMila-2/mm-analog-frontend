@@ -41,7 +41,7 @@
 
 .change-link {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-details-text {

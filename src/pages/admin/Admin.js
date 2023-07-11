@@ -68,16 +68,16 @@ function Admin() {
                 label1="Change"
                 label2="Delete"
             />
-            <main className={styles['admin-dashboard-container']}>
+            <main className={styles['admin-dashboard']}>
                 <SidebarNav />
-                <div>
+                <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
                         <table>
                             <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Username</th>
-                                <th>User</th>
+                                <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
                                 <th>Role</th>

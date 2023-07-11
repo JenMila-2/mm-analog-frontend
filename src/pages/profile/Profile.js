@@ -5,16 +5,18 @@ import axios from 'axios';
 import styles from './Profile.module.css';
 import {useNavigate} from "react-router-dom";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import {useForm} from "react-hook-form";
 
 
 function Profile() {
-    const {user, auth} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const token = localStorage.getItem('token');
-
-    const [isAdmin, toggleAdmin] = useState(false);
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
-
     const [userData, setUserData] = useState();
+    const [success, toggleSuccess] = useState(false);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const source = axios.CancelToken.source();
@@ -27,11 +29,6 @@ function Profile() {
                     }
                 });
                 setUserData(response.data);
-                response.data.authorities.map((userRole) => {
-                    if (userRole.authority === "ROLE_ADMIN") {
-                        return toggleAdmin(true);
-                    }
-                });
             } catch (e) {
                 console.error("An error occurred!", e);
             }
@@ -42,11 +39,34 @@ function Profile() {
         }
     }, []);
 
+    async function changeUserDetails(c) {
+        try {
+            await axios.put(`http://localhost:8080/users/${user.username}`, {
+                name: c.name,
+                email: c.email,
+                password: user.password,
+                username: user.username,
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+            toggleSuccess(true);
+            setTimeout(() => {
+                navigate('/profile')
+            }, 2000)
+        } catch (e) {
+            console.error("Something went wrong...", e)
+        }
+        setLoading(false);
+    }
+
     return (
         <>
             <header className={styles['title-container']}>
                 <h1 className={styles.title}>Profile</h1>
-                <p>{}</p>
+                <p>{user.name}</p>
             </header>
             <DividerNavBar
                 label1="Projects"
@@ -56,29 +76,62 @@ function Profile() {
             />
             <main className={styles['profile-settings-container']}>
                 <SidebarNav />
-                <div className={styles['profile-settings-inner-container']}>
+                <form className={styles['profile-settings-inner-container']} onSubmit={changeUserDetails}>
                     <div className={styles['user-details-field']}>
-                        <p>Username</p>
-                        <p className={styles['user-details-text']}></p>
-                        <span className={styles['change-link']}>Change</span>
+                        <label htmlFor="username-field">
+                            Username
+                        <input
+                            type="text"
+                            id='username'
+                            className={styles['user-details-input']}
+                            defaultValue={user.username}
+                            {...register("username")}/>
+                        </label>
                     </div>
                     <div className={styles['user-details-field']}>
-                        <p>Email</p>
-                        <p></p>
-                        <span className={styles['change-link']}>Change</span>
+                        <label htmlFor="email-field">
+                            Email
+                            <input
+                                type="text"
+                                id='email'
+                                className={styles['user-details-input']}
+                                defaultValue={user.email}
+                                {...register("email")}/>
+                        </label>
                     </div>
                     <div className={styles['user-details-field']}>
-                        <p>Password</p>
-                        <p></p>
-                        <span className={styles['change-link']}>Change</span>
+                        <label htmlFor="password-field">
+                            Password
+                            <input
+                                type="password"
+                                id='password'
+                                className={styles['user-details-input']}
+                                defaultValue={user.password}
+                                {...register("password")}/>
+                        </label>
                     </div>
-                    <div className={styles['user-details-field']}>
-                        <p><strong>Danger zone!</strong></p>
-                        <p className={styles['delete-account-message']}>Delete my account</p>
-                        <span className={styles['change-link']}>Delete!</span>
+                    <div className={styles['buttons-container']}>
+                        <button
+                        type="button"
+                        className={styles['form-buttons']}
+                        disabled={loading}
+                        >
+                            Save
+                        </button>
+                        <button
+                        type="button"
+                        className={styles['form-buttons']}
+                        onClick={() => navigate}
+                        >
+                            Cancel
+                        </button>
                     </div>
-                </div>
+                </form>
             </main>
+            <div className={styles['delete-user-section']}>
+                <p><strong>Danger zone!</strong></p>
+                <p className={styles['delete-account-message']}>Delete my account</p>
+            </div>
         </>
     )
 }

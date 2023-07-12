@@ -11,10 +11,13 @@ import PhotoLog from "./pages/photoLog/PhotoLog";
 import FilmDevelopmentLog from "./pages/filmDevelopmentLog/FilmDevelopmentLog";
 import Profile from "./pages/profile/Profile";
 import Welcome from "./pages/welcome/Welcome";
+import UpdateProfileDetails from "./pages/updateProfileDetails/UpdateProfileDetails";
+
 import NavBar from "./components/navigation/NavBar/NavBar";
 import {AuthContext} from "./context/AuthContext";
 import Admin from "./pages/admin/Admin";
 import PrivateRoute from "./helpers/PrivateRoute";
+import UpdatePassword from "./pages/updateProfileDetails/UpdatePassword";
 
 function App() {
     const { isAuth } = useContext(AuthContext);
@@ -35,6 +38,8 @@ function App() {
                 <Route path="/filmdevelopmentlogs" element={<FilmDevelopmentLog/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/admin" element={<Admin/>}/>
+                <Route path="/update/profile" element={<UpdateProfileDetails/>}/>
+                <Route path="/update/password" element={<UpdatePassword/>}/>
 
                 {/*<Route path="/projectfolders" element={isAuth ? <ProjectFolder/> : <Navigate to="/"/>}/>
                 <Route path="/photologs" element={isAuth ? <PhotoLog/> : <Navigate to="/"/>}/>

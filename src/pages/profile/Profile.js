@@ -45,7 +45,7 @@ function Profile() {
                 <p>{user.name}</p>
             </header>
             <DividerNavBar
-                label1="Details"
+                label1="Update"
                 label2="Password"
                 path1="/update/profile"
                 path2="/update/password"
@@ -56,17 +56,16 @@ function Profile() {
                     <div className={styles['user-details-field']}>
                         <p>Username</p>
                         <inpunt className={styles['user-details-text']}>{user.username}</inpunt>
-                        <span className={styles['change-link']}>Change</span>
                     </div>
                     <div className={styles['user-details-field']}>
                         <p>Email</p>
                         <p className={styles['user-details-text']}> {user.email}</p>
-                        <span className={styles['change-link']}>Change</span>
+                        <span><Link to="/update/profile" className={styles['change-link']}>Change</Link></span>
                     </div>
                     <div className={styles['user-details-field']}>
                         <p>Password</p>
                         <p className={styles['user-details-text']}>*******</p>
-                        <span className={styles['change-link']}>Change</span>
+                        <span><Link to="/update/password" className={styles['change-link']}>Change</Link></span>
                     </div>
                     <div className={styles['user-details-field']}>
                         <p><strong>Danger zone!</strong></p>

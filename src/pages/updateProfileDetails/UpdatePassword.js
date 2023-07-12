@@ -68,8 +68,8 @@ export function UpdatePassword() {
                 <div className={styles['form-inner-container']}>
                     {addSuccess ?
                         <section>
-                            <h4>Your password has been updated and saved!</h4>
-                            <p>In a few moments you will be send back to you profile page.</p>
+                            <h4>Your new password has been saved!</h4>
+                            <p>In a few moments you will be send back to your profile page.</p>
                         </section>
                         :
                         <>

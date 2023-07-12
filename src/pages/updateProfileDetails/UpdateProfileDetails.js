@@ -68,13 +68,13 @@ export function UpdateProfileDetails() {
                     {addSuccess ?
                         <section>
                             <h4>Changes were saved successfully!</h4>
-                            <p>In a few moments you will be send back to you profile page.</p>
+                            <p>In a few moments you will be send back to your profile page.</p>
                         </section>
                         :
                         <>
                             <form className={styles['update-profile-form']} onSubmit={handleSubmit(updateProfileDetails)}>
                                 <label htmlFor="name">
-                                    Name
+                                   New name
                                     <input
                                         type="text"
                                         id="name"
@@ -85,7 +85,7 @@ export function UpdateProfileDetails() {
                                 </label>
                                 {errors.name && <p className={styles['error-label']}>{error.name.message}</p>}
                                 <label htmlFor="email">
-                                    Email
+                                    New email
                                     <input
                                         type="text"
                                         id="email"

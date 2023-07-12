@@ -54,4 +54,11 @@
     justify-content: flex-end;
     margin-top: -35px;
     font-size: 14px;
+    text-decoration: none;
+    color: var(--errie-black);
+    font-weight: bold;
+}
+
+.change-link:hover {
+    color: var(--coral);
 }

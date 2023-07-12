@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import styles from './Admin.module.css';
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
+import UpdateProfileModal from "../../components/modal/UpdateProfileModal";
 import axios from "axios";
-import {FaPencilAlt} from "react-icons/fa";
 import {RiDeleteBin6Line} from "react-icons/ri";
 
 
@@ -12,6 +12,7 @@ function Admin() {
     const [selectedRows, setSelectedRows] = useState([]);
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
+    const [isModalOpen, setModalOpen] = useState(false);
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -55,18 +56,28 @@ function Admin() {
         }
     }
 
-    const handleEdit = (id) => {
-        console.log(`Edit row with ID: ${id}`);
+    const handleDelete = () => {
+        setModalOpen(true);
+    };
+
+    const handleModalConfirm = () => {
+        setModalOpen(false);
+        // Delete the selected users
+        selectedRows.forEach((username) => deleteUser(username));
+    };
+
+    const handleModalCancel = () => {
+        setModalOpen(false);
     };
 
     return (
         <>
-        <header className={styles['admin-dashboard-title']}>
-            <h1 className={styles.title}>Admin Dashboard</h1>
-        </header>
+            <header className={styles['admin-dashboard-title']}>
+                <h1 className={styles.title}>Admin Dashboard</h1>
+            </header>
             <DividerNavBar
-                label1="Change"
-                label2="Delete"
+                label1="Update"
+                label2="Add new"
             />
             <main className={styles['admin-dashboard']}>
                 <SidebarNav />
@@ -88,30 +99,26 @@ function Admin() {
                             {users.map((user) => {
                                 const isSelected = selectedRows.includes(user.username);
                                 return (
-                                <tr key={user.username}>
-                                    <td>
-                                        <input
-                                            type="checkbox"
-                                            checked={isSelected}
-                                            onChange={() => handleRowSelect(user.username)}
-                                        />
-                                    </td>
-                                    <td>{user.username}</td>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td><span className={styles['status-text']}>{user.enabled ? "Active" : "Blocked"}</span></td>
-                                    <td className={styles['authority-text']}>{user.authorities[0].authority}</td>
-                                    <td>
-                                        <FaPencilAlt
-                                            className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles.disabledIcon}`}
-                                            onClick={() => handleEdit(user.username)}
-                                        />
-                                        <RiDeleteBin6Line
-                                            className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles.disabledIcon}`}
-                                            onClick={() => deleteUser(user.username)}
-                                        />
-                                    </td>
-                                </tr>
+                                    <tr key={user.username}>
+                                        <td>
+                                            <input
+                                                type="checkbox"
+                                                checked={isSelected}
+                                                onChange={() => handleRowSelect(user.username)}
+                                            />
+                                        </td>
+                                        <td>{user.username}</td>
+                                        <td>{user.name}</td>
+                                        <td>{user.email}</td>
+                                        <td><span className={styles['status-text']}>{user.enabled ? "Active" : "Blocked"}</span></td>
+                                        <td className={styles['authority-text']}>{user.authorities[0].authority}</td>
+                                        <td>
+                                            <RiDeleteBin6Line
+                                                className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles.disabledIcon}`}
+                                                onClick={handleDelete}
+                                            />
+                                        </td>
+                                    </tr>
                                 );
                             })}
                             </tbody>
@@ -119,6 +126,14 @@ function Admin() {
                     </div>
                 </div>
             </main>
+            <UpdateProfileModal isOpen={isModalOpen} onClose={handleModalCancel}>
+                <h3>Confirm Delete</h3>
+                <p>Are you sure you want to delete the selected user(s)?</p>
+                <div>
+                    <button onClick={handleModalConfirm}>Delete</button>
+                    <button onClick={handleModalCancel}>Cancel</button>
+                </div>
+            </UpdateProfileModal>
         </>
     );
 }

@@ -4,6 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 import axios from "axios";
 import {useForm} from "react-hook-form";
+import UpdateProfileModal from "../../components/modal/UpdateProfileModal";
 
 export function UpdateProfileDetails() {
     const {user} = useContext(AuthContext);
@@ -13,6 +14,7 @@ export function UpdateProfileDetails() {
     const [error, toggleError] = useState(false);
     const [addSuccess, toggleAddSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [isModalOpen, setModalOpen] = useState(false);
 
     async function updateProfileDetails(data) {
         toggleError(false);
@@ -35,18 +37,31 @@ export function UpdateProfileDetails() {
                 navigate('/profile')
             }, 2000);
         } catch (e) {
-            console.error("Oops, something went wrong...", e);
+            console.error('Oops, something went wrong...', e);
             toggleError(true);
         }
         setLoading(false);
     }
+
+    const handleSaveButtonClick = () => {
+        setModalOpen(true);
+    };
+
+    const handleModalConfirm = () => {
+        setModalOpen(false);
+        handleSubmit(updateProfileDetails)();
+    };
+
+    const handleModalCancel = () => {
+        setModalOpen(false);
+    };
 
     return (
         <>
             <header className={styles['title-container']}>
                 <h1 className={styles['update-page-title']}>Update profile details</h1>
                 <p>On this page you can update your profile.</p>
-                <p>To update you password go to <Link className={styles['link-password']} to={'/update/password'}>update password</Link></p>
+                <p>To update your password go to <Link className={styles['link-password']} to={'/update/password'}>update password</Link></p>
             </header>
             <main className={styles['form-container']}>
                 <div className={styles['form-inner-container']}>
@@ -89,19 +104,27 @@ export function UpdateProfileDetails() {
                                     <button
                                         type="button"
                                         className={styles['form-buttons']}
-                                        disabled={loading}
+                                        onClick={handleSubmit(handleSaveButtonClick)}
                                     >
                                         Save
                                     </button>
                                     <button
                                         type="button"
                                         className={styles['form-buttons']}
-                                        onClick={() => navigate("./profile")}
+                                        onClick={() => navigate(-1)}
                                     >
                                         Cancel
                                     </button>
                                 </div>
                             </form>
+                            <UpdateProfileModal isOpen={isModalOpen} onClose={handleModalCancel}>
+                                <h3>Confirm Save</h3>
+                                <p>Are you sure you want to save the changes?</p>
+                                <div>
+                                    <button onClick={handleModalConfirm}>Save</button>
+                                    <button onClick={handleModalCancel}>Cancel</button>
+                                </div>
+                            </UpdateProfileModal>
                         </>
                     }
                 </div>

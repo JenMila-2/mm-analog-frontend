@@ -20,21 +20,32 @@
     color: var(--platinum);
 }
 
+.explore {
+    background-color: var(--errie-black);
+    color: var(--white);
+    font-size: 16px;
+    width: 120px;
+    height: 45px;
+}
+
 .signup {
     background-color: var(--errie-black);
     color: var(--white);
+    font-size: 15px;
 }
 
 .login {
     background-color: var(--alabaster);
     color: var(--errie-black);
+    font-size: 15px;
 }
 
 .create-account, .login-large {
     background-color: var(--errie-black);
+    font-size: 16px;
     color: var(--white);
     width: 350px;
-    height: 40px;
+    height: 45px;
 }
 
 .nav-button-small {
@@ -45,7 +56,8 @@
 }
 
 .nav-button-small:hover {
-    background-color: var(--hover-alabaster);
+    background-color: var(--hover-raisin-black);
+    color: var(--white);
 }
 
 .nav-button-small:active {
@@ -59,4 +71,13 @@
     color: var(--grey);
     width: 400px;
     height: 40px;
+}
+
+.login-welcome {
+    background-color: var(--errie-black);
+    color: var(--white);
+    font-size: 15px;
+    border-radius: 25px;
+    width: 250px;
+    height: 45px;
 }

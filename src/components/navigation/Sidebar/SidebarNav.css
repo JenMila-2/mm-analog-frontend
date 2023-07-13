@@ -1,19 +1,12 @@
 .left-sidebar-nav {
-    width: 250px;
-    position: fixed;
+    width: 220px;
+    position: sticky;
     transition: width 0.3s ease-in-out;
-    height: 100vh;
+    height: 90vh;
     background-color: var(--alabaster);
     padding-top: 25px;
     margin-left: 15px;
-    margin-top: 5%;
-    border-radius: 5px;
-}
-
-.sidebarClosed {
-    composes: left-sidebar-nav;
-    transition: width 0.3s ease-in-out;
-    width: 60px;
+    border-radius: 6px;
 }
 
 .left-sidebar-item {
@@ -23,6 +16,7 @@
     cursor: pointer;
     color: var(--errie-black);
     overflow: hidden;
+    border-radius: 8px;
 }
 
 .left-sidebar-item a {
@@ -40,11 +34,5 @@
 }
 
 .left-sidebar-item:hover {
-    background-color: var(--hover-alabaster);
-}
-
-.left-menu-icon {
-    padding-left: 20px;
-    font-size: 20px;
-    cursor: pointer;
+    background-color: var(--hover-baby-powder);
 }

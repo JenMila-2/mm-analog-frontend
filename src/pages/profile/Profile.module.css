@@ -1,0 +1,64 @@
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 42px;
+}
+
+.profile-settings-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.profile-settings-inner-container {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 60px 0 60px;
+    margin-top: 40px;
+    width: 70%;
+}
+
+.user-details-field {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin-top: 20px;
+}
+
+.delete-account-message {
+    color: var(--crimson);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.user-details-text {
+    color: var(--grey);
+    font-size: 14px;
+    line-height: 25px;
+    border: none;
+    border-bottom: 1px solid var(--platinum);
+    border-radius: 0;
+    padding-bottom: 10px;
+}
+
+.change-link {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -35px;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--errie-black);
+    font-weight: bold;
+}
+
+.change-link:hover {
+    color: var(--coral);
+}

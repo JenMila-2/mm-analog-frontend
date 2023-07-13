@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import {loggedInNavItems, publicNavItems} from "./NavBarData";
+import {adminNavItems, publicNavItems, userNavItems} from "./NavBarData";
 import './NavBar.css';
 import {NavLink} from "react-router-dom";
 import {AuthContext} from "../../../context/AuthContext";
@@ -8,7 +8,7 @@ import {AuthContext} from "../../../context/AuthContext";
 const NavBar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const sidebarClose = useRef(null);
-    const {isAuth} = useContext(AuthContext);
+    const {user, logoff} = useContext(AuthContext);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -28,7 +28,15 @@ const NavBar = () => {
         };
     }, []);
 
-    const navigationItems = isAuth ? loggedInNavItems : publicNavItems;
+   let navigationItems;
+
+    if (user && user.role === 'ROLE_ADMIN') {
+        navigationItems = adminNavItems;
+    } else if (user && user.role === 'ROLE_USER') {
+        navigationItems = userNavItems;
+    } else {
+        navigationItems = publicNavItems;
+    }
 
     return (
         <>
@@ -49,6 +57,13 @@ const NavBar = () => {
                             </NavLink>
                         </li>
                     ))}
+                    {user && (
+                        <li className="sidebar-item" onClick={logoff}>
+                            <NavLink to="/" onClick={() => setSidebarOpen(false)}>
+                                <span className="sidebar-item-title">Log off</span>
+                            </NavLink>
+                        </li>
+                    )}
                 </ul>
             </aside>
             <div className="logo-name">mm-analog.</div>

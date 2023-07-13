@@ -7,11 +7,6 @@ export const publicNavItems = [
     },
 
     {
-        title: "Explore galleries",
-        path: "/exploregalleries",
-    },
-
-    {
         title: "About",
         path: "/about",
     },
@@ -19,28 +14,23 @@ export const publicNavItems = [
     {
         title: "Contact",
         path: "/",
-    },
-
-    {
-        title: "Sign up",
-        path: "/signup",
     },
 
     {
         title: "Log in",
         path: "/login",
     },
+
+    {
+        title: "Sign up",
+        path: "/signup",
+    },
 ];
 
-export const loggedInNavItems = [
+export const userNavItems = [
     {
         title: "Home",
         path: "/",
-    },
-
-    {
-        title: "Explore galleries",
-        path: "/exploregalleries",
     },
 
     {
@@ -54,22 +44,54 @@ export const loggedInNavItems = [
     },
 
     {
-        title: "My projects",
-        path: "/projects",
+        title: "Photo projects",
+        path: "/projectfolders",
     },
 
     {
-        title: "My photo gallery",
-        path: "/photogallery",
+        title: "Film stock inventory",
+        path: "/filmstockinventories",
     },
 
     {
-        title: "Account Settings",
-        path: "/accountsettings",
+        title: "Development Log",
+        path: "/filmdevelopmentlogs",
     },
 
     {
-        title: "Log off",
-        path: "/logoff",
+        title: "Profile",
+        path: "/profile",
+    },
+];
+
+export const adminNavItems = [
+    {
+        title: "Home",
+        path: "/",
+    },
+
+    {
+        title: "About",
+        path: "/about",
+    },
+
+    {
+        title: "Contact",
+        path: "/",
+    },
+
+    {
+        title: "Profile",
+        path: "/profile",
+    },
+
+    {
+        title: "Admin Dashboard",
+        path: "/admin/dashboard"
+    },
+
+    {
+        title: "User Folders",
+        path: "/overview/projectfolders",
     },
 ];

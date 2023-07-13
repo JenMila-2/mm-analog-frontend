@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import './App.css';
 import {Routes, Route, Navigate} from "react-router-dom";
+import {AuthContext} from "./context/AuthContext";
 import Home from './pages/home/Home';
 import About from './pages/about/About';
 import FilmStockInventory from "./pages/filmStockInventory/FilmStockInventory";
@@ -13,11 +13,12 @@ import Profile from "./pages/profile/Profile";
 import Welcome from "./pages/welcome/Welcome";
 import UpdateProfileDetails from "./pages/updateProfileDetails/UpdateProfileDetails";
 import NavBar from "./components/navigation/NavBar/NavBar";
-import {AuthContext} from "./context/AuthContext";
 import Admin from "./pages/admin/Admin";
-import PrivateRoute from "./helpers/PrivateRoute";
 import UpdatePassword from "./pages/updateProfileDetails/UpdatePassword";
 import UserFolders from "./pages/adminOverview/UserFolders/UserFolders";
+import UploadImage from "./pages/uploadImage/UploadImage";
+import './App.css';
+import PrivateRoute from "./helpers/PrivateRoute";
 
 function App() {
     const { isAuth } = useContext(AuthContext);
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/photologs" element={<PhotoLog/>}/>
                 <Route path="/filmstockinventories" element={<FilmStockInventory/>}/>
                 <Route path="/filmdevelopmentlogs" element={<FilmDevelopmentLog/>}/>
+                <Route path="/upload/image" element={<UploadImage/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/admin/dashboard" element={<Admin/>}/>
                 <Route path="/overview/projectfolders" element={<UserFolders/>}/>

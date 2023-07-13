@@ -1,13 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
-import styles from './Admin.module.css';
-import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
+import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import UpdateProfileModal from "../../components/modal/UpdateProfileModal";
-import axios from "axios";
+import {AuthContext} from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {VscSaveAs} from "react-icons/vsc";
-import {AuthContext} from "../../context/AuthContext";
-
+import styles from './Admin.module.css';
+import axios from "axios";
 
 function Admin() {
     const [users, setUsers] = useState([]);

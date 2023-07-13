@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './Welcome.module.css';
 import Button from "../../components/buttons/Button";
 import {useNavigate} from "react-router-dom";
 import {BsCameraFill} from "react-icons/bs";
 import Footer from "../../components/footer/Footer";
+import styles from './Welcome.module.css';
 
 function Welcome() {
     const navigate = useNavigate();

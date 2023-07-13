@@ -1,8 +1,11 @@
 import React from 'react';
-import styles from './UserFolders.module.css';
-import DividerNavBar from "../../../components/navigation/dividerNavBar/DividerNavBar";
 import SidebarNav from "../../../components/navigation/Sidebar/SidebarNav";
-export function UserFolders() {
+import DividerNavBar from "../../../components/navigation/dividerNavBar/DividerNavBar";
+import {Link, useNavigate} from "react-router-dom";
+import axios from 'axios';
+import styles from './UserFolders.module.css';
+
+function UserFolders() {
     return (
         <>
         <header className={styles['header-container']}>
@@ -23,7 +26,6 @@ export function UserFolders() {
                 </div>
             </main>
         </>
-    )
+    );
 }
-
 export default UserFolders;

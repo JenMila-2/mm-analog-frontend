@@ -4,17 +4,13 @@ import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavB
 import {AuthContext} from "../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
-import styles from './projectFolder.module.css';
+import styles from './UploadImage.module.css';
 
-function PhotoProject() {
+function UploadImage() {
     return (
         <>
-            <SidebarNav />
-            <main className="projects">
-            <h1>My Photo Projects</h1>
-            </main>
-            </>
-    )
+        </>
+    );
 }
 
-export default PhotoProject;
+export default UploadImage;

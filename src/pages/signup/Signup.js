@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import coverImage from '../../assets/Florian_Weichert_1.jpg';
-import styles from './Signup.module.css';
-import axios from 'axios';
 import {useForm} from "react-hook-form";
+import axios from 'axios';
+import styles from './Signup.module.css';
+import coverImage from '../../assets/Florian_Weichert_1.jpg';
 
 function Signup() {
     const {register, formState: {errors}, handleSubmit} = useForm();

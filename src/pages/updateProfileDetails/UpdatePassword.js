@@ -1,10 +1,10 @@
 import React, {useContext, useState} from 'react';
-import styles from './UpdatePassword.module.css';
-import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
-import axios from "axios";
+import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import UpdateProfileModal from "../../components/modal/UpdateProfileModal";
+import axios from "axios";
+import styles from './UpdatePassword.module.css';
 
 export function UpdatePassword() {
     const {user} = useContext(AuthContext);

@@ -8,9 +8,26 @@ import styles from './FilmStockInventory.module.css';
 
 function FilmStockInventory() {
     return (
-        <main className="film-stock-inventory">
-            <h1>Film Stock Inventory</h1>
-        </main>
+        <>
+            <header className={styles['title-container']}>
+                <h1 className={styles.title}>Film Stock Inventory</h1>
+            </header>
+            <DividerNavBar
+                label1="Update"
+                label2="Add new"
+            />
+            <main className={styles['film-stock-inventory']}>
+                <SidebarNav />
+                <div className={styles['film-stock-container']}>
+
+                    <div className={styles['inventory-inner-container']}>
+
+                    </div>
+
+                </div>
+
+            </main>
+        </>
     )
 }
 

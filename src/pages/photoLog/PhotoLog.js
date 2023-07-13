@@ -8,11 +8,26 @@ import styles from './PhotoLog.module.css';
 
 function PhotoLog() {
     return (
-       <>
-           <main className="photo-log">
-            <h1>Photo Log</h1>
-           </main>
-       </>
+        <>
+            <header className={styles['title-container']}>
+                <h1 className={styles.title}>Photo Logs</h1>
+            </header>
+            <DividerNavBar
+                label1="Update"
+                label2="Add new"
+            />
+            <main className={styles['photo-log-overview']}>
+                <SidebarNav />
+                <div className={styles['photo-log-container']}>
+
+                    <div className={styles['photo-log-inner-container']}>
+
+                    </div>
+
+                </div>
+
+            </main>
+        </>
     )
 }
 

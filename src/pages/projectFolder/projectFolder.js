@@ -9,11 +9,25 @@ import styles from './projectFolder.module.css';
 function PhotoProject() {
     return (
         <>
-            <SidebarNav />
-            <main className="projects">
-            <h1>My Photo Projects</h1>
+            <header className={styles['title-container']}>
+                <h1 className={styles.title}>Photo Projects</h1>
+            </header>
+            <DividerNavBar
+                label1="Update"
+                label2="Add new"
+            />
+            <main className={styles['projects-overview']}>
+                <SidebarNav />
+                <div className={styles['projects-container']}>
+
+                    <div className={styles['projects-inner-container']}>
+
+                    </div>
+
+                </div>
+
             </main>
-            </>
+        </>
     )
 }
 

@@ -9,8 +9,23 @@ import styles from './FilmDevelopmentLog.module.css';
 function FilmDevelopmentLog() {
     return (
         <>
-            <main className="film-development-log">
-                <h1>Film Development Log</h1>
+            <header className={styles['title-container']}>
+                <h1 className={styles.title}>Film Development Log</h1>
+            </header>
+            <DividerNavBar
+            label1="Update"
+            label2="Add new"
+            />
+            <main className={styles['development-log-overview']}>
+                <SidebarNav />
+                <div className={styles['development-log-container']}>
+
+                    <div className={styles['development-log-inner-container']}>
+
+                    </div>
+
+                </div>
+
             </main>
         </>
     )

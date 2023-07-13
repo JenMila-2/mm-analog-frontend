@@ -73,7 +73,7 @@ function AuthContextProvider({ children }) {
                 status: 'done',
             });
             if (response.data.authorities[0].authority === "ROLE_ADMIN") {
-                navigate('/admin');
+                navigate('/admin/dashboard');
             } else {
                 navigate('/profile')
             }

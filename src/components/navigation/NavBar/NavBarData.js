@@ -17,17 +17,17 @@ export const publicNavItems = [
     },
 
     {
-        title: "Sign up",
-        path: "/signup",
-    },
-
-    {
         title: "Log in",
         path: "/login",
     },
+
+    {
+        title: "Sign up",
+        path: "/signup",
+    },
 ];
 
-export const loggedInNavItems = [
+export const userNavItems = [
     {
         title: "Home",
         path: "/",
@@ -44,13 +44,8 @@ export const loggedInNavItems = [
     },
 
     {
-        title: "My projects",
+        title: "Photo projects",
         path: "/projectfolders",
-    },
-
-    {
-        title: "Photo log",
-        path: "/photologs",
     },
 
     {
@@ -59,17 +54,44 @@ export const loggedInNavItems = [
     },
 
     {
+        title: "Development Log",
+        path: "/filmdevelopmentlogs",
+    },
+
+    {
+        title: "Profile",
+        path: "/profile",
+    },
+];
+
+export const adminNavItems = [
+    {
+        title: "Home",
+        path: "/",
+    },
+
+    {
+        title: "About",
+        path: "/about",
+    },
+
+    {
+        title: "Contact",
+        path: "/",
+    },
+
+    {
         title: "Profile",
         path: "/profile",
     },
 
     {
-        title: "Film Development Log",
-        path: "/filmdevelopmentlogs",
+        title: "Admin Dashboard",
+        path: "/admin/dashboard"
     },
 
     {
-        title: "Log off",
-        path: "/",
+        title: "User Folders",
+        path: "/overview/projectfolders",
     },
 ];

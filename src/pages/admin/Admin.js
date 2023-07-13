@@ -19,6 +19,11 @@ function Admin() {
     const [addSuccess, toggleAddSuccess] = useState(false);
     const [error, toggleError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const usersPerPage = 10;
+    const [totalUsers, setTotalUsers] = useState(0);
+
+
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -40,6 +45,7 @@ function Admin() {
                     cancelToken: source.token,
                 });
                 setUsers(response.data);
+                setTotalUsers(response.data.length);
                 console.log(response.data);
             } catch (e) {
                 console.error(e);
@@ -82,6 +88,12 @@ function Admin() {
         setLoading(false);
     }
 
+    const paginateUsers = (users) => {
+        const startIndex = (currentPage - 1) * usersPerPage;
+        const endIndex = Math.min(startIndex + usersPerPage, users.length);
+        return users.slice(startIndex, endIndex);
+    };
+
     const handleDelete = () => {
         setModalOpen(true);
     };
@@ -109,6 +121,10 @@ function Admin() {
                 <SidebarNav />
                 <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
+                        <div className={styles['total-users-container']}>
+                            <h4>Users Overview</h4>
+                            Total users: {totalUsers}
+                        </div>
                         <table>
                             <thead>
                             <tr>
@@ -123,8 +139,9 @@ function Admin() {
                             </tr>
                             </thead>
                             <tbody>
-                            {users.map((user) => {
+                            {paginateUsers(users).map((user, index) => {
                                 const isSelected = selectedRows.includes(user.username);
+                                const userIndex = (currentPage - 1) * usersPerPage + index;
                                 return (
                                     <tr key={user.username}>
                                         <td>
@@ -183,6 +200,22 @@ function Admin() {
                             })}
                             </tbody>
                         </table>
+                        <div className={styles['page-navigation-container']}>
+                            <button
+                                disabled={currentPage === 1}
+                                onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+                                className={styles['page-navigation-button']}
+                            >
+                                Previous
+                            </button>
+                            <button
+                                disabled={users.length <= currentPage * usersPerPage}
+                                onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
+                                className={styles['page-navigation-button']}
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
                 </div>
             </main>

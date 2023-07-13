@@ -1,18 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from './Admin.module.css';
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import UpdateProfileModal from "../../components/modal/UpdateProfileModal";
 import axios from "axios";
 import {RiDeleteBin6Line} from "react-icons/ri";
+import {VscSaveAs} from "react-icons/vsc";
+import {AuthContext} from "../../context/AuthContext";
 
 
 function Admin() {
     const [users, setUsers] = useState([]);
+    const {user} = useContext(AuthContext);
     const [selectedRows, setSelectedRows] = useState([]);
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
     const [isModalOpen, setModalOpen] = useState(false);
+    const [addSuccess, toggleAddSuccess] = useState(false);
+    const [error, toggleError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -56,6 +62,26 @@ function Admin() {
         }
     }
 
+    async function updateUserDetails(data) {
+        try {
+            await axios.put(`http//localhost:8080/users/${user.username}`, {
+                username: data.username,
+                name: data.name,
+                email: data.email,
+                enabled: data.enabled,
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+            toggleAddSuccess(true);
+        } catch (e) {
+            console.error('Oops, something went wrong...')
+        }
+        setLoading(false);
+    }
+
     const handleDelete = () => {
         setModalOpen(true);
     };
@@ -92,7 +118,8 @@ function Admin() {
                                 <th>Email</th>
                                 <th>Status</th>
                                 <th>Role</th>
-                                <th>Action</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -107,11 +134,44 @@ function Admin() {
                                                 onChange={() => handleRowSelect(user.username)}
                                             />
                                         </td>
-                                        <td>{user.username}</td>
-                                        <td>{user.name}</td>
-                                        <td>{user.email}</td>
-                                        <td><span className={styles['status-text']}>{user.enabled ? "Active" : "Blocked"}</span></td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                id="username"
+                                                className={styles['input-field-value']}
+                                                defaultValue={user.username}
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                id="name"
+                                                className={styles['input-field-value']}
+                                                defaultValue={user.name}
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                className={styles['input-field-value']}
+                                                defaultValue={user.email}
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                id="status"
+                                                className={styles['status-text']}
+                                                defaultValue={user.enabled ? "Active" : "Blocked"}
+                                            />
+                                        </td>
                                         <td className={styles['authority-text']}>{user.authorities[0].authority}</td>
+                                        <td>
+                                            <VscSaveAs
+                                                className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles.disabledIcon}`}
+                                            />
+                                        </td>
                                         <td>
                                             <RiDeleteBin6Line
                                                 className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles.disabledIcon}`}

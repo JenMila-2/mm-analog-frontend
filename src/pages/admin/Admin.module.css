@@ -21,6 +21,10 @@ table {
     background-color: var(--white);
 }
 
+input {
+    border: none;
+}
+
 .admin-dashboard {
     display: flex;
 }
@@ -43,7 +47,6 @@ table {
     align-items: center;
     width: 100%;
     margin-top: 60px;
-    margin-left: 5%;
     background: linear-gradient(120deg, #fdfbfb 0%, rgba(230, 222, 207, 0.9) 100%);
     border-radius: 10px;
     padding: 40px;
@@ -52,6 +55,7 @@ table {
 .icon {
     cursor: pointer;
     margin-right: 10px;
+    align-content: center;
 }
 
 .disabledIcon {
@@ -62,7 +66,7 @@ table {
 }
 
 .authority-text {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .status-text {
@@ -71,4 +75,9 @@ table {
     background-color: var(--mint-green);
     padding: 5px;
     border-radius: 5px;
+    text-align: center;
+}
+
+.input-field-value {
+    font-family: "Open Sans", sans-serif;
 }

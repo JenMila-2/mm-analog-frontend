@@ -8,7 +8,7 @@ import styles from './UserFolders.module.css';
 function UserFolders() {
     return (
         <>
-        <header className={styles['header-container']}>
+        <header className={styles['heroSection-container']}>
             <h1 className={styles.title}>Overview Project Folders Users</h1>
         </header>
             <DividerNavBar

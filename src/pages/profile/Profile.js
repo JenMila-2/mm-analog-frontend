@@ -55,7 +55,7 @@ function Profile() {
                 <div className={styles['profile-settings-inner-container']}>
                     <div className={styles['user-details-field']}>
                         <p>Username</p>
-                        <inpunt className={styles['user-details-text']}>{user.username}</inpunt>
+                        <p className={styles['user-details-text']}>{user.username}</p>
                     </div>
                     <div className={styles['user-details-field']}>
                         <p>Email</p>

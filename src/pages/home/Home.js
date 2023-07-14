@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroSection from "../../components/header/HeroSection";
+import HeroSection from "../../components/heroSection/HeroSection";
 import HomeSection from "../../components/homeSection/HomeSection";
 import Footer from "../../components/footer/Footer";
 import ContactForm from "../../components/forms/contactForm/ContactForm";

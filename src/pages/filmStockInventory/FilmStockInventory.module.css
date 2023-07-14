@@ -25,6 +25,10 @@ input {
     border: none;
 }
 
+.film-stock-inventory-overview {
+    display: flex;
+}
+
 .title-container {
     display: flex;
     flex-direction: column;
@@ -46,4 +50,57 @@ input {
     background: linear-gradient(120deg, #fdfbfb 0%, #ecebe4 100%);
     border-radius: 10px;
     padding: 40px;
+}
+
+.icon {
+    cursor: pointer;
+    margin-right: 10px;
+    align-content: center;
+}
+
+.disabledIcon {
+    opacity: 0.5;
+    color: var(--grey);
+    pointer-events: none;
+    margin-right: 10px;
+}
+
+.input-field-value {
+    font-family: "Open Sans", sans-serif;
+}
+
+.page-navigation-container {
+    display: flex;
+    gap: 10px;
+}
+
+.page-navigation-button {
+    width: 80px;
+    padding: 5px;
+    border-radius: 6px;
+    border: 0 solid var(--errie-black);
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    font-family: "Open Sans", sans-serif;
+    outline: none;
+    text-align: center;
+}
+
+.page-navigation-button:hover {
+    cursor: pointer;
+    background-color: var(--errie-black);
+    color: var(--white);
+}
+
+.page-navigation-button:disabled {
+    cursor: not-allowed;
+    background-color: var(--hover-baby-powder);
+    color: var(--grey);
+}
+
+.total-inventories-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-self: flex-start;
+    font-size: 14px;
 }

@@ -22,8 +22,6 @@ function Admin() {
     const usersPerPage = 10;
     const [totalUsers, setTotalUsers] = useState(0);
 
-
-
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
         if (selected) {
@@ -63,7 +61,7 @@ function Admin() {
             })
             window.location.reload();
         } catch(e) {
-            console.error('Something went wrong...', e);
+            console.error('Oops, something went wrong...', e);
         }
     }
 
@@ -99,7 +97,6 @@ function Admin() {
 
     const handleModalConfirm = () => {
         setModalOpen(false);
-        // Delete the selected users
         selectedRows.forEach((username) => deleteUser(username));
     };
 

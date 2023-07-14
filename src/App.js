@@ -44,6 +44,7 @@ function App() {
                 <Route path="/update/profile" element={<UpdateProfileDetails/>}/>
                 <Route path="/update/password" element={<UpdatePassword/>}/>
 
+
                 {/*<Route path="/projectfolders" element={isAuth ? <ProjectFolder/> : <Navigate to="/"/>}/>
                 <Route path="/photologs" element={isAuth ? <PhotoLog/> : <Navigate to="/"/>}/>
                 <Route path="/filmstockinventories" element={isAuth ? <FilmStockInventory/> : <Navigate to="/"/>}/>

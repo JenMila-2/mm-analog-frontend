@@ -17,12 +17,12 @@ export const publicNavItems = [
     },
 
     {
-        title: "Log in",
+        title: "Log In",
         path: "/login",
     },
 
     {
-        title: "Sign up",
+        title: "Sign Up",
         path: "/signup",
     },
 ];
@@ -44,12 +44,12 @@ export const userNavItems = [
     },
 
     {
-        title: "Photo projects",
+        title: "Photo Projects",
         path: "/projectfolders",
     },
 
     {
-        title: "Film stock inventory",
+        title: "Film Stock Inventory",
         path: "/filmstockinventories",
     },
 

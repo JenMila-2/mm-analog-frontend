@@ -17,6 +17,7 @@ import Admin from "./pages/admin/Admin";
 import UpdatePassword from "./pages/updateProfileDetails/UpdatePassword";
 import UserFolders from "./pages/adminOverview/UserFolders/UserFolders";
 import UploadImage from "./pages/uploadImage/UploadImage";
+import NewFilmStockInventory from "./pages/newEntries/newFilmStockInventory/NewFilmStockInventory";
 import './App.css';
 import PrivateRoute from "./helpers/PrivateRoute";
 
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/overview/projectfolders" element={<UserFolders/>}/>
                 <Route path="/update/profile" element={<UpdateProfileDetails/>}/>
                 <Route path="/update/password" element={<UpdatePassword/>}/>
+                <Route path="/new/filmstockinventory" element={<NewFilmStockInventory/>}/>
 
 
                 {/*<Route path="/projectfolders" element={isAuth ? <ProjectFolder/> : <Navigate to="/"/>}/>

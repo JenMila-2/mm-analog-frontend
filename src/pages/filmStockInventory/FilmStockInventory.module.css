@@ -49,7 +49,7 @@ input {
     margin-top: 60px;
     background: linear-gradient(120deg, #fdfbfb 0%, #ecebe4 100%);
     border-radius: 10px;
-    padding: 40px;
+    padding: 30px;
 }
 
 .icon {
@@ -67,6 +67,8 @@ input {
 
 .input-field-value {
     font-family: "Open Sans", sans-serif;
+    border-color: var(--platinum);
+    border-radius: 5px;
 }
 
 .page-navigation-container {
@@ -103,4 +105,38 @@ input {
     text-align: left;
     align-self: flex-start;
     font-size: 14px;
+}
+
+.update-success-message {
+    background-color: var(--white);
+    color: var(--errie-black);
+    font-weight: bold;
+    border: 1px solid var(--errie-black);
+    border-radius: 5px;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.check-icon {
+    color: var(--emerald);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.id-column {
+    color: var(--grey);
+    font-size: 14px;
+}
+
+.error-label {
+    color: var(--crimson);
+    font-size: 12px;
+    padding-bottom: 8px;
+    margin-top: -4px;
 }

@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import LogModal from "../../components/modal/LogModal";
 import { AuthContext } from "../../context/AuthContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+import {MdOutlineDone} from "react-icons/md";
 import axios from 'axios';
 import styles from './FilmStockInventory.module.css';
-import LogModal from "../../components/modal/LogModal";
-import { useNavigate } from "react-router-dom";
+
 
 function FilmStockInventory() {
     const { user } = useContext(AuthContext);
@@ -18,7 +20,8 @@ function FilmStockInventory() {
     const [addSuccess, setAddSuccess] = useState(false);
     const [error, toggleError] = useState(false);
     const [loading, setLoading] = useState(false);
-    const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet Film (Large)', 'Other'];
+    const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet film (Large)', 'Other'];
+    const developmentProcessOptions = ['Black & White', 'C-41 Color', 'E-6 Slide Film'];
     const [currentPage, setCurrentPage] = useState(1);
     const [totalInventories, setTotalInventories] = useState(0);
     const inventoriesPerPage = 10;
@@ -69,22 +72,25 @@ function FilmStockInventory() {
     async function updateInventoryEntry(inventory) {
         try {
             const { id, ...data } = inventory;
-            await axios.put(`http://localhost:8080/filmstockinventories/${id}`, {
-                ...data,
-                username: user.username, // Include the username in the update request
-            }, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+            await axios.put(
+                `http://localhost:8080/filmstockinventories/${id}`,
+                {
+                    ...data,
+                    username: user.username,
                 },
-            });
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
             setAddSuccess(true);
         } catch (e) {
             console.error('Oops, something went wrong...', e);
         }
         setLoading(false);
     }
-
 
     const paginateInventories = (inventories) => {
         const startIndex = (currentPage - 1) * inventoriesPerPage;
@@ -105,13 +111,23 @@ function FilmStockInventory() {
         setModalOpen(false);
     };
 
-    const handleSave = () => {
-        selectedRows.forEach((id) => {
-            const updatedInventory = inventories.find((inventory) => inventory.id === id);
-            if (updatedInventory) {
-                void updateInventoryEntry(updatedInventory);
-            }
-        });
+    const handleSave = async () => {
+        try {
+            setLoading(true);
+            selectedRows.forEach((id) => {
+                const updatedInventory = inventories.find(
+                    (inventory) => inventory.id === id
+                );
+                if (updatedInventory) {
+                    void updateInventoryEntry(updatedInventory);
+                }
+            });
+            setAddSuccess(true);
+        } catch (error) {
+            console.error('Oops, something went wrong...', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleUpdate = (e, id, column) => {
@@ -128,6 +144,17 @@ function FilmStockInventory() {
         setInventories(updatedInventories);
     };
 
+    useEffect(() => {
+        if (addSuccess) {
+            const timeoutId = setTimeout(() => {
+                setAddSuccess(false);
+                window.location.reload();
+            }, 2000);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [addSuccess]);
+
     return (
         <>
             <header className={styles['title-container']}>
@@ -136,6 +163,7 @@ function FilmStockInventory() {
             <DividerNavBar
                 label1="Update"
                 label2="Add new"
+                path2='/new/filmstockinventory'
             />
             <main className={styles['film-stock-inventory-overview']}>
                 <SidebarNav />
@@ -145,11 +173,10 @@ function FilmStockInventory() {
                             <h4>Inventories Overview</h4>
                             Total inventories: {totalInventories}
                         </div>
-
                         <table>
                             <thead>
                             <tr>
-                                <th>#</th>
+                                <th></th>
                                 <th>Id</th>
                                 <th>Film Name</th>
                                 <th>Remaining Rolls</th>
@@ -178,7 +205,7 @@ function FilmStockInventory() {
                                                 onChange={() => handleRowSelect(inventory.id)}
                                             />
                                         </td>
-                                        <td>{inventory.id}</td>
+                                        <td className={styles['id-column']}>{inventory.id}</td>
                                         <td>
                                             <input
                                                 type="text"
@@ -239,13 +266,18 @@ function FilmStockInventory() {
                                             />
                                         </td>
                                         <td>
-                                            <input
-                                                type="text"
-                                                id="developmentProcess"
-                                                className={styles['input-field-value']}
-                                                defaultValue={inventory.developmentProcess}
+                                            <select
+                                                value={inventory.developmentProcess}
                                                 onChange={(e) => handleUpdate(e, inventory.id, "developmentProcess")}
-                                            />
+                                                className={styles['input-field-value']}
+                                            >
+                                                <option value="">Select Process</option>
+                                                {developmentProcessOptions.map((option) => (
+                                                    <option key={option} value={option}>
+                                                        {option}
+                                                    </option>
+                                                ))}
+                                            </select>
                                         </td>
                                         <td>
                                             <input
@@ -318,7 +350,7 @@ function FilmStockInventory() {
                 </div>
             </LogModal>
             {addSuccess && (
-                <div className={styles.successMessage}>Update successful!</div>
+                <div className={styles['update-success-message']}>Update successful saved! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     );

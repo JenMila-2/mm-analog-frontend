@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {AuthContext} from "../../context/AuthContext";
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
@@ -13,7 +13,6 @@ function Login() {
     const [error, toggleError] = useState(false);
     const [addSuccess, toggleAddSuccess] = useState(false);
     const source = axios.CancelToken.source();
-    const navigate = useNavigate();
 
     useEffect(() => {
        return function cleanup() {
@@ -60,7 +59,7 @@ function Login() {
                             placeholder="Username"
                         />
                     </label>
-                    {errors.username && <p className={styles['error-label']} >{errors.username.message}</p>}
+                    {errors.username && <p className={styles['error-label']}>{errors.username.message}</p>}
                     <label htmlFor="password-field">
                         Password
                         <input
@@ -72,7 +71,7 @@ function Login() {
                             placeholder="•••••••••••••••"
                         />
                     </label>
-                    {errors.password && <p className={styles['error-label']} >{errors.password.message}</p>}
+                    {errors.password && <p className={styles['error-label']}>{errors.password.message}</p>}
                     <button
                         type="submit"
                         className={styles['login-button']}>

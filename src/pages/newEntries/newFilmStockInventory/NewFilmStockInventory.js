@@ -42,8 +42,8 @@ function NewFilmStockInventory() {
             setTimeout(() => {
                 navigate('/filmstockinventories')
             }, 2000)
-        } catch (e) {
-            console.error(e);
+        } catch (error) {
+            console.error("Oops, an error occurred!", error);
             toggleError(true)
         }
         setLoading(false);
@@ -52,13 +52,13 @@ function NewFilmStockInventory() {
     return (
         <>
         <header className={styles['form-header']}>
-            <h1>New Film Stock Inventory</h1>
-            <p>Add a new film stock inventory to your overview</p>
+            <h1>New Entry</h1>
+            <p>Add a new film stock inventory to your stock overview</p>
         </header>
             <main className={styles['new-entry-form-container']}>
                 <div className={styles['new-entry-form-inner-container']}>
                     {addSuccess ?
-                        <section>
+                        <section className={styles['new-entry-success-message']}>
                         <h4>New entry saved successfully!</h4>
                         <p>The new film stock inventory was added to your overview.</p>
                         </section>
@@ -72,9 +72,13 @@ function NewFilmStockInventory() {
                                         id="filmStockName"
                                         className={styles['form-input-field']}
                                         {...register("filmStockName", {
-                                            required: "This field cannot be empty"
+                                            required: "Film name is required",
+                                            minLength: {
+                                                value: 3,
+                                                message: "Film name must have at least 3 characters",
+                                            },
                                         })}
-
+                                        autoComplete="off"
                                     />
                                 </label>
                                 {errors.filmStockName && <p className={styles['error-label']}>{errors.filmStockName.message}</p>}
@@ -85,8 +89,9 @@ function NewFilmStockInventory() {
                                         id="remainingRolls"
                                         className={styles['form-input-field']}
                                         {...register("remainingRolls", {
-                                            required: "This field cannot be empty"
+                                            required: "Remaining rolls is required"
                                         })}
+                                        autoComplete="off"
                                     />
                                 </label>
                                 {errors.remainingRolls && <p className={styles['error-label']}>{errors.remainingRolls.message}</p>}
@@ -96,19 +101,33 @@ function NewFilmStockInventory() {
                                         type="text"
                                         id="brand"
                                         className={styles['form-input-field']}
-                                        {...register("brand")}
+                                        {...register("brand", {
+                                            required: "Brand is required",
+                                            minLength: {
+                                                value: 3,
+                                                message: "Brand must have at least 3 characters",
+                                            },
+                                        })}
+                                        autoComplete="off"
                                     />
                                 </label>
-                                {errors.remainingRolls && <p>{errors.remainingRolls.message}</p>}
+                                {errors.brand && <p className={styles['error-label']}>{errors.brand.message}</p>}
                                 <label htmlFor="stock">
                                     Stock
                                     <input
                                         type="text"
                                         id="stock"
                                         className={styles['form-input-field']}
-                                        {...register("stock")}
+                                        {...register("stock", {
+                                            minLength: {
+                                                value: 3,
+                                                message: "Stock must have at least 3 characters"
+                                            },
+                                        })}
+                                        autoComplete="off"
                                     />
                                 </label>
+                                {errors.stock && <p className={styles['error-label']}>{errors.stock.message}</p>}
                                 <label htmlFor="format">
                                     Format
                                     <select
@@ -117,6 +136,7 @@ function NewFilmStockInventory() {
                                         {...register("format", {
                                             required: "Please select a format",
                                         })}
+                                        autoComplete="off"
                                     >
                                         <option value="">Select Format</option> {'35mm'}
                                         {formatOptions.map((format) => (
@@ -126,6 +146,7 @@ function NewFilmStockInventory() {
                                         ))}
                                     </select>
                                 </label>
+                                {errors.format && <p className={styles['error-label']}>{errors.format.message}</p>}
                                 <label htmlFor="iso">
                                     Iso
                                     <input
@@ -152,15 +173,23 @@ function NewFilmStockInventory() {
                                         ))}
                                     </select>
                                 </label>
+                                {errors.developmentProcess && <p className={styles['error-label']}>{errors.developmentProcess.message}</p>}
                                 <label htmlFor="storage">
                                     Storage
                                     <input
                                         type="text"
                                         id="storage"
                                         className={styles['form-input-field']}
-                                        {...register("storage")}
+                                        {...register("storage", {
+                                            minLength: {
+                                                value: 3,
+                                                message: "Storage must have at least 3 characters"
+                                            },
+                                        })}
+                                        autoComplete="off"
                                     />
                                 </label>
+                                {errors.storage && <p className={styles['error-label']}>{errors.storage.message}</p>}
                                 <label htmlFor="rollsShot">
                                     Rolls Shot
                                     <input
@@ -179,7 +208,6 @@ function NewFilmStockInventory() {
                                         {...register("filmExpirationDate")}
                                     />
                                 </label>
-
                                 <div className={styles['buttons-container']}>
                                     <button
                                      type="submit"
@@ -200,7 +228,6 @@ function NewFilmStockInventory() {
                     }
                 </div>
             </main>
-
         </>
     )
 }

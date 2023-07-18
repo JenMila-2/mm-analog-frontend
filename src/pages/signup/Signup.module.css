@@ -26,26 +26,6 @@ form input {
     border: 1px solid var(--grey);
 }
 
- .create-account-button {
-     background-color: var(--errie-black);
-     font-size: 16px;
-     color: var(--white);
-     width: 350px;
-     height: 45px;
-     border-radius: 6px;
-     border: 0 solid var(--errie-black);
-     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-     font-family: "Open Sans", sans-serif;
-     margin-top: 10px;
-     max-width: 100%;
-}
-
- .create-account-button:hover {
-     cursor: pointer;
-     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-     transform: translateY(-2px);
- }
-
 .signup-container {
     display: flex;
     flex-direction: column;
@@ -77,15 +57,35 @@ form input {
     padding-top: 10px;
 }
 
-.login-link {
-    color: var(--errie-black);
-    text-decoration: none;
-    font-weight: bold;
-}
-
 .error-label {
     color: var(--crimson);
     font-size: 12px;
     padding-bottom: 8px;
     margin-top: -4px;
+}
+
+ .create-account-button {
+     background-color: var(--errie-black);
+     font-size: 16px;
+     color: var(--white);
+     width: 350px;
+     height: 45px;
+     border-radius: 6px;
+     border: 0 solid var(--errie-black);
+     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+     font-family: "Open Sans", sans-serif;
+     margin-top: 10px;
+     max-width: 100%;
+}
+
+ .create-account-button:hover {
+     cursor: pointer;
+     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+     transform: translateY(-2px);
+ }
+
+.login-link {
+    color: var(--errie-black);
+    text-decoration: none;
+    font-weight: bold;
 }

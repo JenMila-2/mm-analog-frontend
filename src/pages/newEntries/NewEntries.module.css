@@ -16,6 +16,17 @@
     flex-direction: column;
 }
 
+.new-entry-success-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--white);
+    color: var(--errie-black);
+    border-radius: 5px;
+    text-align: center;
+    padding: 15px;
+}
+
 .form-container {
     display: flex;
     justify-content: center;
@@ -25,6 +36,7 @@
 
 .form {
     width: 50%;
+    font-family: "Open Sans", sans-serif;
 }
 
 .form-input-field, .form-select-field {
@@ -37,6 +49,13 @@
     margin-top: 2px;
     border-radius: 5px;
     padding:4px;
+}
+
+.error-label {
+    color: var(--crimson);
+    font-size: 12px;
+    padding-bottom: 8px;
+    margin-top: -10px;
 }
 
 .buttons-container {

@@ -8,32 +8,31 @@ import coverImage from '../../assets/Florian_Weichert_1.jpg';
 function Signup() {
     const {register, formState: {errors}, handleSubmit} = useForm();
     const [error, toggleError] = useState(false);
-    const [addSuccess, toggleAddSucces] = useState(false);
+    const [addSuccess, setAddSucces] = useState(false);
     const source = axios.CancelToken.source();
     const navigate = useNavigate();
 
     useEffect(() => {
-        /*return function cleanup() {
+        return function cleanup() {
             source.cancel();
-        }*/
+        }
     }, []);
 
-    const [users, setUsers] = useState([]);
-
-    async function addNewUser(e) {
-        //e.preventDefault();
+    async function addNewUser(data, e) {
+        e.preventDefault();
+        toggleError(false);
         try {
             const response = await axios.post('http://localhost:8080/users/register', {
-                name: e.name,
-                username: e.username,
-                email: e.email,
-                password: e.password,
+                name: data.name,
+                username: data.username,
+                email: data.email,
+                password: data.password,
                 role: ["user"]
                 }, {
                 cancelToken: source.token,
                 });
             console.log(response.data);
-            toggleAddSucces(true);
+            setAddSucces(true);
             navigate('/welcomepage');
         } catch(error) {
             console.error("Oops, an error occurred!", error);
@@ -58,9 +57,9 @@ function Signup() {
                             id="name-field"
                             {...register("name", {
                                 required: "Name is required",
-                                maxLength: {
-                                    value: 75,
-                                    message: "Name cannot contain more than 75 characters",
+                                minLength: {
+                                    value: 5,
+                                    message: "Name must have at least 5 characters",
                                 },
                             })}
                             placeholder="Name"
@@ -75,9 +74,9 @@ function Signup() {
                             id="username-field"
                             {...register("username", {
                                 required: "Username is required",
-                                maxLength: {
-                                    value: 75,
-                                    message: "Username cannot contain more than 75 characters",
+                                minLength: {
+                                    value: 5,
+                                    message: "Username must have at least 5 characters",
                                 },
                             })}
                             placeholder="Username"

@@ -4,7 +4,6 @@ import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavB
 import LogModal from "../../components/modal/LogModal";
 import { AuthContext } from "../../context/AuthContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
 import {MdOutlineDone} from "react-icons/md";
 import axios from 'axios';
 import styles from './FilmStockInventory.module.css';
@@ -166,13 +165,14 @@ function FilmStockInventory() {
                 path2='/new/filmstockinventory'
             />
             <main className={styles['film-stock-inventory-overview']}>
-                <SidebarNav />
+                <SidebarNav/>
                 <div className={styles['film-stock-container']}>
                     <div className={styles['inventory-inner-container']}>
                         <div className={styles['total-inventories-container']}>
                             <h4>Inventories Overview</h4>
                             Total inventories: {totalInventories}
                         </div>
+                        <div className={styles['table-wrapper']}>
                         <table>
                             <thead>
                             <tr>
@@ -322,6 +322,7 @@ function FilmStockInventory() {
                             })}
                             </tbody>
                         </table>
+                        </div>
                         <div className={styles['page-navigation-container']}>
                             <button
                                 disabled={currentPage === 1}

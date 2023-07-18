@@ -3,30 +3,26 @@ table, td, th {
 }
 
 th {
-    background-color: var(--alabaster);
-    color: var(--errie-black);
     font-size: 14px;
     text-transform: uppercase;
+    color: var(--errie-black);
+    background-color: var(--alabaster);
 }
 
 td, th {
     padding: 10px;
+    min-width: 50px;
 }
 
 table {
-    border-collapse: collapse;
-    max-width: 100%;
     margin: 20px 0;
     text-align: center;
+    border-collapse: collapse;
     background-color: var(--white);
 }
 
 input {
     border: none;
-}
-
-.film-stock-inventory-overview {
-    display: flex;
 }
 
 .title-container {
@@ -41,15 +37,33 @@ input {
     font-size: 42px;
 }
 
+.film-stock-inventory-overview {
+    display: flex;
+    width: 100%;
+}
+
+.film-stock-container {
+    padding: 20px;
+    margin-left: 30px;
+    overflow-y: hidden;
+}
+
+.table-wrapper {
+    max-width: 100%;
+    position: relative;
+    overflow-x: scroll;
+}
+
 .inventory-inner-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 60px;
-    background: linear-gradient(120deg, #fdfbfb 0%, #ecebe4 100%);
-    border-radius: 10px;
     padding: 30px;
+    margin-top: 60px;
+    border-radius: 10px;
+    background: linear-gradient(120deg, #fdfbfb 0%, #ecebe4 100%);
+
 }
 
 .icon {
@@ -66,52 +80,50 @@ input {
 }
 
 .input-field-value {
-    font-family: "Open Sans", sans-serif;
-    border-color: var(--platinum);
     border-radius: 5px;
+    border-color: var(--platinum);
+    font-family: "Open Sans", sans-serif;
 }
 
 .page-navigation-container {
     display: flex;
     gap: 10px;
+    padding-top: 15px;
 }
 
 .page-navigation-button {
     width: 80px;
     padding: 5px;
+    outline: none;
+    text-align: center;
     border-radius: 6px;
     border: 0 solid var(--errie-black);
     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     font-family: "Open Sans", sans-serif;
-    outline: none;
-    text-align: center;
 }
 
 .page-navigation-button:hover {
     cursor: pointer;
-    background-color: var(--errie-black);
     color: var(--white);
+    background-color: var(--errie-black);
 }
 
 .page-navigation-button:disabled {
     cursor: not-allowed;
-    background-color: var(--hover-baby-powder);
     color: var(--grey);
+    background-color: var(--hover-baby-powder);
 }
 
 .total-inventories-container {
     display: flex;
-    flex-direction: column;
     text-align: left;
+    flex-direction: column;
     align-self: flex-start;
     font-size: 14px;
 }
 
 .update-success-message {
-    background-color: var(--white);
-    color: var(--errie-black);
     font-weight: bold;
-    border: 1px solid var(--errie-black);
     border-radius: 5px;
     text-align: center;
     padding: 15px;
@@ -119,24 +131,27 @@ input {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     z-index: 9999;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    color: var(--errie-black);
+    border: 1px solid var(--errie-black);
 }
 
 .check-icon {
-    color: var(--emerald);
     font-weight: bold;
     font-size: 18px;
+    color: var(--emerald);
 }
 
 .id-column {
-    color: var(--grey);
     font-size: 14px;
+    color: var(--grey);
 }
 
 .error-label {
-    color: var(--crimson);
     font-size: 12px;
     padding-bottom: 8px;
     margin-top: -4px;
+    color: var(--crimson);
 }

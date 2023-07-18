@@ -1,7 +1,7 @@
 import React from 'react';
-import {NavLink, useNavigate} from "react-router-dom";
-import styles from "./DividerNavBar.module.css";
+import {useNavigate} from "react-router-dom";
 import Button from "../../buttons/Button";
+import styles from "./DividerNavBar.module.css";
 
 const DividerNavBar = ({label1, path1, label2, path2}) => {
     const navigate = useNavigate();

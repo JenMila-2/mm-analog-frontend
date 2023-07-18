@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import {adminNavItems, publicNavItems, userNavItems} from "./NavBarData";
-import './NavBar.css';
 import {NavLink} from "react-router-dom";
 import {AuthContext} from "../../../context/AuthContext";
+import {HiOutlineMenuAlt4} from "react-icons/hi";
+import './NavBar.css';
 
 const NavBar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);

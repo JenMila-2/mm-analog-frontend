@@ -1,12 +1,25 @@
 .left-sidebar-nav {
-    width: 220px;
+    width: 200px;
+    height: 100vh;
     position: sticky;
     transition: width 0.3s ease-in-out;
-    height: 90vh;
-    background-color: var(--alabaster);
     padding-top: 25px;
     margin-left: 15px;
     border-radius: 6px;
+    z-index: 10;
+    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
+}
+
+.sidebar-closed {
+    width: 60px;
+    composes: left-sidebar-nav;
+    transition: width 0.3s ease-in-out;
+}
+
+.left-sidebar-icon {
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .left-sidebar-item {
@@ -14,25 +27,27 @@
     align-items: center;
     padding: 10px 20px;
     cursor: pointer;
-    color: var(--errie-black);
+    font-size: 15px;
     overflow: hidden;
     border-radius: 8px;
+    color: var(--errie-black);
 }
 
 .left-sidebar-item a {
     text-decoration: none;
     color: var(--errie-black);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.4s ease;
 }
 
 .left-sidebar-item a:active {
     font-weight: bold;
 }
 
-.left-sidebar-item-title {
-    padding-left: 16px;
+.left-sidebar-item:hover {
+    font-weight: bold;
+    background-color: var(--alabaster);
 }
 
-.left-sidebar-item:hover {
-    background-color: var(--hover-baby-powder);
+.left-sidebar-item-title {
+    padding-left: 16px;
 }

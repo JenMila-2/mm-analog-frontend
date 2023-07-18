@@ -21,6 +21,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Open Sans", sans-serif;
     color: var(--errie-black);
@@ -34,7 +38,6 @@ h1 {
     font-size: 30px;
     font-weight: 900;
 }
-
 
 img {
     width: 100%;

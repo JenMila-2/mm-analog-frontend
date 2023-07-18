@@ -16,7 +16,6 @@ function Profile() {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
-
     useEffect(() => {
         const source = axios.CancelToken.source();
         async function getData(id, token) {
@@ -28,8 +27,10 @@ function Profile() {
                     }
                 });
                 setUserData(response.data);
+                setLoading(false);
             } catch (e) {
-                console.error("An error occurred!", e);
+                console.error("Oops, something went wrong...", e);
+                setLoading(false);
             }
         }
         void getData(user, token);

@@ -5,6 +5,7 @@ import LogModal from "../../components/modal/LogModal";
 import { AuthContext } from "../../context/AuthContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
+import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
 import styles from './FilmStockInventory.module.css';
 
@@ -17,13 +18,12 @@ function FilmStockInventory() {
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
-    const [error, toggleError] = useState(false);
     const [loading, setLoading] = useState(false);
-    const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet film (Large)', 'Other'];
-    const developmentProcessOptions = ['Black & White', 'C-41 Color', 'E-6 Slide Film'];
     const [currentPage, setCurrentPage] = useState(1);
     const [totalInventories, setTotalInventories] = useState(0);
     const inventoriesPerPage = 10;
+    const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet film (Large)', 'Other'];
+    const developmentProcessOptions = ['Black & White', 'C-41 Color', 'E-6 Slide Film'];
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -195,7 +195,7 @@ function FilmStockInventory() {
                             <tbody>
                             {paginateInventories(inventories).map((inventory, index) => {
                                 const isSelected = selectedRows.includes(inventory.id);
-                                const inventoryIndex = (currentPage - 1) * inventoriesPerPage + index;
+                                // const inventoryIndex = (currentPage - 1) * inventoriesPerPage + index;
                                 return (
                                     <tr key={inventory.id}>
                                         <td>
@@ -221,6 +221,7 @@ function FilmStockInventory() {
                                                 id="remainingRolls"
                                                 className={styles['input-field-value']}
                                                 defaultValue={inventory.remainingRolls}
+                                                min="0"
                                                 onChange={(e) => handleUpdate(e, inventory.id, "remainingRolls")}
                                             />
                                         </td>
@@ -262,6 +263,7 @@ function FilmStockInventory() {
                                                 id="iso"
                                                 className={styles['input-field-value']}
                                                 defaultValue={inventory.iso}
+                                                min="0"
                                                 onChange={(e) => handleUpdate(e, inventory.id, "iso")}
                                             />
                                         </td>
@@ -294,6 +296,7 @@ function FilmStockInventory() {
                                                 id="rollsShot"
                                                 className={styles['input-field-value']}
                                                 defaultValue={inventory.rollsShot}
+                                                min="0"
                                                 onChange={(e) => handleUpdate(e, inventory.id, "rollsShot")}
                                             />
                                         </td>
@@ -307,13 +310,14 @@ function FilmStockInventory() {
                                             />
                                         </td>
                                         <td>
+                                            <AiFillEdit className={styles['disabled-icon']}/>
                                             {isSelected ? (
                                                 <button onClick={handleSave}>Save</button>
                                             ) : null}
                                         </td>
                                         <td>
                                             <RiDeleteBin6Line
-                                                className={`${styles.icon} ${selectedRows.includes(inventory.id) ? '' : styles.disabledIcon}`}
+                                                className={`${styles.icon} ${selectedRows.includes(inventory.id) ? '' : styles['disabled-icon']}`}
                                                 onClick={handleDelete}
                                             />
                                         </td>

@@ -87,6 +87,7 @@ function NewFilmStockInventory() {
                                     <input 
                                         type="number"
                                         id="remainingRolls"
+                                        min="0"
                                         className={styles['form-input-field']}
                                         {...register("remainingRolls", {
                                             required: "Remaining rolls is required"
@@ -152,6 +153,7 @@ function NewFilmStockInventory() {
                                     <input
                                         type="number"
                                         id="iso"
+                                        min="0"
                                         className={styles['form-input-field']}
                                         {...register("iso")}
                                     />
@@ -195,6 +197,7 @@ function NewFilmStockInventory() {
                                     <input
                                         type="number"
                                         id="rollsShot"
+                                        min="0"
                                         className={styles['form-input-field']}
                                         {...register("rollsShot")}
                                     />

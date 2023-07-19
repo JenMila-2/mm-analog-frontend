@@ -33,12 +33,6 @@
     margin-top: 20px;
 }
 
-.delete-account-message {
-    color: var(--crimson);
-    font-weight: bold;
-    font-size: 14px;
-}
-
 .user-details-text {
     color: var(--grey);
     font-size: 14px;
@@ -61,4 +55,10 @@
 
 .change-link:hover {
     color: var(--mikado-yellow);
+}
+
+.delete-account-message {
+    color: var(--crimson);
+    font-weight: bold;
+    font-size: 14px;
 }

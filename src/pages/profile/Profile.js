@@ -1,49 +1,25 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import {AuthContext} from "../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
-import axios from 'axios';
 import styles from './Profile.module.css';
 
 
 function Profile() {
-    const {user} = useContext(AuthContext);
-    const token = localStorage.getItem('token');
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [userData, setUserData] = useState();
-    const [success, toggleSuccess] = useState(false);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        const source = axios.CancelToken.source();
-        async function getData(id, token) {
-            try {
-                const response = await axios.get(`http://localhost:8080/users/${id}`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
-                setUserData(response.data);
-                setLoading(false);
-            } catch (e) {
-                console.error("Oops, something went wrong...", e);
-                setLoading(false);
-            }
-        }
-        void getData(user, token);
-        return function cleanup() {
-            source.cancel();
-        }
-    }, []);
+    if (!user) {
+        navigate('/login');
+        return null;
+    }
 
     return (
         <>
             <header className={styles['title-container']}>
                 <h1 className={styles.title}>Profile</h1>
-                <p>{user.name}</p>
+                {user.name ? <p>{user.name}</p> : <p>Loading...</p>}
             </header>
             <DividerNavBar
                 label1="Update"
@@ -79,4 +55,3 @@ function Profile() {
 }
 
 export default Profile;
-

@@ -1,8 +1,8 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import axios from 'axios';
 import isTokenValid from "../helpers/isTokenValid";
+import axios from 'axios';
 
 export const AuthContext = createContext({});
 
@@ -20,7 +20,7 @@ function AuthContextProvider({ children }) {
         if (token && isTokenValid(token)) {
             const decodedToken = jwt_decode(token);
             void getUserData(decodedToken.sub, token);
-            } else {
+        } else {
             setAuth({
                 isAuth: false,
                 user: null,
@@ -33,7 +33,6 @@ function AuthContextProvider({ children }) {
         console.log("User was successfully logged in");
         const decodedToken = jwt_decode(JWT);
         localStorage.setItem('token', JWT);
-        console.log(decodedToken);
         void getUserData(decodedToken.sub, JWT);
         navigate("/profile");
     }
@@ -72,26 +71,22 @@ function AuthContextProvider({ children }) {
                 },
                 status: 'done',
             });
-            if (response.data.authorities[0].authority === "ROLE_ADMIN") {
-                navigate('/admin/dashboard');
-            } else {
-                navigate('/profile')
-            }
-        }  catch (e) {
-            console.error("Oops, an error occurred", e);
+        } catch (e) {
+            console.error("Oops, something went wrong...", e);
             localStorage.clear();
             setAuth({
-                    ...auth,
-                    status: 'error',
-                });
-            }
+                isAuth: false,
+                user: null,
+                status: 'done',
+            });
         }
+    }
 
-        const contextData = {
-            auth: auth.isAuth,
-            user: auth.user,
-            login: login,
-            logoff: logoff,
+    const contextData = {
+        auth: auth.isAuth,
+        user: auth.user,
+        login: login,
+        logoff: logoff,
     };
 
     return (

@@ -10,13 +10,12 @@ import axios from "axios";
 
 function Admin() {
     const [users, setUsers] = useState([]);
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [selectedRows, setSelectedRows] = useState([]);
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, toggleAddSuccess] = useState(false);
-    const [error, toggleError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const usersPerPage = 10;

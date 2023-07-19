@@ -44,7 +44,7 @@ function FilmStockInventory() {
                     },
                     cancelToken: source.token,
                 });
-                setInventories(response.data)
+                setInventories(response.data);
                 setTotalInventories(response.data.length);
                 console.log(response.data);
             } catch (e) {
@@ -157,10 +157,11 @@ function FilmStockInventory() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Film Stock Inventory</h1>
+                <h1 className={styles.title}>Film Stock Inventories</h1>
             </header>
             <DividerNavBar
-                label1="Update"
+                label1="Projects"
+                path1="/projectfolders"
                 label2="Add new"
                 path2='/new/filmstockinventory'
             />
@@ -173,7 +174,7 @@ function FilmStockInventory() {
                             Total inventories: {totalInventories}
                         </div>
                         <div className={styles['table-wrapper']}>
-                        <table>
+                        <table className={styles['inventory-table']}>
                             <thead>
                             <tr>
                                 <th></th>
@@ -310,7 +311,8 @@ function FilmStockInventory() {
                                             />
                                         </td>
                                         <td>
-                                            <AiFillEdit className={styles['disabled-icon']}/>
+                                            <AiFillEdit
+                                                className={`${styles.icon} ${selectedRows.includes(inventory.id) ? '' : styles['disabled-icon']}`}/>
                                             {isSelected ? (
                                                 <button onClick={handleSave}>Save</button>
                                             ) : null}

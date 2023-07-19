@@ -49,14 +49,14 @@
 }
 
 .nav-button-small {
-    background-color: var(--alabaster);
+    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
     color: var(--errie-black);
     border-radius: 50px;
     width: 80px;
 }
 
 .nav-button-small:hover {
-    background-color: var(--hover-raisin-black);
+    background: linear-gradient(to right, #434343 0%, black 100%);
     color: var(--white);
 }
 

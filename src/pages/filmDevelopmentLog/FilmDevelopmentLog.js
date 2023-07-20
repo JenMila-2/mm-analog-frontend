@@ -134,12 +134,12 @@ function FilmDevelopmentLog() {
     };
 
     const handleUpdate = (e, id, column) => {
-        const newValue = e.target.value;
+        const newLog = e.target.value;
         const updatedDevelopmentLogs = developmentLogs.map((log) => {
             if (selectedRows.includes(log.id) && log.id === id) {
                 return {
                     ...log,
-                    [column]: newValue,
+                    [column]: newLog,
                 };
             }
             return log;
@@ -162,7 +162,7 @@ function FilmDevelopmentLog() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Film Development Logs</h1>
+                <h1 className={styles.title}>Film Development Log</h1>
             </header>
             <DividerNavBar
             label1="Projects"
@@ -179,7 +179,7 @@ function FilmDevelopmentLog() {
                             Total logs: {totalDevelopmentLogs}
                         </div>
                         <div className={styles['table-wrapper']}>
-                            <table className={styles['log-table']}>
+                            <table>
                                 <thead>
                                 <tr>
                                     <th className={styles['log-table-head']}></th>

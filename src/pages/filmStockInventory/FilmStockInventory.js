@@ -157,7 +157,7 @@ function FilmStockInventory() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Film Stock Inventories</h1>
+                <h1 className={styles.title}>Film Stock Inventory</h1>
             </header>
             <DividerNavBar
                 label1="Projects"

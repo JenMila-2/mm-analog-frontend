@@ -246,16 +246,16 @@ function FilmDevelopmentLog() {
                                         <td>
                                             <input
                                                 type="text"
-                                                id="filmStock"
+                                                id="stock"
                                                 className={styles['input-field-value']}
-                                                defaultValue={log.filmStock}
-                                                onChange={(e) => handleUpdate(e, log.id, "filmStock")}
+                                                defaultValue={log.stock}
+                                                onChange={(e) => handleUpdate(e, log.id, "stock")}
                                             />
                                         </td>
                                         <td>
                                             <select
-                                                value={log.filmFormat}
-                                                onChange={(e) => handleUpdate(e, log.id, "filmFormat")}
+                                                value={log.format}
+                                                onChange={(e) => handleUpdate(e, log.id, "format")}
                                                 className={styles['input-field-value']}
                                             >
                                                 <option value="">Select Format</option>

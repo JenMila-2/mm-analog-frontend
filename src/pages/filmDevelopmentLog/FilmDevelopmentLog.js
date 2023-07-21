@@ -175,7 +175,7 @@ function FilmDevelopmentLog() {
                 <div className={styles['development-log-container']}>
                     <div className={styles['development-log-inner-container']}>
                         <div className={styles['total-log-container']}>
-                            <h4>Inventories Overview</h4>
+                            <h4>Film Development Log Overview</h4>
                             Total logs: {totalDevelopmentLogs}
                         </div>
                         <div className={styles['table-wrapper']}>

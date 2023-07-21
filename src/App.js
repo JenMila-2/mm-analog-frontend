@@ -15,13 +15,15 @@ import UpdateProfileDetails from "./pages/updateProfileDetails/UpdateProfileDeta
 import NavBar from "./components/navigation/NavBar/NavBar";
 import Admin from "./pages/admin/Admin";
 import UpdatePassword from "./pages/updateProfileDetails/UpdatePassword";
-import UserFolders from "./pages/adminOverview/UserFolders/UserFolders";
+import UserFolders from "./pages/adminOverview/userFolders/UserFolders";
 import UploadImage from "./pages/uploadImage/UploadImage";
 import NewFilmStockInventory from "./pages/newEntries/newFilmStockInventory/NewFilmStockInventory";
 import NewFilmDevelopmentLog from "./pages/newEntries/newFilmDevelopmentLog/NewFilmDevelopmentLog";
 import NewUsers from "./pages/newEntries/newUsers/NewUsers";
+import UserFilmStockInventories from "./pages/adminOverview/userFilmStockInventories/UserFilmStockInventories";
 import './App.css';
 import PrivateRoute from "./helpers/PrivateRoute";
+import UserDevelopmentLogs from "./pages/adminOverview/userDevelopmentLogs/UserDevelopmentLogs";
 
 function App() {
     const { isAuth } = useContext(AuthContext);
@@ -44,6 +46,8 @@ function App() {
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/admin/dashboard/users" element={<Admin/>}/>
                 <Route path="/admin/dashboard/projectfolders" element={<UserFolders/>}/>
+                <Route path="/admin/dashboard/filmstockinventories" element={<UserFilmStockInventories/>}/>
+                <Route path="/admin/dashboard/filmdevelopmentlogs" element={<UserDevelopmentLogs/>}/>
                 <Route path="/update/profile" element={<UpdateProfileDetails/>}/>
                 <Route path="/update/password" element={<UpdatePassword/>}/>
                 <Route path="/new/filmstockinventory" element={<NewFilmStockInventory/>}/>

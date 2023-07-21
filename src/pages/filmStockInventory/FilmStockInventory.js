@@ -170,7 +170,7 @@ function FilmStockInventory() {
                 <div className={styles['film-stock-container']}>
                     <div className={styles['inventory-inner-container']}>
                         <div className={styles['total-inventories-container']}>
-                            <h4>Inventories Overview</h4>
+                            <h4>Film Stock Inventory Overview</h4>
                             Total inventories: {totalInventories}
                         </div>
                         <div className={styles['table-wrapper']}>

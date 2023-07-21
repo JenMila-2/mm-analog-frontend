@@ -38,6 +38,12 @@ export const SidebarData = [
     },
 
     {
+        title: "User Development Logs",
+        path: "/admin/dashboard/filmdevelopmentlogs",
+        roles: ['ROLE_ADMIN'],
+    },
+
+    {
         title: "Admin Profile",
         path: "/profile",
         roles: ['ROLE_ADMIN'],

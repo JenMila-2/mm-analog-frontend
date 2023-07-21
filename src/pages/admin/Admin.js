@@ -182,7 +182,7 @@ function Admin() {
                 </div>
             </UpdateProfileModal>
             {addSuccess && (
-                <div className={styles['admin-success-message']}>Update saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['admin-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     );

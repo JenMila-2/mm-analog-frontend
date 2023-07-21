@@ -4,22 +4,21 @@ import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavB
 import UpdateProfileModal from "../../components/modal/UpdateProfileModal";
 import {AuthContext} from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
-import {VscSaveAs} from "react-icons/vsc";
+import {MdOutlineDone} from "react-icons/md";
+import axios from "axios"
 import styles from './Admin.module.css';
-import axios from "axios";
 
 function Admin() {
-    const [users, setUsers] = useState([]);
     const { user } = useContext(AuthContext);
-    const [selectedRows, setSelectedRows] = useState([]);
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
+    const [users, setUsers] = useState([]);
+    const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
-    const [addSuccess, toggleAddSuccess] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [addSuccess, setAddSuccess] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const usersPerPage = 10;
     const [totalUsers, setTotalUsers] = useState(0);
+    const usersPerPage = 10;
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -64,26 +63,6 @@ function Admin() {
         }
     }
 
-    async function updateUserDetails(data) {
-        try {
-            await axios.put(`http//localhost:8080/users/${user.username}`, {
-                username: data.username,
-                name: data.name,
-                email: data.email,
-                enabled: data.enabled,
-            }, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                }
-            })
-            toggleAddSuccess(true);
-        } catch (e) {
-            console.error('Oops, something went wrong...')
-        }
-        setLoading(false);
-    }
-
     const paginateUsers = (users) => {
         const startIndex = (currentPage - 1) * usersPerPage;
         const endIndex = Math.min(startIndex + usersPerPage, users.length);
@@ -103,16 +82,29 @@ function Admin() {
         setModalOpen(false);
     };
 
+    useEffect(() => {
+        if (addSuccess) {
+            const timeoutId = setTimeout(() => {
+                setAddSuccess(false);
+                window.location.reload();
+            }, 2000);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [addSuccess]);
+
     return (
         <>
-            <header className={styles['admin-dashboard-title']}>
-                <h1 className={styles.title}>Admin Dashboard</h1>
+            <header className={styles['title-container']}>
+                <h1 className={styles.title}>Admin Dashboard | Users</h1>
             </header>
             <DividerNavBar
-                label1="Update"
-                label2="Add new"
+                label1="Projects users"
+                path1="/admin/dashboard/projectfolders"
+                label2="Add new user"
+                path2="/admin/add/users"
             />
-            <main className={styles['admin-dashboard']}>
+            <main className={styles['admin-dashboard-overview']}>
                 <SidebarNav />
                 <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
@@ -120,23 +112,22 @@ function Admin() {
                             <h4>Users Overview</h4>
                             Total users: {totalUsers}
                         </div>
-                        <table>
+                        <div className={styles['table-wrapper']}>
+                        <table className={styles['users-dashboard-table']}>
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Username</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                                <th>Role</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th className={styles['users-table-head']}>#</th>
+                                <th className={styles['users-table-head']}>Username</th>
+                                <th className={styles['users-table-head']}>Name</th>
+                                <th className={styles['users-table-head']}>Email</th>
+                                <th className={styles['users-table-head']}>Status</th>
+                                <th className={styles['users-table-head']}>Role</th>
+                                <th className={styles['users-table-head']}>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {paginateUsers(users).map((user, index) => {
+                            {paginateUsers(users).map((user) => {
                                 const isSelected = selectedRows.includes(user.username);
-                                const userIndex = (currentPage - 1) * usersPerPage + index;
                                 return (
                                     <tr key={user.username}>
                                         <td>
@@ -146,47 +137,14 @@ function Admin() {
                                                 onChange={() => handleRowSelect(user.username)}
                                             />
                                         </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="username"
-                                                className={styles['input-field-value']}
-                                                defaultValue={user.username}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="name"
-                                                className={styles['input-field-value']}
-                                                defaultValue={user.name}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="email"
-                                                id="email"
-                                                className={styles['input-field-value']}
-                                                defaultValue={user.email}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="status"
-                                                className={styles['status-text']}
-                                                defaultValue={user.enabled ? "Active" : "Blocked"}
-                                            />
-                                        </td>
+                                        <td className={styles['username-field']}>{user.username}</td>
+                                        <td className={styles['input-field-value']}>{user.name}</td>
+                                        <td className={styles['input-field-value']}>{user.email}</td>
+                                        <td><span className={styles['status-text']}>{user.enabled ? "Active" : "Blocked"}</span></td>
                                         <td className={styles['authority-text']}>{user.authorities[0].authority}</td>
                                         <td>
-                                            <VscSaveAs
-                                                className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles.disabledIcon}`}
-                                            />
-                                        </td>
-                                        <td>
                                             <RiDeleteBin6Line
-                                                className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles.disabledIcon}`}
+                                                className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles['disabled-icon']}`}
                                                 onClick={handleDelete}
                                             />
                                         </td>
@@ -195,6 +153,7 @@ function Admin() {
                             })}
                             </tbody>
                         </table>
+                        </div>
                         <div className={styles['page-navigation-container']}>
                             <button
                                 disabled={currentPage === 1}
@@ -222,6 +181,9 @@ function Admin() {
                     <button onClick={handleModalCancel}>Cancel</button>
                 </div>
             </UpdateProfileModal>
+            {addSuccess && (
+                <div className={styles['admin-success-message']}>Update saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+            )}
         </>
     );
 }

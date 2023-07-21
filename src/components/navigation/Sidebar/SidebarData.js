@@ -22,18 +22,24 @@ export const SidebarData = [
     {
         title: "Profile",
         path: "/profile",
-        roles: ['ROLE_ADMIN', 'ROLE_USER'],
+        roles: ['ROLE_USER'],
     },
 
     {
-        title: "Admin Dashboard",
-        path: "/admin/dashboard",
+        title: "Users Overview",
+        path: "/admin/dashboard/users",
         roles: ['ROLE_ADMIN'],
     },
 
     {
         title: "User Folders",
-        path: "/overview/projectfolders",
+        path: "/admin/dashboard/projectfolders",
+        roles: ['ROLE_ADMIN'],
+    },
+
+    {
+        title: "Admin Profile",
+        path: "/profile",
         roles: ['ROLE_ADMIN'],
     },
 ]

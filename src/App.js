@@ -19,6 +19,7 @@ import UserFolders from "./pages/adminOverview/UserFolders/UserFolders";
 import UploadImage from "./pages/uploadImage/UploadImage";
 import NewFilmStockInventory from "./pages/newEntries/newFilmStockInventory/NewFilmStockInventory";
 import NewFilmDevelopmentLog from "./pages/newEntries/newFilmDevelopmentLog/NewFilmDevelopmentLog";
+import NewUsers from "./pages/newEntries/newUsers/NewUsers";
 import './App.css';
 import PrivateRoute from "./helpers/PrivateRoute";
 
@@ -41,12 +42,14 @@ function App() {
                 <Route path="/filmdevelopmentlogs" element={<FilmDevelopmentLog/>}/>
                 <Route path="/upload/image" element={<UploadImage/>}/>
                 <Route path="/profile" element={<Profile/>}/>
-                <Route path="/admin/dashboard" element={<Admin/>}/>
-                <Route path="/overview/projectfolders" element={<UserFolders/>}/>
+                <Route path="/admin/dashboard/users" element={<Admin/>}/>
+                <Route path="/admin/dashboard/projectfolders" element={<UserFolders/>}/>
                 <Route path="/update/profile" element={<UpdateProfileDetails/>}/>
                 <Route path="/update/password" element={<UpdatePassword/>}/>
                 <Route path="/new/filmstockinventory" element={<NewFilmStockInventory/>}/>
                 <Route path="/new/filmdevelopmentlog" element={<NewFilmDevelopmentLog/>}/>
+                <Route path="/admin/add/users" element={<NewUsers/>}/>
+
 
                 {/*<Route path="/projectfolders" element={isAuth ? <ProjectFolder/> : <Navigate to="/"/>}/>
                 <Route path="/photologs" element={isAuth ? <PhotoLog/> : <Navigate to="/"/>}/>

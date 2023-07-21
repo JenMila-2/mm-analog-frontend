@@ -417,7 +417,7 @@ function FilmDevelopmentLog() {
                 </div>
             </LogModal>
             {addSuccess && (
-                <div className={styles['log-update-success-message']}>Update successful saved! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['log-update-success-message']}>Update saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     );

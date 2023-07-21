@@ -12,13 +12,13 @@ export function UpdateProfileDetails() {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
     const [error, toggleError] = useState(false);
-    const [addSuccess, toggleAddSuccess] = useState(false);
+    const [addSuccess, setAddSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setModalOpen] = useState(false);
 
     async function updateProfileDetails(data) {
         toggleError(false);
-        toggleAddSuccess(false);
+        setAddSuccess(false);
         setLoading(true);
         try {
             await axios.put(`http://localhost:8080/users/${user.username}`, {
@@ -32,7 +32,7 @@ export function UpdateProfileDetails() {
                     Authorization: `Bearer ${token}`,
                 }
             })
-            toggleAddSuccess(true);
+            setAddSuccess(true);
             setTimeout(() => {
                 navigate('/profile')
             }, 2000);

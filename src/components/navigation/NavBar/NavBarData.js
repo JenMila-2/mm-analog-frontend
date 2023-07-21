@@ -81,17 +81,17 @@ export const adminNavItems = [
     },
 
     {
-        title: "Profile",
-        path: "/profile",
-    },
-
-    {
-        title: "Admin Dashboard",
-        path: "/admin/dashboard"
+        title: "Users Overview",
+        path: "/admin/dashboard/users"
     },
 
     {
         title: "User Folders",
-        path: "/overview/projectfolders",
+        path: "/admin/dashboard/projectfolders",
+    },
+
+    {
+        title: "Admin Profile",
+        path: "/profile",
     },
 ];

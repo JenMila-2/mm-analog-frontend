@@ -43,7 +43,6 @@ const SidebarNav = () => {
                             {filteredSidebarData.map((item, index) => (
                                 <li key={index} className="left-sidebar-item">
                                     <NavLink
-                                        exact
                                         to={item.path}
                                         className="left-sidebar-item-link"
                                         onClick={toggleSidebarOpen}
@@ -54,7 +53,7 @@ const SidebarNav = () => {
                             ))}
                             {user && (
                                 <li className="left-sidebar-item" onClick={logoff}>
-                                    <NavLink exact to="/" className="left-sidebar-item-link">
+                                    <NavLink to="/" className="left-sidebar-item-link">
                                         <div className="left-sidebar-item-title">Log off</div>
                                     </NavLink>
                                 </li>

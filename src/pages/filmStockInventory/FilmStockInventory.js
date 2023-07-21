@@ -194,9 +194,8 @@ function FilmStockInventory() {
                             </tr>
                             </thead>
                             <tbody>
-                            {paginateInventories(inventories).map((inventory, index) => {
+                            {paginateInventories(inventories).map((inventory) => {
                                 const isSelected = selectedRows.includes(inventory.id);
-                                // const inventoryIndex = (currentPage - 1) * inventoriesPerPage + index;
                                 return (
                                     <tr key={inventory.id}>
                                         <td>
@@ -357,7 +356,7 @@ function FilmStockInventory() {
                 </div>
             </LogModal>
             {addSuccess && (
-                <div className={styles['update-success-message']}>Update successful saved! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['update-success-message']}>Update saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     );

@@ -13,7 +13,8 @@ function PhotoProject() {
                 <h1 className={styles.title}>Photo Projects</h1>
             </header>
             <DividerNavBar
-                label1="Update"
+                label1="Photo Logs"
+                path1="/photologs"
                 label2="Add new"
             />
             <main className={styles['projects-overview']}>

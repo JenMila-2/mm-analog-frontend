@@ -153,7 +153,7 @@ export function UserPhotoLogs() {
                                             <td className={styles['input-field-value']}>{logs.shutterSpeed}</td>
                                             <td className={styles['input-field-value']}>{logs.exposureCompensation}</td>
                                             <td className={styles['input-field-value']}>{logs.dateTaken}</td>
-                                            <td className={styles['input-field-value']}>{logs.notes}</td>
+                                            <td className={styles['input-field-value-notes']}>{logs.notes}</td>
                                             <td>
                                                 <RiDeleteBin6Line
                                                     className={`${styles.icon} ${selectedRows.includes(logs.id) ? '' : styles['disabled-icon']}`}

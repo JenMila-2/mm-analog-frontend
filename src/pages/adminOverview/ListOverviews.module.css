@@ -82,8 +82,18 @@ table {
 
 .input-field-value {
     border-radius: 5px;
-    border-color: var(--platinum);
     font-size: 14px;
+    min-width: 150px;
+    border-color: var(--platinum);
+    font-family: "Open Sans", sans-serif;
+}
+
+.input-field-value-notes {
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: left;
+    min-width: 350px;
+    border-color: var(--platinum);
     font-family: "Open Sans", sans-serif;
 }
 

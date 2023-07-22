@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './HomeSection.module.css';
 import Button from '../buttons/Button';
 import { useNavigate } from 'react-router-dom';
+import {AuthContext} from "../../context/AuthContext";
 
 const HomeSection = ({heading, text, subtext, altText, buttonLabel, buttonColor, buttonPath, imageSource1, imageSource2}) => {
     const navigate = useNavigate();
+    const { auth } = useContext(AuthContext);
+
+    if (auth) {
+        return null;
+    }
 
     return (
         <section className={styles['section-container']}>

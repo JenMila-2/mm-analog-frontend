@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './HeroSection.module.css';
 import image from '../../assets/Sajad_Fi_1.jpg';
 import Button from "../buttons/Button";
 import {useNavigate} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
 
 
 const HeroSection = () => {
     const navigate = useNavigate();
+    const { auth } = useContext(AuthContext);
 
     const handleLoginClick = () => {
         navigate('/login')
@@ -27,14 +29,16 @@ const HeroSection = () => {
                 <p>Keep shooting film!</p>
             </div>
         </div>
-            <div className={styles['hero-button-wrapper']}>
-                <Button type="button" color="login" clickHandler={handleLoginClick}>
-                    Log In
-                </Button>
-                <Button type="button" color="signup" clickHandler={handleSignupClick}>
-                    Sign Up
-                </Button>
-      </div>
+            {!auth && (
+                <div className={styles['hero-button-wrapper']}>
+                    <Button type="button" color="login" clickHandler={handleLoginClick}>
+                        Log In
+                    </Button>
+                    <Button type="button" color="signup" clickHandler={handleSignupClick}>
+                        Sign Up
+                    </Button>
+                </div>
+            )}
     </>
     )
 }

@@ -21,12 +21,12 @@ import NewFilmStockInventory from "./pages/newEntries/newFilmStockInventory/NewF
 import NewFilmDevelopmentLog from "./pages/newEntries/newFilmDevelopmentLog/NewFilmDevelopmentLog";
 import NewUsers from "./pages/newEntries/newUsers/NewUsers";
 import UserFilmStockInventories from "./pages/adminOverview/userFilmStockInventories/UserFilmStockInventories";
-import './App.css';
-import PrivateRoute from "./helpers/PrivateRoute";
 import UserDevelopmentLogs from "./pages/adminOverview/userDevelopmentLogs/UserDevelopmentLogs";
+import UserPhotoLogs from "./pages/adminOverview/userPhotoLogs/UserPhotoLogs";
+import './App.css';
 
 function App() {
-    const { isAuth } = useContext(AuthContext);
+    const { auth } = useContext(AuthContext);
 
     return (
         <>
@@ -38,29 +38,70 @@ function App() {
                 <Route path="/signup" element={<Signup/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/welcomepage" element={<Welcome/>}/>
-                <Route path="/projectfolders" element={<ProjectFolder/>}/>
-                <Route path="/photologs" element={<PhotoLog/>}/>
-                <Route path="/filmstockinventories" element={<FilmStockInventory/>}/>
-                <Route path="/filmdevelopmentlogs" element={<FilmDevelopmentLog/>}/>
-                <Route path="/upload/image" element={<UploadImage/>}/>
-                <Route path="/profile" element={<Profile/>}/>
-                <Route path="/admin/dashboard/users" element={<Admin/>}/>
-                <Route path="/admin/dashboard/projectfolders" element={<UserFolders/>}/>
-                <Route path="/admin/dashboard/filmstockinventories" element={<UserFilmStockInventories/>}/>
-                <Route path="/admin/dashboard/filmdevelopmentlogs" element={<UserDevelopmentLogs/>}/>
-                <Route path="/update/profile" element={<UpdateProfileDetails/>}/>
-                <Route path="/update/password" element={<UpdatePassword/>}/>
-                <Route path="/new/filmstockinventory" element={<NewFilmStockInventory/>}/>
-                <Route path="/new/filmdevelopmentlog" element={<NewFilmDevelopmentLog/>}/>
-                <Route path="/admin/add/users" element={<NewUsers/>}/>
-
-
-                {/*<Route path="/projectfolders" element={isAuth ? <ProjectFolder/> : <Navigate to="/"/>}/>
-                <Route path="/photologs" element={isAuth ? <PhotoLog/> : <Navigate to="/"/>}/>
-                <Route path="/filmstockinventories" element={isAuth ? <FilmStockInventory/> : <Navigate to="/"/>}/>
-                <Route path="/filmdevelopmentlogs" element={isAuth ? <FilmDevelopmentLog/> : <Navigate to="/"/>}/>
-                <Route path="/profile" element={isAuth ? <Profile/> : <Navigate to="/"/>}/>
-                <Route path="/admin" element={isAuth ? <Admin/> : <Navigate to="/"/>}/>*/}
+                <Route
+                    path="/profile"
+                    element={auth ? <Profile /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/projectfolders"
+                    element={auth ? <ProjectFolder /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/photologs"
+                    element={auth ? <PhotoLog /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/filmstockinventories"
+                    element={auth ? <FilmStockInventory /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/filmdevelopmentlogs"
+                    element={auth ? <FilmDevelopmentLog /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/update/profile"
+                    element={auth ? <UpdateProfileDetails /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/update/password"
+                    element={auth ? <UpdatePassword /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/new/filmstockinventory"
+                    element={auth ? <NewFilmStockInventory /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/new/filmdevelopmentlog"
+                    element={auth ? <NewFilmDevelopmentLog /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/upload/image"
+                    element={auth ? <UploadImage /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/admin/dashboard/users"
+                    element={auth ? <Admin /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/admin/add/users"
+                    element={auth ? <NewUsers /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/admin/dashboard/projectfolders"
+                    element={auth ? <UserFolders /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/admin/dashboard/filmstockinventories"
+                    element={auth ? <UserFilmStockInventories /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/admin/dashboard/filmdevelopmentlogs"
+                    element={auth ? <UserDevelopmentLogs /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/admin/dashboard/photologs"
+                    element={auth ? <UserPhotoLogs /> : <Navigate to="/" />}
+                />
             </Routes>
         </>
     );

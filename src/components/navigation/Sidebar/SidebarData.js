@@ -26,7 +26,7 @@ export const SidebarData = [
     },
 
     {
-        title: "Users Overview",
+        title: "Users",
         path: "/admin/dashboard/users",
         roles: ['ROLE_ADMIN'],
     },
@@ -40,6 +40,12 @@ export const SidebarData = [
     {
         title: "User Development Logs",
         path: "/admin/dashboard/filmdevelopmentlogs",
+        roles: ['ROLE_ADMIN'],
+    },
+
+    {
+        title: "User Photo Logs",
+        path: "/admin/dashboard/photologs",
         roles: ['ROLE_ADMIN'],
     },
 

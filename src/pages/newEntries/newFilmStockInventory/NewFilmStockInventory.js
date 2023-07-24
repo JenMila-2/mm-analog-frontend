@@ -43,7 +43,7 @@ function NewFilmStockInventory() {
                 navigate('/filmstockinventories')
             }, 2000)
         } catch (error) {
-            console.error("Oops, an error occurred!", error);
+            console.error("Oops, something went wrong...", error);
             toggleError(true)
         }
         setLoading(false);

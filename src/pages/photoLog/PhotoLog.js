@@ -182,7 +182,7 @@ function PhotoLog() {
                                     <th className={styles['photo-log-table-head']}>Iso</th>
                                     <th className={styles['photo-log-table-head']}>Aperture</th>
                                     <th className={styles['photo-log-table-head']}>Shutter Speed</th>
-                                    <th className={styles['photo-log-table-head']}>Exposure Compen.</th>
+                                    <th className={styles['photo-log-table-head']}>Exposure -/+</th>
                                     <th className={styles['photo-log-table-head']}>Date Taken</th>
                                     <th className={styles['photo-log-table-head']}>Notes</th>
                                     <th className={styles['photo-log-table-head']}>Edit</th>

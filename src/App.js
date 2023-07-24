@@ -24,6 +24,7 @@ import UserFilmStockInventories from "./pages/adminOverview/userFilmStockInvento
 import UserDevelopmentLogs from "./pages/adminOverview/userDevelopmentLogs/UserDevelopmentLogs";
 import UserPhotoLogs from "./pages/adminOverview/userPhotoLogs/UserPhotoLogs";
 import './App.css';
+import NewPhotoLog from "./pages/newEntries/newPhotoLog/NewPhotoLog";
 
 function App() {
     const { auth } = useContext(AuthContext);
@@ -40,7 +41,7 @@ function App() {
                 <Route path="/welcomepage" element={<Welcome/>}/>
                 <Route
                     path="/profile"
-                    element={auth ? <Profile /> : <Navigate to="/" />}
+                    element={auth ? <Profile /> : <Navigate to="/profile" />}
                 />
                 <Route
                     path="/projectfolders"
@@ -73,6 +74,10 @@ function App() {
                 <Route
                     path="/new/filmdevelopmentlog"
                     element={auth ? <NewFilmDevelopmentLog /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/new/photolog"
+                    element={auth ? <NewPhotoLog /> : <Navigate to="/" />}
                 />
                 <Route
                     path="/upload/image"

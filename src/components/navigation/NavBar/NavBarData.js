@@ -49,12 +49,12 @@ export const userNavItems = [
     },
 
     {
-        title: "Film Stock Inventory",
+        title: "Film Stock Inventories",
         path: "/filmstockinventories",
     },
 
     {
-        title: "Development Log",
+        title: "Development Logs",
         path: "/filmdevelopmentlogs",
     },
 

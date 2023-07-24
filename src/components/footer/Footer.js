@@ -1,12 +1,8 @@
 import React from 'react';
-import styles from './Footer.module.css';
-import { animateScroll as scroll } from 'react-scroll'
 import {Link} from "react-router-dom";
+import styles from './Footer.module.css';
 
 const Footer = () => {
-    const toggleHome = () => {
-        scroll.scrollToTop();
-    }
 
     return (
         <>

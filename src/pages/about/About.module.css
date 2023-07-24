@@ -1,20 +1,19 @@
-
-.page-title {
-    font-family: Alata, sans-serif;
-    color: var(--errie-black);
-    font-size: 80px;
-    font-weight: 500;
-}
-
 .about-section {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
+    padding: 50px;
+    max-width: 800px;
     text-align: center;
     margin: 0 0 60px 60px;
-    max-width: 800px;
-    padding: 50px;
+    justify-content: left;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.page-title {
+    font-size: 80px;
+    font-weight: 500;
+    color: var(--errie-black);
+    font-family: Alata, sans-serif;
 }
 
 .quote {
@@ -23,56 +22,56 @@
 }
 
 .image-container {
-    position: relative;
-    margin-top: 50px;
     padding: 20px;
+    margin-top: 50px;
+    position: relative;
 }
 
 .photographer-portrait {
-    max-width: 50%;
     height: auto;
+    max-width: 50%;
 }
 
 .sub-text-container {
-    margin-left: 50%;
-    margin-top: 30px;
+    margin-left: 20%;
+    margin-top: 25px;
 }
 
 .sub-text {
-    margin-top: 10px;
     font-size: 16px;
+    margin-top: 10px;
 }
 
 .side-text-right {
-    position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     right: 0;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-    font-family: "Open Sans", sans-serif;
     font-size: 10px;
+    position: absolute;
+    padding-right: 80px;
+    align-items: flex-end;
+    flex-direction: column;
     text-transform: uppercase;
     writing-mode: vertical-lr;
     text-orientation: upright;
-    padding-right: 80px;
+    justify-content: flex-end;
+    transform: translateY(-50%);
+    font-family: "Open Sans", sans-serif;
 }
 
 .side-text-left {
-    position: absolute;
     top: 0;
-    transform: translateY(180%);
     left: 0;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    font-family: "Open Sans", sans-serif;
     font-size: 10px;
+    position: absolute;
+    padding-left: 80px;
+    align-items: flex-start;
+    flex-direction: column;
     text-transform: uppercase;
     writing-mode: vertical-lr;
     text-orientation: upright;
-    padding-left: 80px;
+    justify-content: flex-end;
+    transform: translateY(180%);
+    font-family: "Open Sans", sans-serif;
 }

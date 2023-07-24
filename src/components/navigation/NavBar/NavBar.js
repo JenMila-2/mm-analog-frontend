@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {adminNavItems, publicNavItems, userNavItems} from "./NavBarData";
 import {NavLink} from "react-router-dom";
-import {AuthContext} from "../../../context/AuthContext";
 import {HiOutlineMenuAlt4} from "react-icons/hi";
-import './NavBar.css';
+import {AuthContext} from "../../../context/AuthContext";
+import {adminNavItems, publicNavItems, userNavItems} from "./NavBarData";
+import styles from './NavBar.module.css';
 
 const NavBar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -40,33 +40,33 @@ const NavBar = () => {
 
     return (
         <>
-            <nav className="navbar">
-                <div className="navbar-container">
-                    <div className="navbar-icon" onClick={toggleSidebar}>
+            <nav className={styles.navbar}>
+                <div className={styles['navbar-container']}>
+                    <div className={styles['navbar-icon']} onClick={toggleSidebar}>
                         <HiOutlineMenuAlt4 />
                     </div>
                 </div>
             </nav>
-            <aside ref={sidebarClose} className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
-                <ul className="sidebar-menu">
+            <aside ref={sidebarClose} className={`${styles.sidebar} ${sidebarOpen ? styles['sidebar-open'] : ''}`}>
+                <ul className={styles['sidebar-menu']}>
                     {navigationItems.map((item, index) => (
-                        <li key={index} className="sidebar-item">
+                        <li key={index} className={styles['sidebar-item']}>
                             <NavLink to={item.path} onClick={() => setSidebarOpen(false)}>
-                                <span className="sidebar-item-icon">{item.icon}</span>
-                                <span className="sidebar-item-title">{item.title}</span>
+                                <span className={styles['sidebar-item-icon']}>{item.icon}</span>
+                                <span className={styles['sidebar-item-title']}>{item.title}</span>
                             </NavLink>
                         </li>
                     ))}
                     {user && (
-                        <li className="sidebar-item" onClick={logoff}>
+                        <li className={styles['sidebar-item']} onClick={logoff}>
                             <NavLink to="/" onClick={() => setSidebarOpen(false)}>
-                                <span className="sidebar-item-title">Log off</span>
+                                <span className={styles['sidebar-item-title']}>Log off</span>
                             </NavLink>
                         </li>
                     )}
                 </ul>
             </aside>
-            <div className="logo-name">mm-analog.</div>
+            <div className={styles['logo-name']}>mm-analog.</div>
         </>
     );
 };

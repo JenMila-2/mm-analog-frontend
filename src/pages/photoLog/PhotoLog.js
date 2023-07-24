@@ -7,7 +7,7 @@ import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
 import styles from './PhotoLog.module.css';
-import LogModal from "../../components/modal/LogModal";
+import Modal from "../../components/modal/Modal";
 
 function PhotoLog() {
     const { user } = useContext(AuthContext);
@@ -324,14 +324,14 @@ function PhotoLog() {
 
                 </div>
             </main>
-            <LogModal isOpen={isModalOpen} onClose={handleModalCancel}>
+            <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected logs(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
                 </div>
-            </LogModal>
+            </Modal>
             {addSuccess && (
                 <div className={styles['photo-log-success-message']}>Update saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}

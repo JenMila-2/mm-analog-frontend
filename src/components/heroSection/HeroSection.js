@@ -1,9 +1,9 @@
-import React, {useContext, useState} from 'react';
-import styles from './HeroSection.module.css';
-import image from '../../assets/Sajad_Fi_1.jpg';
+import React, {useContext} from 'react';
 import Button from "../buttons/Button";
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
+import image from '../../assets/Sajad_Fi_1.jpg';
+import styles from './HeroSection.module.css';
 
 
 const HeroSection = () => {
@@ -20,15 +20,15 @@ const HeroSection = () => {
 
     return (
         <>
-        <div className={styles['hero-container']}>
+        <main className={styles['hero-container']}>
             <div className={styles['hero-background']}>
                 <img src={image} alt="" className={styles['hero-image']}/>
             </div>
             <div className={styles['hero-content']}>
-                <h1>welcome</h1>
-                <p>Keep shooting film!</p>
+                <h1 className={styles['hero-title']}>welcome</h1>
+                <p className={styles['hero-sub-title']}>Keep shooting film!</p>
             </div>
-        </div>
+        </main>
             {!auth && (
                 <div className={styles['hero-button-wrapper']}>
                     <Button type="button" color="login" clickHandler={handleLoginClick}>

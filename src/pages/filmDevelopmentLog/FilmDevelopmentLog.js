@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
-import LogModal from "../../components/modal/LogModal";
+import Modal from "../../components/modal/Modal";
 import {AuthContext} from "../../context/AuthContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
@@ -169,6 +169,7 @@ function FilmDevelopmentLog() {
             path1="/projectfolders"
             label2="Add new"
             path2="/new/filmdevelopmentlog"
+            userRole={user?.role}
             />
             <main className={styles['development-log-overview']}>
                 <SidebarNav />
@@ -408,14 +409,14 @@ function FilmDevelopmentLog() {
                     </div>
                 </div>
             </main>
-            <LogModal isOpen={isModalOpen} onClose={handleModalCancel}>
+            <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected logs(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
                 </div>
-            </LogModal>
+            </Modal>
             {addSuccess && (
                 <div className={styles['log-update-success-message']}>Update saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}

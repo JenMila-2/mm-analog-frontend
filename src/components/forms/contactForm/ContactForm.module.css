@@ -1,69 +1,62 @@
-form {
-    padding: 20px;
-    width: 60%;
-}
-
-form label {
-    margin: 4px 0;
-    font-weight: bold;
-    font-family: "Open Sans", sans-serif;
-    font-size: 14px;
-}
-
-form input {
-    width:100%;
-    padding: 6px 8px;
-    margin: 6px 0;
-    border-radius: 4px;
-    border: 1px solid var(--grey);
-}
-
-textarea {
-    width:100%;
-    padding: 6px 8px;
-    margin: 6px 0;
-    border-radius: 4px;
-    border: 1px solid var(--platinum);
-    background-color: var(--white-light-background);
-}
-
-.home-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 .contact-form-container {
+    padding: 20px;
     display: flex;
+    margin-bottom: 20px;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     align-items: center;
-    padding: 20px;
-}
-
-.contact-form-container {
-    margin-bottom: 20px;
 }
 
 .contact-form-title {
     font-size: 44px;
 }
 
-.submit-button-large {
-    background-color: var(--errie-black);
-    border: 0 solid var(--errie-black);
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+.contact-form-inner-container {
+    width: 60%;
+}
+
+.label-contact-form {
+    margin: 4px 0;
+    font-size: 14px;
+    font-weight: bold;
     font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    color: var(--white);
+}
+
+.input-contact-form {
+    width:100%;
+    margin: 6px 0;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--grey);
+    font-family: "Open Sans", sans-serif;
+}
+
+.textarea-contact-form {
+    width:100%;
+    margin: 6px 0;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--platinum);
+    font-family: "Open Sans", sans-serif;
+    background-color: var(--ghost-white);
+}
+
+.submit-button-large {
     width: 100%;
     height: 45px;
+    font-size: 16px;
+    border-radius: 6px;
+    color: var(--white);
+    border: 0 solid var(--errie-black);
+    background-color: var(--errie-black);
+    font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
 }
 
 .submit-button-large:hover {
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    font-weight: bold;
     transform: translateY(-2px);
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 }

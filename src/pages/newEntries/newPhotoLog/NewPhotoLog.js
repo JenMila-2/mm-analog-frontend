@@ -7,7 +7,7 @@ import styles from '../NewEntries.module.css';
 
 export function NewPhotoLog() {
     const { user: { username } } = useContext(AuthContext);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, setValue } = useForm();
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
     const [addSuccess, setAddSuccess] = useState(false);
@@ -15,6 +15,7 @@ export function NewPhotoLog() {
     const [loading, setLoading] = useState(false);
     const [projectFolders, setProjectFolders] = useState([]);
     const [folderId, setFolderId] = useState('');
+    const exposureCompensationOptions = ['-3', '-2', '-1', '0', '+1', '+2', '+3'];
 
     useEffect(() => {
         async function fetchProjectFolders() {
@@ -64,6 +65,13 @@ export function NewPhotoLog() {
         }
         setLoading(false);
     }
+
+    const handleApertureChange = (e) => {
+        const inputValue = e.target.value;
+        if (!inputValue.startsWith('f/')) {
+            setValue('aperture', `f/${inputValue}`);
+        }
+    };
 
     return (
         <>
@@ -173,6 +181,8 @@ export function NewPhotoLog() {
                                                 message: "Aperture must have at least 3 characters",
                                             },
                                         })}
+                                        defaultValue="f/"
+                                        onChange={handleApertureChange}
                                         autoComplete="off"
                                     />
                                 </label>
@@ -195,18 +205,19 @@ export function NewPhotoLog() {
                                 {errors.shutterSpeed && <p className={styles['error-label']}>{errors.shutterSpeed.message}</p>}
                                 <label htmlFor="exposureCompensation">
                                     Exposure -/+
-                                    <input
-                                        type="text"
+                                    <select
                                         id="exposureCompensation"
-                                        className={styles['form-input-field']}
-                                        {...register("exposureCompensation", {
-                                            maxLength: {
-                                                value: 5,
-                                                message: "Exposure compensation cannot contain more than 5 characters",
-                                            },
-                                        })}
+                                        className={styles['form-select-field']}
+                                        {...register("exposureCompensation")}
                                         autoComplete="off"
-                                    />
+                                    >
+                                        <option value="">Select Exposure</option> {'0'}
+                                        {exposureCompensationOptions.map((exposureCompensation) => (
+                                            <option key={exposureCompensation} value={exposureCompensation}>
+                                                {exposureCompensation}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </label>
                                 {errors.exposureCompensation && <p className={styles['error-label']}>{errors.exposureCompensation.message}</p>}
                                 <label htmlFor="dateTaken">

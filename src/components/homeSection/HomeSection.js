@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
-import styles from './HomeSection.module.css';
-import Button from '../buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import {AuthContext} from "../../context/AuthContext";
+import Button from '../buttons/Button';
+import styles from './HomeSection.module.css';
 
 const HomeSection = ({heading, text, subtext, altText, buttonLabel, buttonColor, buttonPath, imageSource1, imageSource2}) => {
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const HomeSection = ({heading, text, subtext, altText, buttonLabel, buttonColor,
                 </div>
             )}
             <div className={styles['section-content']}>
-                <h2 className={styles['section-heading']}>{heading}</h2>
+                <h2 className={styles['section-title']}>{heading}</h2>
                 <p className={styles['section-text']}>{text}</p>
                 <Button type="button" color={buttonColor} clickHandler={() => navigate(buttonPath)}>
                     {buttonLabel}

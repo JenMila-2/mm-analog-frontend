@@ -3,10 +3,10 @@ table, td {
 }
 
 th {
-    background-color: var(--alabaster);
-    color: var(--errie-black);
     font-size: 14px;
     text-transform: uppercase;
+    color: var(--errie-black);
+    background-color: var(--alabaster);
 }
 
 td, th {
@@ -14,10 +14,10 @@ td, th {
 }
 
 table {
-    border-collapse: collapse;
-    max-width: 100%;
     margin: 20px 0;
+    max-width: 100%;
     text-align: center;
+    border-collapse: collapse;
     background-color: var(--white);
 }
 
@@ -27,10 +27,10 @@ input {
 
 .title-container {
     display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
     align-items: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title {
@@ -38,8 +38,8 @@ input {
 }
 
 .admin-dashboard-overview {
-    display: flex;
     width: 100%;
+    display: flex;
 }
 
 .admin-dashboard-container {
@@ -49,55 +49,55 @@ input {
 }
 
 .admin-dashboard-inner-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
+    display: flex;
     padding: 30px;
     margin-top: 60px;
     border-radius: 10px;
-    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 0%, hsla(0, 0%, 76%, 1) 72%);
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
 }
 
 .total-users-container {
     display: flex;
+    font-size: 14px;
     text-align: left;
     flex-direction: column;
     align-self: flex-start;
-    font-size: 14px;
 }
 
 .table-wrapper {
     max-width: 100%;
     position: relative;
-    overflow-x: scroll;
+    /*overflow-x: scroll;*/
 }
 
 .users-table-head {
-    background-color: var(--jet);
     color: var(--platinum);
+    background-color: var(--jet);
 }
 
 .username-field {
     font-size: 14px;
-    color: var(--davys-gray);
     font-weight: bold;
+    color: var(--davys-gray);
 }
 
 .input-field-value {
+    font-size: 14px;
     border-radius: 5px;
     border-color: var(--platinum);
-    font-size: 14px;
     font-family: "Open Sans", sans-serif;
 }
 
 .status-text {
+    padding: 5px;
     font-size: 10px;
     font-weight: bold;
-    background-color: var(--mint-green);
-    padding: 5px;
     border-radius: 5px;
     text-align: center;
+    background-color: var(--mint-green);
 }
 
 .authority-text {
@@ -112,14 +112,14 @@ input {
 
 .disabled-icon {
     opacity: 0.5;
+    margin-right: 10px;
     color: var(--grey);
     pointer-events: none;
-    margin-right: 10px;
 }
 
 .page-navigation-container {
-    display: flex;
     gap: 10px;
+    display: flex;
     padding-top: 15px;
 }
 
@@ -130,8 +130,8 @@ input {
     text-align: center;
     border-radius: 6px;
     border: 0 solid var(--errie-black);
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
 }
 
 .page-navigation-button:hover {
@@ -147,30 +147,30 @@ input {
 }
 
 .admin-success-message {
-    font-weight: bold;
-    border-radius: 5px;
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 10px;
-    position: fixed;
     top: 50%;
     left: 50%;
+    padding: 15px;
     z-index: 9999;
-    transform: translate(-50%, -50%);
-    background-color: var(--white);
+    position: fixed;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
     color: var(--errie-black);
+    background-color: var(--white);
+    transform: translate(-50%, -50%);
     border: 1px solid var(--errie-black);
 }
 
 .check-icon {
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
     color: var(--emerald);
 }
 
 .error-label {
     font-size: 12px;
-    padding-bottom: 8px;
     margin-top: -4px;
+    padding-bottom: 8px;
     color: var(--crimson);
 }

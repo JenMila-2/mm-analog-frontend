@@ -1,63 +1,72 @@
 .main--button {
-    padding: 8px 10px 8px 10px;
-    border-radius: 6px;
-    border: 0 solid var(--errie-black);
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-    font-family: "Open Sans", sans-serif;
     outline: none;
+    border-radius: 6px;
     text-align: center;
+    padding: 8px 10px 8px 10px;
+    border: 0 solid var(--errie-black);
+    font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
 }
 
 .main--button:hover {
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 }
 
 .main--button:disabled {
     cursor: not-allowed;
-    background-color: var(--alabaster);
     color: var(--platinum);
+    background-color: var(--alabaster);
 }
 
 .explore {
-    background-color: var(--errie-black);
-    color: var(--white);
-    font-size: 16px;
     width: 120px;
     height: 45px;
+    font-size: 16px;
+    color: var(--white);
+    background-color: var(--errie-black);
 }
 
 .signup {
-    background-color: var(--errie-black);
-    color: var(--white);
     font-size: 15px;
+    color: var(--white);
+    background-color: var(--errie-black);
 }
 
 .login {
-    background-color: var(--alabaster);
-    color: var(--errie-black);
     font-size: 15px;
+    color: var(--errie-black);
+    background-color: var(--alabaster);
 }
 
 .create-account, .login-large {
-    background-color: var(--errie-black);
-    font-size: 16px;
-    color: var(--white);
     width: 350px;
     height: 45px;
+    font-size: 16px;
+    color: var(--white);
+    background-color: var(--errie-black);
+}
+
+.login-welcome {
+    width: 250px;
+    height: 45px;
+    font-size: 15px;
+    color: var(--white);
+    border-radius: 25px;
+    background-color: var(--errie-black);
 }
 
 .nav-button-small {
-    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
-    color: var(--errie-black);
-    border-radius: 50px;
     width: 80px;
+    border-radius: 50px;
+    color: var(--errie-black);
+    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
 }
 
 .nav-button-small:hover {
-    background: linear-gradient(to right, #434343 0%, black 100%);
     color: var(--white);
+    background: linear-gradient(to right, #434343 0%, black 100%);
 }
 
 .nav-button-small:active {
@@ -65,19 +74,10 @@
 }
 
 .more-button {
-    background-color: var(--white);
-    border: 2px solid var(--platinum);
-    font-weight: bold;
-    color: var(--grey);
     width: 400px;
     height: 40px;
-}
-
-.login-welcome {
-    background-color: var(--errie-black);
-    color: var(--white);
-    font-size: 15px;
-    border-radius: 25px;
-    width: 250px;
-    height: 45px;
+    font-weight: bold;
+    color: var(--grey);
+    background-color: var(--white);
+    border: 2px solid var(--platinum);
 }

@@ -96,16 +96,16 @@ function App() {
                     element={auth ? <UserFolders /> : <Navigate to="/" />}
                 />
                 <Route
+                    path="/admin/dashboard/photologs"
+                    element={auth ? <UserPhotoLogs /> : <Navigate to="/" />}
+                />
+                <Route
                     path="/admin/dashboard/filmstockinventories"
                     element={auth ? <UserFilmStockInventories /> : <Navigate to="/" />}
                 />
                 <Route
                     path="/admin/dashboard/filmdevelopmentlogs"
                     element={auth ? <UserDevelopmentLogs /> : <Navigate to="/" />}
-                />
-                <Route
-                    path="/admin/dashboard/photologs"
-                    element={auth ? <UserPhotoLogs /> : <Navigate to="/" />}
                 />
             </Routes>
         </>

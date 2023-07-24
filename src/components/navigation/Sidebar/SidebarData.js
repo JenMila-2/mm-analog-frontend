@@ -8,13 +8,13 @@ export const SidebarData = [
     },
 
     {
-        title: "Stock Inventory",
+        title: "Stock Inventories",
         path: "/filmstockinventories",
         roles: ['ROLE_USER'],
     },
 
     {
-        title: "Development Log",
+        title: "Development Logs",
         path: "/filmdevelopmentlogs",
         roles: ['ROLE_USER'],
     },
@@ -32,20 +32,26 @@ export const SidebarData = [
     },
 
     {
-        title: "User Folders",
+        title: "All Folders",
         path: "/admin/dashboard/projectfolders",
         roles: ['ROLE_ADMIN'],
     },
 
     {
-        title: "User Development Logs",
-        path: "/admin/dashboard/filmdevelopmentlogs",
+        title: "All Photo Logs",
+        path: "/admin/dashboard/photologs",
         roles: ['ROLE_ADMIN'],
     },
 
     {
-        title: "User Photo Logs",
-        path: "/admin/dashboard/photologs",
+        title: "All Stock Inventories",
+        path: "/admin/dashboard/filmstockinventories",
+        roles: ['ROLE_ADMIN'],
+    },
+
+    {
+        title: "All Development Logs",
+        path: "/admin/dashboard/filmdevelopmentlogs",
         roles: ['ROLE_ADMIN'],
     },
 

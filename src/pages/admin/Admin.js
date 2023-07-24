@@ -1,17 +1,15 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
-import UpdateProfileModal from "../../components/modal/UpdateProfileModal";
-import {AuthContext} from "../../context/AuthContext";
+import Modal from "../../components/modal/Modal";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import axios from "axios"
 import styles from './Admin.module.css';
 
 function Admin() {
-    const { user } = useContext(AuthContext);
-    const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
+    const token = localStorage.getItem('token');
     const [users, setUsers] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
@@ -96,12 +94,12 @@ function Admin() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Admin Dashboard | Users</h1>
+                <h1 className={styles.title}>Users</h1>
             </header>
             <DividerNavBar
-                label1="Projects users"
+                label1="All folders"
                 path1="/admin/dashboard/projectfolders"
-                label2="Add new user"
+                label2="Add user"
                 path2="/admin/add/users"
             />
             <main className={styles['admin-dashboard-overview']}>
@@ -173,14 +171,14 @@ function Admin() {
                     </div>
                 </div>
             </main>
-            <UpdateProfileModal isOpen={isModalOpen} onClose={handleModalCancel}>
+            <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected user(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
                 </div>
-            </UpdateProfileModal>
+            </Modal>
             {addSuccess && (
                 <div className={styles['admin-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}

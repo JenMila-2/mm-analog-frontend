@@ -1,16 +1,23 @@
-.left-sidebar-nav {
-    width: 200px;
-    height: 100vh;
-    position: sticky;
-    transition: width 0.3s ease-in-out;
-    padding-top: 25px;
-    margin-left: 15px;
-    border-radius: 6px;
-    z-index: 10;
+.sidebar-color-admin {
+    background: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+}
+
+.sidebar-color-user {
     background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
 }
 
-.sidebar-closed {
+.left-sidebar-nav {
+    z-index: 10;
+    width: 200px;
+    height: 100vh;
+    position: sticky;
+    padding-top: 25px;
+    margin-left: 15px;
+    border-radius: 6px;
+    transition: width 0.3s ease-in-out;
+}
+
+.left-sidebar-closed {
     width: 60px;
     composes: left-sidebar-nav;
     transition: width 0.3s ease-in-out;
@@ -24,12 +31,12 @@
 
 .left-sidebar-item {
     display: flex;
-    align-items: center;
-    padding: 10px 20px;
     cursor: pointer;
     font-size: 15px;
     overflow: hidden;
     border-radius: 8px;
+    padding: 10px 20px;
+    align-items: center;
     color: var(--errie-black);
 }
 
@@ -45,7 +52,7 @@
 
 .left-sidebar-item:hover {
     font-weight: bold;
-    background-color: var(--alabaster);
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 }
 
 .left-sidebar-item-title {

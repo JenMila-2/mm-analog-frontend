@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {AuthContext} from "../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
-import UpdateProfileModal from "../../components/modal/UpdateProfileModal";
+import Modal from "../../components/modal/Modal";
 import axios from "axios";
 import styles from './UpdateProfileDetails.module.css';
 
@@ -117,14 +117,14 @@ export function UpdateProfileDetails() {
                                     </button>
                                 </div>
                             </form>
-                            <UpdateProfileModal isOpen={isModalOpen} onClose={handleModalCancel}>
+                            <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                                 <h3>Confirm Save</h3>
                                 <p>Are you sure you want to save the changes?</p>
                                 <div>
                                     <button onClick={handleModalConfirm}>Save</button>
                                     <button onClick={handleModalCancel}>Cancel</button>
                                 </div>
-                            </UpdateProfileModal>
+                            </Modal>
                         </>
                     }
                 </div>

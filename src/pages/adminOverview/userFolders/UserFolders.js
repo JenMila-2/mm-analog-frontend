@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SidebarNav from "../../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../../components/navigation/dividerNavBar/DividerNavBar";
-import LogModal from "../../../components/modal/LogModal";
+import Modal from "../../../components/modal/Modal";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import axios from 'axios';
@@ -169,14 +169,14 @@ function UserFolders() {
                     </div>
                 </div>
             </main>
-            <LogModal isOpen={isModalOpen} onClose={handleModalCancel}>
+            <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected user folder(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
                 </div>
-            </LogModal>
+            </Modal>
             {addSuccess && (
                 <div className={styles['user-projects-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}

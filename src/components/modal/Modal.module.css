@@ -1,29 +1,29 @@
-.modal-overlay {
-    position: fixed;
+.log-modal-overlay {
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--errie-black);
     display: flex;
-    justify-content: center;
+    position: fixed;
     align-items: center;
+    justify-content: center;
+    background-color: var(--errie-black);
 }
 
-.modal-content {
-    background-color:var(--white);
+.log-modal-content {
     padding: 20px;
-    border-radius: 5px;
     max-width: 400px;
+    border-radius: 5px;
+    background-color:var(--white);
 }
 
 .close-button {
-    position: absolute;
     top: 10px;
     right: 10px;
-    background: none;
     border: none;
     font-size: 20px;
     cursor: pointer;
+    background: none;
+    position: absolute;
     color: var(--grey);
 }

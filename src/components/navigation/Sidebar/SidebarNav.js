@@ -3,7 +3,7 @@ import { SidebarData } from "./SidebarData";
 import {NavLink} from "react-router-dom";
 import {AuthContext} from "../../../context/AuthContext";
 import {BsFillCameraFill} from "react-icons/bs";
-import './SidebarNav.css';
+import styles from './SidebarNav.module.css';
 
 const SidebarNav = () => {
     const { user, logoff } = useContext(AuthContext);
@@ -31,30 +31,32 @@ const SidebarNav = () => {
         };
     }, []);
 
+    const sidebarColorClass = user && user.role === 'ROLE_ADMIN' ? styles['sidebar-color-admin'] : styles['sidebar-color-user'];
+
     return (
         <>
-            <div ref={leftSidebarClose} className={`left-sidebar-nav ${sidebarOpen ? '' : 'sidebar-closed'}`}>
-                <nav className="left-sidebar-container">
-                    <div className="left-sidebar-icon" onClick={toggleSidebarOpen}>
+            <div ref={leftSidebarClose} className={`${styles['left-sidebar-nav']} ${sidebarColorClass} ${sidebarOpen ? '' : styles['left-sidebar-closed']}`}>
+                <nav>
+                    <div className={styles['left-sidebar-icon']} onClick={toggleSidebarOpen}>
                         <BsFillCameraFill />
                     </div>
                     {sidebarOpen && (
-                        <ul className="left-sidebar-menu">
+                        <ul>
                             {filteredSidebarData.map((item, index) => (
-                                <li key={index} className="left-sidebar-item">
+                                <li key={index} className={styles['left-sidebar-item']}>
                                     <NavLink
                                         to={item.path}
-                                        className="left-sidebar-item-link"
+                                        className={styles['left-sidebar-item-link']}
                                         onClick={toggleSidebarOpen}
                                     >
-                                        <div className="left-sidebar-item-title">{item.title}</div>
+                                        <div className={styles['left-sidebar-item-title']}>{item.title}</div>
                                     </NavLink>
                                 </li>
                             ))}
                             {user && (
-                                <li className="left-sidebar-item" onClick={logoff}>
-                                    <NavLink to="/" className="left-sidebar-item-link">
-                                        <div className="left-sidebar-item-title">Log off</div>
+                                <li className={styles['left-sidebar-item']} onClick={logoff}>
+                                    <NavLink to="/" className={styles['left-sidebar-item-link']}>
+                                        <div className={styles['left-sidebar-item-title']}>Log off</div>
                                     </NavLink>
                                 </li>
                             )}

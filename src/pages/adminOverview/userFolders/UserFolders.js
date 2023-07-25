@@ -10,11 +10,11 @@ import styles from '../ListOverviews.module.css';
 function UserFolders() {
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
-    const [projectFolders, setProjectFolders] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [projectFolders, setProjectFolders] = useState([]);
     const [totalProjectFolders, setTotalProjectFolders] = useState(0);
     const userFoldersPerPage = 10;
 
@@ -94,27 +94,27 @@ function UserFolders() {
     return (
         <>
         <header className={styles['title-container']}>
-            <h1 className={styles.title}>Users Project Folders</h1>
+            <h1 className={styles.title}>All Project Folders</h1>
         </header>
             <DividerNavBar
                 label1="Users"
                 path1="/admin/dashboard/users"
-                label2="Stock Inventories"
-                path2="/admin/dashboard/filmstockinventories"
+                label2="All Photo Logs"
+                path2="/admin/dashboard/photologs"
             />
             <main className={styles['admin-dashboard-overview']}>
                 <SidebarNav />
                 <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
                         <div className={styles['total-overview-container']}>
-                            <h4>User Folders Overview</h4>
-                            Total folders: {totalProjectFolders}
+                            <h4>User Project Folders Overview</h4>
+                            Total project folders: {totalProjectFolders}
                         </div>
                         <div className={styles['table-wrapper']}>
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th></th>
                                     <th>Id</th>
                                     <th>Username</th>
                                     <th>Project Title</th>

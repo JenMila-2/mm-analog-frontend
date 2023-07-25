@@ -1,9 +1,9 @@
 .title-container {
     display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
     align-items: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title {
@@ -11,46 +11,47 @@
 }
 
 .profile-settings-container {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    width: 100%;
 }
 
 .profile-settings-inner-container {
+    width: 70%;
     display: flex;
+    margin-top: 40px;
     flex-direction: column;
     padding: 60px 60px 0 60px;
-    margin-top: 40px;
-    width: 70%;
 }
 
 .user-details-field {
     height: 60px;
     display: flex;
+    margin-top: 20px;
     flex-direction: column;
     align-content: flex-start;
-    margin-top: 20px;
 }
 
 .user-details-text {
-    color: var(--grey);
-    font-size: 14px;
-    line-height: 25px;
     border: none;
-    border-bottom: 1px solid var(--platinum);
+    font-size: 14px;
     border-radius: 0;
+    line-height: 25px;
+    color: var(--grey);
     padding-bottom: 10px;
+    border-bottom: 1px solid var(--platinum);
 }
 
 .change-link {
     display: flex;
-    justify-content: flex-end;
-    margin-top: -35px;
     font-size: 14px;
-    text-decoration: none;
-    color: var(--errie-black);
+    margin-top: -35px;
+    margin-right: 15px;
     font-weight: bold;
+    text-decoration: none;
+    justify-content: flex-end;
+    color: var(--errie-black);
 }
 
 .change-link:hover {
@@ -58,7 +59,7 @@
 }
 
 .delete-account-message {
-    color: var(--crimson);
-    font-weight: bold;
     font-size: 14px;
+    font-weight: bold;
+    color: var(--crimson);
 }

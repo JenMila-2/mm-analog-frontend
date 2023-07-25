@@ -10,11 +10,11 @@ import styles from '../ListOverviews.module.css';
 export function UserFilmStockInventories() {
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
-    const [stockInventories, setStockInventories] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [stockInventories, setStockInventories] = useState([]);
     const [totalStockInventories, setTotalStockInventories] = useState(0);
     const stockInventoriesPerPage = 10;
 
@@ -94,12 +94,12 @@ export function UserFilmStockInventories() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Users Film Stock Inventories</h1>
+                <h1 className={styles.title}>All Film Stock Inventories</h1>
             </header>
             <DividerNavBar
                 label1="Users"
                 path1="/admin/dashboard/users"
-                label2="Project Folders"
+                label2="All Folders"
                 path2="/admin/dashboard/projectfolders"
             />
             <main className={styles['admin-dashboard-overview']}>
@@ -108,13 +108,13 @@ export function UserFilmStockInventories() {
                     <div className={styles['admin-dashboard-inner-container']}>
                         <div className={styles['total-overview-container']}>
                             <h4>User Film Stock Inventories Overview</h4>
-                            Total stock inventories: {totalStockInventories}
+                            Total film stock inventories: {totalStockInventories}
                         </div>
                         <div className={styles['table-wrapper']}>
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th></th>
                                     <th>Id</th>
                                     <th>Username</th>
                                     <th>Film Name</th>
@@ -187,7 +187,7 @@ export function UserFilmStockInventories() {
             </main>
             <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
-                <p>Are you sure you want to delete the selected user inventory(s)?</p>
+                <p>Are you sure you want to delete the selected user film stock inventory(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>

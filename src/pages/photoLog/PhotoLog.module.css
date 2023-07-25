@@ -3,8 +3,8 @@ table, td, th {
 }
 
 th {
-    color: var(--errie-black);
     font-size: 14px;
+    color: var(--errie-black);
     text-transform: uppercase;
 }
 
@@ -29,10 +29,10 @@ input[type='number']{
 
 .title-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     align-content: center;
     justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 .title {
@@ -40,8 +40,8 @@ input[type='number']{
 }
 
 .photo-log-overview {
-    display: flex;
     width: 100%;
+    display: flex;
 }
 
 .photo-log-container {
@@ -51,22 +51,22 @@ input[type='number']{
 }
 
 .photo-log-inner-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
     padding: 30px;
+    display: flex;
     margin-top: 60px;
     border-radius: 10px;
+    align-items: center;
+    flex-direction: column;
     background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
 }
 
 .total-log-container {
     display: flex;
     text-align: left;
+    font-size: 14px;
     flex-direction: column;
     align-self: flex-start;
-    font-size: 14px;
 }
 
 .table-wrapper {
@@ -75,14 +75,15 @@ input[type='number']{
     overflow-x: scroll;
 }
 
-.photo-log-table-head {
-    background-color: var(--silver);
-    color: var(--jet);
-}
-
 .id-column {
     font-size: 14px;
     color: var(--grey);
+}
+
+.input-field-value {
+    border-radius: 5px;
+    border-color: var(--platinum);
+    font-family: "Open Sans", sans-serif;
 }
 
 .project-folder-field {
@@ -92,36 +93,33 @@ input[type='number']{
     min-width: 200px;
 }
 
-.input-field-value {
-    border-radius: 5px;
-    border-color: var(--platinum);
-    font-family: "Open Sans", sans-serif;
-}
-
 .textarea-field-value {
+    padding: 5px;
     min-width: 350px;
+    border-radius: 10px;
     border: var(--alabaster);
     color: var(--davys-gray);
     font-family: "Open Sans", sans-serif;
-    background-color: var(--ghost-white);
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 }
 
 .icon {
     cursor: pointer;
+    color: var(--jet);
     margin-right: 10px;
     align-content: center;
 }
 
 .disabled-icon {
     opacity: 0.5;
+    margin-right: 10px;
     color: var(--grey);
     pointer-events: none;
-    margin-right: 10px;
 }
 
 .page-navigation-container {
-    display: flex;
     gap: 10px;
+    display: flex;
     padding-top: 15px;
 }
 
@@ -132,8 +130,8 @@ input[type='number']{
     text-align: center;
     border-radius: 6px;
     border: 0 solid var(--errie-black);
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
 }
 
 .page-navigation-button:hover {
@@ -149,30 +147,30 @@ input[type='number']{
 }
 
 .photo-log-success-message {
+    top: 50%;
+    left: 50%;
+    padding: 15px;
+    z-index: 9999;
+    position: fixed;
     font-weight: bold;
     border-radius: 5px;
     text-align: center;
-    padding: 15px;
     margin-bottom: 10px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    background-color: var(--white);
     color: var(--errie-black);
+    background-color: var(--white);
+    transform: translate(-50%, -50%);
     border: 1px solid var(--errie-black);
 }
 
 .check-icon {
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
     color: var(--emerald);
 }
 
 .error-label {
     font-size: 12px;
-    padding-bottom: 8px;
     margin-top: -4px;
+    padding-bottom: 8px;
     color: var(--crimson);
 }

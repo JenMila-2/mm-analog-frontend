@@ -1,26 +1,29 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import Modal from "../../components/modal/Modal";
 import {AuthContext} from "../../context/AuthContext";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
 import styles from './PhotoLog.module.css';
-import Modal from "../../components/modal/Modal";
 
 function PhotoLog() {
     const { user } = useContext(AuthContext);
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
-    const [photoLogs, setPhotoLogs] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [photoLogs, setPhotoLogs] = useState([]);
     const [totalPhotoLogs, setTotalPhotoLogs] = useState(0);
     const photoLogsPerPage = 10;
+    const exposureCompensationOptions = ['-3', '-2', '-1', '0', '+1', '+2', '+3'];
+    const shutterSpeedOptions = ['30', '15', '8', '4', '2', '1/2', '1/4', '1/8', '1/15', '1/30', '1/60', '1/125', '1/250', '1/500', '1/1000', '1/2000'];
+    const apertureOptions = ['f/1', 'f/1.4', 'f/2', 'f/2.8', 'f/4', 'f/5.6', 'f/8', 'f/11', 'f/16', 'f/22', 'f/32', 'f/45'];
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -67,7 +70,7 @@ function PhotoLog() {
 
     async function updatePhotoLogEntry(log) {
         try {
-            const { id, ...data} = log;
+            const { id, ...data } = log;
             await axios.put(
                 `http://localhost:8080/photologs/${id}`, {
                     ...data,
@@ -126,12 +129,12 @@ function PhotoLog() {
     };
 
     const handleUpdate = (e, id, column) => {
-        const newLog = e.target.value;
+        const newPhotoLog = e.target.value;
         const updatedPhotoLogs = photoLogs.map((log) => {
             if (selectedRows.includes(log.id) && log.id === id) {
                 return {
                     ...log,
-                    [column]: newLog,
+                    [column]: newPhotoLog,
                 };
             }
             return log;
@@ -153,7 +156,7 @@ function PhotoLog() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Photo Log</h1>
+                <h1 className={styles.title}>Photo Logs</h1>
             </header>
             <DividerNavBar
                 label1="Projects"
@@ -166,27 +169,27 @@ function PhotoLog() {
                 <div className={styles['photo-log-container']}>
                     <div className={styles['photo-log-inner-container']}>
                         <div className={styles['total-log-container']}>
-                            <h4>Photo Log Overview</h4>
-                            Total logs: {totalPhotoLogs}
+                            <h4>Photo Logs Overview</h4>
+                            Total photo logs: {totalPhotoLogs}
                         </div>
                         <div className={styles['table-wrapper']}>
                             <table>
                                 <thead>
                                 <tr>
-                                    <th className={styles['photo-log-table-head']}></th>
-                                    <th className={styles['photo-log-table-head']}>Id</th>
-                                    <th className={styles['photo-log-table-head']}>Project Folder</th>
-                                    <th className={styles['photo-log-table-head']}>Title</th>
-                                    <th className={styles['photo-log-table-head']}>Camera</th>
-                                    <th className={styles['photo-log-table-head']}>Stock</th>
-                                    <th className={styles['photo-log-table-head']}>Iso</th>
-                                    <th className={styles['photo-log-table-head']}>Aperture</th>
-                                    <th className={styles['photo-log-table-head']}>Shutter Speed</th>
-                                    <th className={styles['photo-log-table-head']}>Exposure -/+</th>
-                                    <th className={styles['photo-log-table-head']}>Date Taken</th>
-                                    <th className={styles['photo-log-table-head']}>Notes</th>
-                                    <th className={styles['photo-log-table-head']}>Edit</th>
-                                    <th className={styles['photo-log-table-head']}>Delete</th>
+                                    <th></th>
+                                    <th>Id</th>
+                                    <th>Project Folder</th>
+                                    <th>Title</th>
+                                    <th>Camera</th>
+                                    <th>Stock</th>
+                                    <th>Iso</th>
+                                    <th>Aperture</th>
+                                    <th>Shutter Speed</th>
+                                    <th>Exposure -/+</th>
+                                    <th>Date Taken</th>
+                                    <th>Notes</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -240,31 +243,46 @@ function PhotoLog() {
                                                 />
                                             </td>
                                             <td>
-                                                <input
-                                                    type="text"
-                                                    id="aperture"
-                                                    className={styles['input-field-value']}
-                                                    defaultValue={log.aperture}
+                                                <select
+                                                    value={log.aperture}
                                                     onChange={(e) => handleUpdate(e, log.id, "aperture")}
-                                                />
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    <option value="">Select Aperture</option>
+                                                    {apertureOptions.map((option) => (
+                                                        <option key={option} value={option}>
+                                                            {option}
+                                                        </option>
+                                                    ))}
+                                                </select>
                                             </td>
                                             <td>
-                                                <input
-                                                    type="text"
-                                                    id="shutterSpeed"
-                                                    className={styles['input-field-value']}
-                                                    defaultValue={log.shutterSpeed}
+                                                <select
+                                                    value={log.shutterSpeed}
                                                     onChange={(e) => handleUpdate(e, log.id, "shutterSpeed")}
-                                                />
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    <option value="">Select Shutter Speed</option>
+                                                    {shutterSpeedOptions.map((option) => (
+                                                        <option key={option} value={option}>
+                                                            {option}
+                                                        </option>
+                                                    ))}
+                                                </select>
                                             </td>
                                             <td>
-                                                <input
-                                                    type="text"
-                                                    id="exposureCompensation"
+                                                <select
+                                                    value={log.exposureCompensation}
+                                                    onChange={(e) => handleUpdate(e, log.id, "exposureCompensation")}
                                                     className={styles['input-field-value']}
-                                                    defaultValue={log.exposureCompensation}
-                                                    onChange={(e) => handleUpdate(e, log.id,"exposureCompensation")}
-                                                />
+                                                >
+                                                    <option value="">Select Exposure</option>
+                                                    {exposureCompensationOptions.map((option) => (
+                                                        <option key={option} value={option}>
+                                                            {option}
+                                                        </option>
+                                                    ))}
+                                                </select>
                                             </td>
                                             <td>
                                                 <input
@@ -321,19 +339,18 @@ function PhotoLog() {
                             </button>
                         </div>
                     </div>
-
                 </div>
             </main>
             <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
-                <p>Are you sure you want to delete the selected logs(s)?</p>
+                <p>Are you sure you want to delete the selected photo logs(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['photo-log-success-message']}>Update saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['photo-log-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     )

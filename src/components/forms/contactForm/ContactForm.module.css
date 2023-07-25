@@ -39,7 +39,7 @@
     border-radius: 4px;
     border: 1px solid var(--platinum);
     font-family: "Open Sans", sans-serif;
-    background-color: var(--ghost-white);
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 }
 
 .submit-button-large {

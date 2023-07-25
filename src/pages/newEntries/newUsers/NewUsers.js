@@ -37,13 +37,11 @@ export function NewUsers() {
                 navigate('/admin/dashboard/users')
             }, 2000)
         } catch (error) {
-            console.error("Oops, an error occurred!", error);
+            console.error("Oops, something went wrong...", error);
             toggleError(true)
         }
         setLoading(false);
     }
-
-
 
     return (
         <>
@@ -59,14 +57,14 @@ export function NewUsers() {
                             <p>The new user was added to the dashboard.</p>
                         </section>
                         :
-                        <section className={styles['form-container']}>
+                        <section className={styles['form-wrapper']}>
                             <form className={styles.form} onSubmit={handleSubmit(newUser)}>
-                                <label htmlFor="name">
+                                <label htmlFor="name" className={styles['label-form']}>
                                     Name
                                     <input
                                         type="text"
                                         id="name-field"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("name", {
                                             required: "Name is required",
                                             minLength: {
@@ -78,12 +76,12 @@ export function NewUsers() {
                                     />
                                 </label>
                                 {errors.name && <p className={styles['error-label']}>{errors.name.message}</p>}
-                                <label htmlFor="username">
+                                <label htmlFor="username" className={styles['label-form']}>
                                     Username
                                     <input
                                         type="text"
                                         id="username-field"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("username", {
                                             required: "Username is required",
                                             minLength: {
@@ -95,12 +93,12 @@ export function NewUsers() {
                                     />
                                 </label>
                                 {errors.username && <p className={styles['error-label']}>{errors.username.message}</p>}
-                                <label htmlFor="email-field">
+                                <label htmlFor="email-field" className={styles['label-form']}>
                                     Email
                                     <input
                                         type="email"
                                         id="email-field"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("email", {
                                             required: "Email is required",
                                             maxLength: {
@@ -113,11 +111,12 @@ export function NewUsers() {
                                 </label>
                                 {errors.email && <p className={styles['error-label']}>{errors.email.message}</p>}
                                 {error && <p className={styles['error-label']}>Email already exist. Please try another email.</p>}
-                                <label htmlFor="password-field">
+                                <label htmlFor="password-field" className={styles['label-form']}>
                                     Password
                                     <input
                                         type="password"
                                         id="password-field"
+                                        className={styles['new-entry-input-field']}
                                         {...register("password", {
                                             required: "Password is required",
                                             minLength: {

@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import Modal from "../../components/modal/Modal";
-import { AuthContext } from "../../context/AuthContext";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import {AuthContext} from "../../context/AuthContext";
+import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
@@ -14,12 +14,12 @@ function FilmStockInventory() {
     const { user } = useContext(AuthContext);
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
-    const [inventories, setInventories] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [inventories, setInventories] = useState([]);
     const [totalInventories, setTotalInventories] = useState(0);
     const inventoriesPerPage = 10;
     const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet film (Large)', 'Other'];
@@ -130,12 +130,12 @@ function FilmStockInventory() {
     };
 
     const handleUpdate = (e, id, column) => {
-        const newValue = e.target.value;
+        const newInventory = e.target.value;
         const updatedInventories = inventories.map((inventory) => {
             if (selectedRows.includes(inventory.id) && inventory.id === id) {
                 return {
                     ...inventory,
-                    [column]: newValue,
+                    [column]: newInventory,
                 };
             }
             return inventory;
@@ -157,7 +157,7 @@ function FilmStockInventory() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Film Stock Inventory</h1>
+                <h1 className={styles.title}>Film Stock Inventories</h1>
             </header>
             <DividerNavBar
                 label1="Projects"
@@ -165,16 +165,16 @@ function FilmStockInventory() {
                 label2="Add new"
                 path2='/new/filmstockinventory'
             />
-            <main className={styles['film-stock-inventory-overview']}>
+            <main className={styles['film-stock-overview']}>
                 <SidebarNav/>
                 <div className={styles['film-stock-container']}>
-                    <div className={styles['inventory-inner-container']}>
-                        <div className={styles['total-inventories-container']}>
-                            <h4>Film Stock Inventory Overview</h4>
-                            Total inventories: {totalInventories}
+                    <div className={styles['film-stock-inner-container']}>
+                        <div className={styles['total-inventory-container']}>
+                            <h4>Film Stock Inventories Overview</h4>
+                            Total film stock inventories: {totalInventories}
                         </div>
                         <div className={styles['table-wrapper']}>
-                        <table className={styles['inventory-table']}>
+                        <table>
                             <thead>
                             <tr>
                                 <th></th>
@@ -349,14 +349,14 @@ function FilmStockInventory() {
             </main>
             <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
-                <p>Are you sure you want to delete the selected inventory(s)?</p>
+                <p>Are you sure you want to delete the selected film stock inventory(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['update-success-message']}>Update saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['update-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     );

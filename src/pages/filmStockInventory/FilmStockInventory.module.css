@@ -30,19 +30,19 @@ input[type='number']{
 
 .title-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     align-content: center;
     justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 .title {
     font-size: 42px;
 }
 
-.film-stock-inventory-overview {
-    display: flex;
+.film-stock-overview {
     width: 100%;
+    display: flex;
 }
 
 .film-stock-container {
@@ -51,35 +51,34 @@ input[type='number']{
     overflow-y: hidden;
 }
 
+.film-stock-inner-container {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    margin-top: 60px;
+    border-radius: 10px;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(120deg, #fdfbfb 0%, #ecebe4 100%);
+}
+
+.total-inventory-container {
+    display: flex;
+    text-align: left;
+    font-size: 14px;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
 .table-wrapper {
     max-width: 100%;
     position: relative;
     overflow-x: scroll;
 }
 
-.inventory-inner-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 30px;
-    margin-top: 60px;
-    border-radius: 10px;
-    background: linear-gradient(120deg, #fdfbfb 0%, #ecebe4 100%);
-
-}
-
-.icon {
-    cursor: pointer;
-    margin-right: 10px;
-    align-content: center;
-}
-
-.disabled-icon {
-    opacity: 0.5;
+.id-column {
+    font-size: 14px;
     color: var(--grey);
-    pointer-events: none;
-    margin-right: 10px;
 }
 
 .input-field-value {
@@ -88,9 +87,23 @@ input[type='number']{
     font-family: "Open Sans", sans-serif;
 }
 
+.icon {
+    cursor: pointer;
+    color: var(--jet);
+    margin-right: 10px;
+    align-content: center;
+}
+
+.disabled-icon {
+    opacity: 0.5;
+    margin-right: 10px;
+    color: var(--grey);
+    pointer-events: none;
+}
+
 .page-navigation-container {
-    display: flex;
     gap: 10px;
+    display: flex;
     padding-top: 15px;
 }
 
@@ -101,8 +114,8 @@ input[type='number']{
     text-align: center;
     border-radius: 6px;
     border: 0 solid var(--errie-black);
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
 }
 
 .page-navigation-button:hover {
@@ -117,44 +130,31 @@ input[type='number']{
     background-color: var(--hover-baby-powder);
 }
 
-.total-inventories-container {
-    display: flex;
-    text-align: left;
-    flex-direction: column;
-    align-self: flex-start;
-    font-size: 14px;
-}
-
 .update-success-message {
+    top: 50%;
+    left: 50%;
+    padding: 15px;
+    z-index: 9999;
+    position: fixed;
     font-weight: bold;
     border-radius: 5px;
     text-align: center;
-    padding: 15px;
     margin-bottom: 10px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    background-color: var(--white);
     color: var(--errie-black);
+    background-color: var(--white);
+    transform: translate(-50%, -50%);
     border: 1px solid var(--errie-black);
 }
 
 .check-icon {
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
     color: var(--emerald);
-}
-
-.id-column {
-    font-size: 14px;
-    color: var(--grey);
 }
 
 .error-label {
     font-size: 12px;
-    padding-bottom: 8px;
     margin-top: -4px;
+    padding-bottom: 8px;
     color: var(--crimson);
 }

@@ -3,7 +3,7 @@ import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import Modal from "../../components/modal/Modal";
 import {AuthContext} from "../../context/AuthContext";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
@@ -13,12 +13,12 @@ function FilmDevelopmentLog() {
     const { user } = useContext(AuthContext);
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
-    const [developmentLogs, setDevelopmentLogs] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [developmentLogs, setDevelopmentLogs] = useState([]);
     const [totalDevelopmentLogs, setTotalDevelopmentLogs] = useState(0);
     const developmentLogsPerPage = 10;
     const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet film (Large)', 'Other'];
@@ -75,7 +75,7 @@ function FilmDevelopmentLog() {
 
     async function updateDevelopmentLogEntry(log) {
         try {
-            const { id, ...data} = log;
+            const { id, ...data } = log;
             await axios.put(
                 `http://localhost:8080/filmdevelopmentlogs/${id}`, {
                     ...data,
@@ -158,49 +158,47 @@ function FilmDevelopmentLog() {
         }
     }, [addSuccess]);
 
-
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Film Development Log</h1>
+                <h1 className={styles.title}>Film Development Logs</h1>
             </header>
             <DividerNavBar
             label1="Projects"
             path1="/projectfolders"
             label2="Add new"
             path2="/new/filmdevelopmentlog"
-            userRole={user?.role}
             />
             <main className={styles['development-log-overview']}>
                 <SidebarNav />
                 <div className={styles['development-log-container']}>
                     <div className={styles['development-log-inner-container']}>
                         <div className={styles['total-log-container']}>
-                            <h4>Film Development Log Overview</h4>
-                            Total logs: {totalDevelopmentLogs}
+                            <h4>Film Development Logs Overview</h4>
+                            Total film development logs: {totalDevelopmentLogs}
                         </div>
                         <div className={styles['table-wrapper']}>
                             <table>
                                 <thead>
                                 <tr>
-                                    <th className={styles['log-table-head']}></th>
-                                    <th className={styles['log-table-head']}>Id</th>
-                                    <th className={styles['log-table-head']}>Name</th>
-                                    <th className={styles['log-table-head']}>Project</th>
-                                    <th className={styles['log-table-head']}>Camera</th>
-                                    <th className={styles['log-table-head']}>Stock</th>
-                                    <th className={styles['log-table-head']}>Format</th>
-                                    <th className={styles['log-table-head']}>Shot at iso</th>
-                                    <th className={styles['log-table-head']}>Process</th>
-                                    <th className={styles['log-table-head']}>Status</th>
-                                    <th className={styles['log-table-head']}>Roll started</th>
-                                    <th className={styles['log-table-head']}>Roll Finished</th>
-                                    <th className={styles['log-table-head']}>Exposed</th>
-                                    <th className={styles['log-table-head']}>Developed</th>
-                                    <th className={styles['log-table-head']}>Scanned</th>
-                                    <th className={styles['log-table-head']}>Developed by</th>
-                                    <th className={styles['log-table-head']}>Edit</th>
-                                    <th className={styles['log-table-head']}>Delete</th>
+                                    <th></th>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Project</th>
+                                    <th>Camera</th>
+                                    <th>Stock</th>
+                                    <th>Format</th>
+                                    <th>Shot at iso</th>
+                                    <th>Process</th>
+                                    <th>Status</th>
+                                    <th>Roll started</th>
+                                    <th>Roll Finished</th>
+                                    <th>Exposed</th>
+                                    <th>Developed</th>
+                                    <th>Scanned</th>
+                                    <th>Developed by</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -411,14 +409,14 @@ function FilmDevelopmentLog() {
             </main>
             <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
-                <p>Are you sure you want to delete the selected logs(s)?</p>
+                <p>Are you sure you want to delete the selected film stock development log(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['log-update-success-message']}>Update saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['log-update-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     );

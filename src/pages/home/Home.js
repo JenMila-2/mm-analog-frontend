@@ -3,9 +3,9 @@ import HeroSection from "../../components/heroSection/HeroSection";
 import HomeSection from "../../components/homeSection/HomeSection";
 import Footer from "../../components/footer/Footer";
 import ContactForm from "../../components/forms/contactForm/ContactForm";
-import styles from "../home/Home.module.css";
 import image1 from '../../assets/Tibor_Krizsak _1.jpg';
 import image2 from '../../assets/Robin_Spielmann_1.jpg';
+import styles from "../home/Home.module.css";
 
 
 function Home() {

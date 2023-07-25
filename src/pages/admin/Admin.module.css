@@ -6,7 +6,6 @@ th {
     font-size: 14px;
     text-transform: uppercase;
     color: var(--errie-black);
-    background-color: var(--alabaster);
 }
 
 td, th {
@@ -74,8 +73,8 @@ input {
 }
 
 .users-table-head {
-    color: var(--platinum);
-    background-color: var(--jet);
+    color: var(--jet);
+    background-color: var(--silver);
 }
 
 .username-field {

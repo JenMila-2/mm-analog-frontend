@@ -53,7 +53,7 @@ function NewFilmStockInventory() {
         <>
         <header className={styles['form-header']}>
             <h1>New Entry</h1>
-            <p>Add a new film stock inventory to your stock overview</p>
+            <p>Add a new film stock inventory to your film stock overview</p>
         </header>
             <main className={styles['new-entry-form-container']}>
                 <div className={styles['new-entry-form-inner-container']}>
@@ -63,14 +63,14 @@ function NewFilmStockInventory() {
                         <p>The new film stock inventory was added to your overview.</p>
                         </section>
                         :
-                        <section className={styles['form-container']}>
+                        <section className={styles['form-wrapper']}>
                             <form className={styles.form} onSubmit={handleSubmit(newInventory)}>
-                                <label htmlFor="filmStockName">
+                                <label htmlFor="filmStockName" className={styles['label-form']}>
                                     Film Name
                                     <input
                                         type="text"
                                         id="filmStockName"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("filmStockName", {
                                             required: "Film name is required",
                                             minLength: {
@@ -82,13 +82,13 @@ function NewFilmStockInventory() {
                                     />
                                 </label>
                                 {errors.filmStockName && <p className={styles['error-label']}>{errors.filmStockName.message}</p>}
-                                <label htmlFor="remainingRolls">
+                                <label htmlFor="remainingRolls" className={styles['label-form']}>
                                     Remaining Rolls
                                     <input 
                                         type="number"
                                         id="remainingRolls"
                                         min="0"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("remainingRolls", {
                                             required: "Remaining rolls is required"
                                         })}
@@ -96,12 +96,12 @@ function NewFilmStockInventory() {
                                     />
                                 </label>
                                 {errors.remainingRolls && <p className={styles['error-label']}>{errors.remainingRolls.message}</p>}
-                                <label htmlFor="brand">
+                                <label htmlFor="brand" className={styles['label-form']}>
                                     Brand
                                     <input
                                         type="text"
                                         id="brand"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("brand", {
                                             required: "Brand is required",
                                             minLength: {
@@ -113,12 +113,12 @@ function NewFilmStockInventory() {
                                     />
                                 </label>
                                 {errors.brand && <p className={styles['error-label']}>{errors.brand.message}</p>}
-                                <label htmlFor="stock">
+                                <label htmlFor="stock" className={styles['label-form']}>
                                     Stock
                                     <input
                                         type="text"
                                         id="stock"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("stock", {
                                             minLength: {
                                                 value: 3,
@@ -129,11 +129,11 @@ function NewFilmStockInventory() {
                                     />
                                 </label>
                                 {errors.stock && <p className={styles['error-label']}>{errors.stock.message}</p>}
-                                <label htmlFor="format">
+                                <label htmlFor="format" className={styles['label-form']}>
                                     Format
                                     <select
                                         id="format"
-                                        className={styles['form-select-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("format", {
                                             required: "Please select a format",
                                         })}
@@ -148,21 +148,21 @@ function NewFilmStockInventory() {
                                     </select>
                                 </label>
                                 {errors.format && <p className={styles['error-label']}>{errors.format.message}</p>}
-                                <label htmlFor="iso">
+                                <label htmlFor="iso" className={styles['label-form']}>
                                     Iso
                                     <input
                                         type="number"
                                         id="iso"
                                         min="0"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("iso")}
                                     />
                                 </label>
-                                <label htmlFor="developmentProcess">
+                                <label htmlFor="developmentProcess" className={styles['label-form']}>
                                     Development Process
                                     <select
                                         id="developmentProcess"
-                                        className={styles['form-select-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("developmentProcess", {
                                             required: "Please select a process",
                                         })}
@@ -176,12 +176,12 @@ function NewFilmStockInventory() {
                                     </select>
                                 </label>
                                 {errors.developmentProcess && <p className={styles['error-label']}>{errors.developmentProcess.message}</p>}
-                                <label htmlFor="storage">
+                                <label htmlFor="storage" className={styles['label-form']}>
                                     Storage
                                     <input
                                         type="text"
                                         id="storage"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("storage", {
                                             minLength: {
                                                 value: 3,
@@ -192,22 +192,22 @@ function NewFilmStockInventory() {
                                     />
                                 </label>
                                 {errors.storage && <p className={styles['error-label']}>{errors.storage.message}</p>}
-                                <label htmlFor="rollsShot">
+                                <label htmlFor="rollsShot" className={styles['label-form']}>
                                     Rolls Shot
                                     <input
                                         type="number"
                                         id="rollsShot"
                                         min="0"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("rollsShot")}
                                     />
                                 </label>
-                                <label htmlFor="filmExpirationDate">
+                                <label htmlFor="filmExpirationDate" className={styles['label-form']}>
                                     Film Expiration Date
                                     <input
                                         type="date"
                                         id="filmExpirationDate"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("filmExpirationDate")}
                                     />
                                 </label>

@@ -73,14 +73,14 @@ export function NewFilmDevelopmentLog() {
                             <p>The new film development log was added to your overview.</p>
                         </section>
                         :
-                        <section section className={styles['form-container']}>
+                        <section className={styles['form-wrapper']}>
                             <form className={styles.form} onSubmit={handleSubmit(newDevelopmentLog)}>
-                                <label htmlFor="rollName">
+                                <label htmlFor="rollName" className={styles['label-form']}>
                                     Roll Name
                                     <input
                                         type="text"
                                         id="rollName"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("rollName", {
                                             required: "Roll name is required",
                                             minLength: {
@@ -92,12 +92,12 @@ export function NewFilmDevelopmentLog() {
                                     />
                                 </label>
                                 {errors.rollName && <p className={styles['error-label']}>{errors.rollName.message}</p>}
-                                <label htmlFor="project">
+                                <label htmlFor="project" className={styles['label-form']}>
                                     Project
                                     <input
                                         type="text"
                                         id="project"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("project", {
                                             minLength: {
                                                 value: 3,
@@ -108,12 +108,12 @@ export function NewFilmDevelopmentLog() {
                                     />
                                 </label>
                                 {errors.project && <p className={styles['error-label']}>{errors.project.message}</p>}
-                                <label htmlFor="camera">
+                                <label htmlFor="camera" className={styles['label-form']}>
                                     Camera
                                     <input
                                         type="text"
                                         id="camera"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("camera", {
                                             minLength: {
                                                 value: 3,
@@ -124,12 +124,12 @@ export function NewFilmDevelopmentLog() {
                                     />
                                 </label>
                                 {errors.cemera && <p className={styles['error-label']}>{errors.camera.message}</p>}
-                                <label htmlFor="stock">
+                                <label htmlFor="stock" className={styles['label-form']}>
                                     Stock
                                     <input
                                         type="text"
                                         id="stock"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("stock", {
                                             minLength: {
                                                 value: 3,
@@ -140,11 +140,11 @@ export function NewFilmDevelopmentLog() {
                                     />
                                 </label>
                                 {errors.stock && <p className={styles['error-label']}>{errors.stock.message}</p>}
-                                <label htmlFor="format">
+                                <label htmlFor="format" className={styles['label-form']}>
                                     Format
                                     <select
                                         id="format"
-                                        className={styles['form-select-field']}
+                                        className={styles['new-entry-select-field']}
                                         {...register("format", {
                                             required: "Please select a format",
                                         })}
@@ -159,21 +159,21 @@ export function NewFilmDevelopmentLog() {
                                     </select>
                                 </label>
                                 {errors.format && <p className={styles['error-label']}>{errors.format.message}</p>}
-                                <label htmlFor="shotAtIso">
+                                <label htmlFor="shotAtIso" className={styles['label-form']}>
                                     Iso
                                     <input
                                         type="number"
                                         id="shotAtIso"
                                         min="0"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("shotAtIso")}
                                     />
                                 </label>
-                                <label htmlFor="developmentProcess">
+                                <label htmlFor="developmentProcess" className={styles['label-form']}>
                                     Development Process
                                     <select
                                         id="developmentProcess"
-                                        className={styles['form-select-field']}
+                                        className={styles['new-entry-select-field']}
                                         {...register("developmentProcess", {
                                             required: "Please select a process",
                                         })}
@@ -187,10 +187,11 @@ export function NewFilmDevelopmentLog() {
                                     </select>
                                 </label>
                                 {errors.developmentProcess && <p className={styles['error-label']}>{errors.developmentProcess.message}</p>}
-                                <label htmlFor="status">
+                                <label htmlFor="status" className={styles['label-form']}>
+                                    Status
                                     <select
                                         name="status"
-                                        className={styles['form-select-field']}
+                                        className={styles['new-entry-select-field']}
                                         {...register("status")}
                                     >
                                         <option value="">Select Status</option> {'Not started'}
@@ -201,29 +202,29 @@ export function NewFilmDevelopmentLog() {
                                         ))}
                                     </select>
                                 </label>
-                                <label htmlFor="rollStarted">
+                                <label htmlFor="rollStarted" className={styles['label-form']}>
                                     Roll Started
                                     <input
                                         type="date"
                                         id="rollStarted"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("rollStarted")}
                                     />
                                 </label>
-                                <label htmlFor="rollFinished">
-                                    Roll Started
+                                <label htmlFor="rollFinished" className={styles['label-form']}>
+                                    Roll Finished
                                     <input
                                         type="date"
                                         id="rollFinished"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("rollFinished")}
                                     />
                                 </label>
-                                <label htmlFor="exposed">
+                                <label htmlFor="exposed" className={styles['label-form']}>
                                     Exposed
                                     <select
                                         id="exposed"
-                                        className={styles['form-select-field']}
+                                        className={styles['new-entry-select-field']}
                                         {...register("exposed", {
                                             required: "Please select an option",
                                         })}
@@ -237,11 +238,11 @@ export function NewFilmDevelopmentLog() {
                                     </select>
                                 </label>
                                 {errors.exposed && (<p className={styles['error-label']}>{errors.exposed.message}</p>)}
-                                <label htmlFor="developed">
+                                <label htmlFor="developed" className={styles['label-form']}>
                                     Developed
                                     <select
                                         id="developed"
-                                        className={styles['form-select-field']}
+                                        className={styles['new-entry-select-field']}
                                         {...register("developed", {
                                             required: "Please select an option",
                                         })}
@@ -255,11 +256,11 @@ export function NewFilmDevelopmentLog() {
                                     </select>
                                 </label>
                                 {errors.developed && (<p className={styles['error-label']}>{errors.developed.message}</p>)}
-                                <label htmlFor="scannend">
+                                <label htmlFor="scannend" className={styles['label-form']}>
                                     Scanned
                                     <select
                                         id="scannend"
-                                        className={styles['form-select-field']}
+                                        className={styles['new-entry-select-field']}
                                         {...register("scannend", {
                                             required: "Please select an option",
                                         })}
@@ -273,12 +274,12 @@ export function NewFilmDevelopmentLog() {
                                     </select>
                                 </label>
                                 {errors.scannend && (<p className={styles['error-label']}>{errors.scannend.message}</p>)}
-                                <label htmlFor="developedByLab">
+                                <label htmlFor="developedByLab" className={styles['label-form']}>
                                     Developed by
                                     <input
                                         type="text"
                                         id="developedByLab"
-                                        className={styles['form-input-field']}
+                                        className={styles['new-entry-input-field']}
                                         {...register("developedByLab", {
                                             minLength: {
                                                 value: 3,

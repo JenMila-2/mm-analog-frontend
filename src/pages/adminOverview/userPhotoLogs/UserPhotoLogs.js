@@ -10,11 +10,11 @@ import styles from '../ListOverviews.module.css';
 export function UserPhotoLogs() {
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
-    const [photoLogs, setPhotoLogs] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [photoLogs, setPhotoLogs] = useState([]);
     const [totalPhotoLogs, setTotalPhotoLogs] = useState(0);
     const photoLogsPerPage = 10;
 
@@ -94,12 +94,12 @@ export function UserPhotoLogs() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Users Photo Log</h1>
+                <h1 className={styles.title}>All Photo Logs</h1>
             </header>
             <DividerNavBar
                 label1="Users"
                 path1="/admin/dashboard/users"
-                label2="Project Folders"
+                label2="All Folders"
                 path2="/admin/dashboard/projectfolders"
             />
             <main className={styles['admin-dashboard-overview']}>
@@ -107,14 +107,14 @@ export function UserPhotoLogs() {
                 <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
                         <div className={styles['total-overview-container']}>
-                            <h4>User Photo Log Overview</h4>
-                            Total stock inventories: {totalPhotoLogs}
+                            <h4>User Photo Logs Overview</h4>
+                            Total photo logs: {totalPhotoLogs}
                         </div>
                         <div className={styles['table-wrapper']}>
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th></th>
                                     <th>Id</th>
                                     <th>Username</th>
                                     <th>Project Folder</th>
@@ -124,7 +124,7 @@ export function UserPhotoLogs() {
                                     <th>Iso</th>
                                     <th>Aperture</th>
                                     <th>Shutter Speed</th>
-                                    <th>Exposure Compen.</th>
+                                    <th>Exposure -/+</th>
                                     <th>Date Taken</th>
                                     <th>Notes</th>
                                     <th>Delete</th>

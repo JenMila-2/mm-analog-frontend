@@ -114,7 +114,7 @@ function Admin() {
                         <table className={styles['users-dashboard-table']}>
                             <thead>
                             <tr>
-                                <th className={styles['users-table-head']}>#</th>
+                                <th className={styles['users-table-head']}></th>
                                 <th className={styles['users-table-head']}>Username</th>
                                 <th className={styles['users-table-head']}>Name</th>
                                 <th className={styles['users-table-head']}>Email</th>

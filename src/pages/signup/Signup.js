@@ -45,16 +45,17 @@ function Signup() {
             <div className={styles['left-section']}>
                 <img src={coverImage} alt="Clouds"/>
             </div>
-            <div className={styles['right-section']}>
+            <div className={styles['right-section-signup']}>
                 <h1>Create an account</h1>
                     <p className={styles['sub-text']}>Welcome. Nice to see you!</p>
                 {addSuccess === true && <p>Yeaahh, your account has been created!</p>}
                 <form className={styles['signup-form']} onSubmit={handleSubmit(addNewUser)}>
-                    <label htmlFor="name-field">
+                    <label htmlFor="name-field" className={styles['signup-form-label']}>
                         Name
                         <input
                             type="text"
                             id="name-field"
+                            className={styles['signup-input-field']}
                             {...register("name", {
                                 required: "Name is required",
                                 minLength: {
@@ -67,11 +68,12 @@ function Signup() {
                         />
                     </label>
                     {errors.name && <p className={styles['error-label']}>{errors.name.message}</p>}
-                    <label htmlFor="username-field">
+                    <label htmlFor="username-field" className={styles['signup-form-label']}>
                         Username
                         <input
                             type="text"
                             id="username-field"
+                            className={styles['signup-input-field']}
                             {...register("username", {
                                 required: "Username is required",
                                 minLength: {
@@ -84,11 +86,12 @@ function Signup() {
                         />
                     </label>
                     {errors.username && <p className={styles['error-label']}>{errors.username.message}</p>}
-                    <label htmlFor="email-field">
+                    <label htmlFor="email-field" className={styles['signup-form-label']}>
                         Email
                         <input
                             type="email"
                             id="email-field"
+                            className={styles['signup-input-field']}
                             {...register("email", {
                                 required: "Email is required",
                                 maxLength: {
@@ -102,11 +105,12 @@ function Signup() {
                     </label>
                     {errors.email && <p className={styles['error-label']}>{errors.email.message}</p>}
                     {error && <p className={styles['error-label']}>Email already exist. Please try another email.</p>}
-                    <label htmlFor="password-field">
+                    <label htmlFor="password-field" className={styles['signup-form-label']}>
                         Password
                         <input
                             type="password"
                             id="password-field"
+                            className={styles['signup-input-field']}
                             {...register("password", {
                                 required: "Password is required",
                                 minLength: {

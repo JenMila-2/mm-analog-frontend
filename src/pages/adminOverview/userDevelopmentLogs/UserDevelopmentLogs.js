@@ -10,11 +10,11 @@ import styles from '../ListOverviews.module.css';
 export function UserDevelopmentLogs() {
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
-    const [developmentLogs, setDevelopmentLogs] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [developmentLogs, setDevelopmentLogs] = useState([]);
     const [totalDevelopmentLogs, setTotalDevelopmentLogs] = useState(0);
     const developmentLogsPerPage = 10;
     const renderYesNo = (value) => (value ? 'Yes' : 'No');
@@ -95,12 +95,12 @@ export function UserDevelopmentLogs() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles.title}>Users Film Development Log</h1>
+                <h1 className={styles.title}>All Film Development Logs</h1>
             </header>
             <DividerNavBar
                 label1="Users"
                 path1="/admin/dashboard/users"
-                label2="Project Folders"
+                label2="All Folders"
                 path2="/admin/dashboard/projectfolders"
             />
             <main className={styles['admin-dashboard-overview']}>
@@ -109,13 +109,13 @@ export function UserDevelopmentLogs() {
                     <div className={styles['admin-dashboard-inner-container']}>
                         <div className={styles['total-overview-container']}>
                             <h4>User Film Development Logs Overview</h4>
-                            Total logs: {totalDevelopmentLogs}
+                            Total film development logs: {totalDevelopmentLogs}
                         </div>
                         <div className={styles['table-wrapper']}>
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th></th>
                                     <th>Id</th>
                                     <th>Username</th>
                                     <th>Roll Name</th>
@@ -165,7 +165,7 @@ export function UserDevelopmentLogs() {
                                             <td className={styles['input-field-value']}>{logs.developedByLab}</td>
                                             <td>
                                                 <RiDeleteBin6Line
-                                                    className={`${styles.icon} ${selectedRows.includes(developmentLogs.id) ? '' : styles['disabled-icon']}`}
+                                                    className={`${styles.icon} ${selectedRows.includes(logs.id) ? '' : styles['disabled-icon']}`}
                                                     onClick={handleDelete}
                                                 />
                                             </td>
@@ -196,7 +196,7 @@ export function UserDevelopmentLogs() {
             </main>
             <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
-                <p>Are you sure you want to delete the selected user log(s)?</p>
+                <p>Are you sure you want to delete the selected user development log(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>

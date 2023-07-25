@@ -3,9 +3,10 @@ table, td {
 }
 
 th {
-    color: var(--errie-black);
     font-size: 14px;
     text-transform: uppercase;
+    color: var(--errie-black);
+    background-color: var(--alabaster);
 }
 
 td, th {
@@ -29,10 +30,10 @@ input[type='number']{
 
 .title-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     align-content: center;
     justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 .title {
@@ -40,8 +41,8 @@ input[type='number']{
 }
 
 .development-log-overview {
-    display: flex;
     width: 100%;
+    display: flex;
 }
 
 .development-log-container {
@@ -51,33 +52,28 @@ input[type='number']{
 }
 
 .development-log-inner-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
     padding: 30px;
+    display: flex;
     margin-top: 60px;
     border-radius: 10px;
-    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 0%, hsla(0, 0%, 76%, 1) 72%);
 }
 
 .total-log-container {
     display: flex;
     text-align: left;
+    font-size: 14px;
     flex-direction: column;
     align-self: flex-start;
-    font-size: 14px;
 }
 
 .table-wrapper {
     max-width: 100%;
     position: relative;
     overflow-x: scroll;
-}
-
-.log-table-head {
-    background-color: var(--davys-gray);
-    color: var(--timberswolf);
 }
 
 .id-column {
@@ -93,20 +89,21 @@ input[type='number']{
 
 .icon {
     cursor: pointer;
+    color: var(--jet);
     margin-right: 10px;
     align-content: center;
 }
 
 .disabled-icon {
     opacity: 0.5;
+    margin-right: 10px;
     color: var(--grey);
     pointer-events: none;
-    margin-right: 10px;
 }
 
 .page-navigation-container {
-    display: flex;
     gap: 10px;
+    display: flex;
     padding-top: 15px;
 }
 
@@ -117,8 +114,8 @@ input[type='number']{
     text-align: center;
     border-radius: 6px;
     border: 0 solid var(--errie-black);
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
 }
 
 .page-navigation-button:hover {
@@ -134,30 +131,30 @@ input[type='number']{
 }
 
 .log-update-success-message {
+    top: 50%;
+    left: 50%;
+    padding: 15px;
+    z-index: 9999;
+    position: fixed;
     font-weight: bold;
     border-radius: 5px;
     text-align: center;
-    padding: 15px;
     margin-bottom: 10px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    background-color: var(--white);
     color: var(--errie-black);
+    background-color: var(--white);
+    transform: translate(-50%, -50%);
     border: 1px solid var(--errie-black);
 }
 
 .check-icon {
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
     color: var(--emerald);
 }
 
 .error-label {
     font-size: 12px;
-    padding-bottom: 8px;
     margin-top: -4px;
+    padding-bottom: 8px;
     color: var(--crimson);
 }

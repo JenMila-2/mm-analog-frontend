@@ -1,5 +1,5 @@
 .sidebar-color-admin {
-    background: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+    background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
 }
 
 .sidebar-color-user {

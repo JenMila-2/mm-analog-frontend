@@ -61,11 +61,11 @@ export function UpdatePassword() {
         <>
             <header className={styles['title-container']}>
                 <h1 className={styles['update-page-title']}>Update password</h1>
-                <p>On this page you can update your password.</p>
+                <p className={styles['update-page-sub-text']}>On this page you can update your password. After saving your changes it can take a few minutes before the changes are visible.</p>
                 <p>To update your profile details go to <Link className={styles['update-link-profile']} to={'/update/profile'}>update profile</Link></p>
             </header>
-            <main className={styles['form-container']}>
-                <div className={styles['form-inner-container']}>
+            <main className={styles['password-update-form-container']}>
+                <div className={styles['password-update-form-inner-container']}>
                     {addSuccess ?
                         <section>
                             <h4>Your new password has been saved!</h4>
@@ -74,16 +74,16 @@ export function UpdatePassword() {
                         :
                         <>
                             <form onSubmit={handleSubmit(updatePassword)} className={styles['update-password-form']}>
-                                <div className={styles['form-text-container']}>
+                                <div className={styles['update-form-text-container']}>
                                     <p>Choose a strong password!</p>
                                     <p>Make sure you use at least one capital, one number and one special character.</p>
                                 </div>
-                                <label htmlFor="password">
+                                <label htmlFor="password" className={styles['update-password-label']}>
                                     Enter new password
                                     <input
                                         type="text"
                                         id="password"
-                                        className={styles['form-input']}
+                                        className={styles['update-password-input']}
                                         placeholder="New password"
                                         {...register("password", {
                                             required: "Password is required",

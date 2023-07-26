@@ -4,7 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import Modal from "../../components/modal/Modal";
 import axios from "axios";
-import styles from './UpdatePassword.module.css';
+import styles from './UpdateProfileDetails.module.css';
 
 export function UpdatePassword() {
     const {user} = useContext(AuthContext);
@@ -12,13 +12,13 @@ export function UpdatePassword() {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
     const [error, toggleError] = useState(false);
-    const [addSuccess, toggleAddSuccess] = useState(false);
+    const [addSuccess, setAddSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setModalOpen] = useState(false);
 
     async function updatePassword(password) {
         toggleError(false);
-        toggleAddSuccess(false);
+        setAddSuccess(false);
         setLoading(true);
 
         try {
@@ -33,7 +33,7 @@ export function UpdatePassword() {
                     Authorization: `Bearer ${token}`,
                 }
             })
-            toggleAddSuccess(true);
+            setAddSuccess(true);
             setTimeout(() => {
                 navigate('/profile');
             }, 2000);
@@ -64,8 +64,8 @@ export function UpdatePassword() {
                 <p className={styles['update-page-sub-text']}>On this page you can update your password. After saving your changes it can take a few minutes before the changes are visible.</p>
                 <p>To update your profile details go to <Link className={styles['update-link-profile']} to={'/update/profile'}>update profile</Link></p>
             </header>
-            <main className={styles['password-update-form-container']}>
-                <div className={styles['password-update-form-inner-container']}>
+            <main className={styles['profile-update-form-container']}>
+                <div className={styles['profile-update-form-inner-container']}>
                     {addSuccess ?
                         <section>
                             <h4>Your new password has been saved!</h4>
@@ -73,17 +73,17 @@ export function UpdatePassword() {
                         </section>
                         :
                         <>
-                            <form onSubmit={handleSubmit(updatePassword)} className={styles['update-password-form']}>
-                                <div className={styles['update-form-text-container']}>
+                            <form className={styles['update-profile-form']} onSubmit={handleSubmit(updatePassword)}>
+                                <div className={styles['update-profile-text-container']}>
                                     <p>Choose a strong password!</p>
                                     <p>Make sure you use at least one capital, one number and one special character.</p>
                                 </div>
-                                <label htmlFor="password" className={styles['update-password-label']}>
+                                <label htmlFor="password" className={styles['update-profile-label']}>
                                     Enter new password
                                     <input
                                         type="text"
                                         id="password"
-                                        className={styles['update-password-input']}
+                                        className={styles['update-profile-input']}
                                         placeholder="New password"
                                         {...register("password", {
                                             required: "Password is required",

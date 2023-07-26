@@ -60,11 +60,11 @@ export function UpdateProfileDetails() {
         <>
             <header className={styles['title-container']}>
                 <h1 className={styles['update-page-title']}>Update profile details</h1>
-                <p>On this page you can update your profile.</p>
-                <p>To update your password go to <Link className={styles['link-password']} to={'/update/password'}>update password</Link></p>
+                <p className={styles['update-page-sub-text']}>On this page you can update your profile details. After saving your changes it can take a few minutes before the changes are visible.</p>
+                <p>To update your password go to <Link className={styles['update-link-profile']} to={'/update/password'}>update password</Link></p>
             </header>
-            <main className={styles['form-container']}>
-                <div className={styles['form-inner-container']}>
+            <main className={styles['profile-update-form-container']}>
+                <div className={styles['profile-update-form-inner-container']}>
                     {addSuccess ?
                         <section>
                             <h4>Changes were saved successfully!</h4>
@@ -73,24 +73,24 @@ export function UpdateProfileDetails() {
                         :
                         <>
                             <form className={styles['update-profile-form']} onSubmit={handleSubmit(updateProfileDetails)}>
-                                <label htmlFor="name">
+                                <label htmlFor="name" className={styles['update-profile-label']}>
                                    New name
                                     <input
                                         type="text"
                                         id="name"
-                                        className={styles['form-input']}
                                         defaultValue={user.name}
+                                        className={styles['update-profile-input']}
                                         {...register('name')}
                                     />
                                 </label>
                                 {errors.name && <p className={styles['error-label']}>{error.name.message}</p>}
-                                <label htmlFor="email">
+                                <label htmlFor="email" className={styles['update-profile-label']}>
                                     New email
                                     <input
                                         type="text"
                                         id="email"
-                                        className={styles['form-input']}
                                         defaultValue={user.email}
+                                        className={styles['update-profile-input']}
                                         {...register("email", {
                                             pattern: {
                                                 value: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,

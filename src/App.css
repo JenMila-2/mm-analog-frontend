@@ -32,17 +32,17 @@ html {
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
-    color: var(--errie-black);
-    min-height: 100vh;
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
+    color: var(--errie-black);
+    font-family: "Open Sans", sans-serif;
 }
 
 h1 {
-    font-family: Alata, sans-serif;
     font-size: 30px;
     font-weight: 900;
+    font-family: Alata, sans-serif;
 }
 
 img {

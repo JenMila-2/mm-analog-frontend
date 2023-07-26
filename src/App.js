@@ -23,8 +23,8 @@ import NewUsers from "./pages/newEntries/newUsers/NewUsers";
 import UserFilmStockInventories from "./pages/adminOverview/userFilmStockInventories/UserFilmStockInventories";
 import UserDevelopmentLogs from "./pages/adminOverview/userDevelopmentLogs/UserDevelopmentLogs";
 import UserPhotoLogs from "./pages/adminOverview/userPhotoLogs/UserPhotoLogs";
-import './App.css';
 import NewPhotoLog from "./pages/newEntries/newPhotoLog/NewPhotoLog";
+import './App.css';
 
 function App() {
     const { auth } = useContext(AuthContext);

@@ -83,6 +83,7 @@ function PhotoProject() {
                 label1="Photo Logs"
                 path1="/photologs"
                 label2="Add new"
+                path2="/new/projectfolder"
             />
             <main className={styles['project-folder-overview']}>
                 <SidebarNav />

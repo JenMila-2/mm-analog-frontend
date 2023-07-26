@@ -25,8 +25,9 @@ import UserDevelopmentLogs from "./pages/adminOverview/userDevelopmentLogs/UserD
 import UserPhotoLogs from "./pages/adminOverview/userPhotoLogs/UserPhotoLogs";
 import NewPhotoLog from "./pages/newEntries/newPhotoLog/NewPhotoLog";
 import ProjectFolderPage from "./pages/projectFolder/ProjectFolderPage";
-import './App.css';
 import NewProjectFolder from "./pages/newEntries/newProjectFolder/NewProjectFolder";
+import ProjectFolderList from "./pages/projectFolderList/ProjectFolderList";
+import './App.css';
 
 function App() {
     const { auth } = useContext(AuthContext);
@@ -84,6 +85,10 @@ function App() {
                 <Route
                     path="/new/projectfolder"
                     element={auth ? <NewProjectFolder /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/projectfolders/list"
+                    element={auth ? <ProjectFolderList /> : <Navigate to="/" />}
                 />
                 <Route
                     path="/new/photolog"

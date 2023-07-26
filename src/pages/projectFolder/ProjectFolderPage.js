@@ -1,8 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './ProjectFolder.module.css';
-import projectFolder from "./ProjectFolder";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 

@@ -74,8 +74,9 @@ export function NewProjectFolder() {
                                 {errors.projectTitle && <p className={styles['error-label']}>{errors.projectTitle.message}</p>}
                                 <label htmlFor="projectConcept" className={styles['label-form']}>
                                     Project Concept
-                                    <input
-                                        type="text"
+                                    <textarea
+                                        cols="40"
+                                        rows="10"
                                         id="projectConcept"
                                         className={styles['new-entry-input-field']}
                                         {...register("projectConcept", {
@@ -88,8 +89,7 @@ export function NewProjectFolder() {
                                         autoComplete="off"
                                     />
                                 </label>
-
-
+                                {errors.projectConcept && <p className={styles['error-label']}>{errors.projectConcept.message}</p>}
                                 <div className={styles['buttons-container']}>
                                     <button
                                         type="submit"

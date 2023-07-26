@@ -7,7 +7,7 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import styles from './ProjectFolder.module.css';
 
-function PhotoProject() {
+function ProjectFolder() {
     const { user } = useContext(AuthContext);
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
@@ -80,8 +80,8 @@ function PhotoProject() {
                 <h1 className={styles.title}>Photo Projects</h1>
             </header>
             <DividerNavBar
-                label1="Photo Logs"
-                path1="/photologs"
+                label1="List"
+                path1="/projectfolders/list"
                 label2="Add new"
                 path2="/new/projectfolder"
             />
@@ -130,4 +130,4 @@ function PhotoProject() {
     );
 }
 
-export default PhotoProject;
+export default ProjectFolder;

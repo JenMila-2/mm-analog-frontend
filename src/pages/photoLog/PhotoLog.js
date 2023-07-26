@@ -343,7 +343,7 @@ function PhotoLog() {
             </main>
             <Modal isOpen={isModalOpen} onClose={handleModalCancel}>
                 <h3>Confirm Delete</h3>
-                <p>Are you sure you want to delete the selected photo logs(s)?</p>
+                <p>Are you sure you want to delete the selected photo log(s)?</p>
                 <div>
                     <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>

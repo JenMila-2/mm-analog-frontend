@@ -58,8 +58,9 @@
     padding: 30px;
     display: flex;
     margin-top: 60px;
-    border-radius: 10px;
+    overflow-y: hidden;
     align-items: center;
+    border-radius: 10px;
     flex-direction: column;
     background: linear-gradient(120deg, #fdfbfb 0%, #ecebe4 100%);
 }
@@ -67,6 +68,13 @@
 .project-folder-card-container {
     display: flex;
     flex-direction: row;
+}
+
+.project-folder-card-container {
+    gap: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .project-card-link {

@@ -6,7 +6,7 @@ import About from './pages/about/About';
 import FilmStockInventory from "./pages/filmStockInventory/FilmStockInventory";
 import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
-import ProjectFolder from './pages/projectFolder/projectFolder'
+import ProjectFolder from './pages/projectFolder/ProjectFolder'
 import PhotoLog from "./pages/photoLog/PhotoLog";
 import FilmDevelopmentLog from "./pages/filmDevelopmentLog/FilmDevelopmentLog";
 import Profile from "./pages/profile/Profile";
@@ -24,6 +24,7 @@ import UserFilmStockInventories from "./pages/adminOverview/userFilmStockInvento
 import UserDevelopmentLogs from "./pages/adminOverview/userDevelopmentLogs/UserDevelopmentLogs";
 import UserPhotoLogs from "./pages/adminOverview/userPhotoLogs/UserPhotoLogs";
 import NewPhotoLog from "./pages/newEntries/newPhotoLog/NewPhotoLog";
+import ProjectFolderPage from "./pages/projectFolder/ProjectFolderPage";
 import './App.css';
 
 function App() {
@@ -50,6 +51,10 @@ function App() {
                 <Route
                     path="/photologs"
                     element={auth ? <PhotoLog /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/projectfolder/:folderId"
+                    element={auth ? <ProjectFolderPage /> : <Navigate to="/" />}
                 />
                 <Route
                     path="/filmstockinventories"

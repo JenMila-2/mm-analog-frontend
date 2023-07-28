@@ -17,6 +17,7 @@ function UploadImage() {
     const [folderId, setFolderId] = useState("");
     const [projectFolders, setProjectFolders] = useState([]);
     const [addSuccess, setAddSuccess] = useState(false);
+    const [error, toggleError] = useState(false);
     const navigate = useNavigate();
 
     function showSuccessMessage() {
@@ -59,6 +60,7 @@ function UploadImage() {
 
     async function sendImage(e) {
         e.preventDefault();
+        toggleError(false);
         const formData = new FormData();
         formData.append("image", file);
 
@@ -76,6 +78,7 @@ function UploadImage() {
             showSuccessMessage();
         } catch (error) {
             console.error("Error uploading image:", error);
+            toggleError(true);
         }
     }
 
@@ -121,6 +124,7 @@ function UploadImage() {
                                     className={styles['project-folder-select-field']}
                                     {...register("projectFolder", {
                                         required: "Project Folder is required",
+                                        message: "Select project folder before continuing",
                                     })}
                                     autoComplete="off"
                                     value={folderId}
@@ -134,12 +138,14 @@ function UploadImage() {
                                     ))}
                                 </select>
                             </label>
+                            {errors.projectFolder && <p className={styles['upload-error-label']}>{errors.projectFolder.message}</p>}
+                            {error && <p className={styles['upload-error-label']}>Project Folder is required</p>}
                             <div className={styles['upload-button-container']}>
-                                <button type="submit" className={styles['upload-image-button']}>
-                                    Upload Image
-                                </button>
                                 <button type="button" onClick={handleCancel} className={styles['upload-cancel-button']}>
                                     Cancel
+                                </button>
+                                <button type="submit" className={styles['upload-image-button']}>
+                                    Upload Image
                                 </button>
                             </div>
                         </form>

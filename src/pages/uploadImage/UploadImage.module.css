@@ -89,6 +89,12 @@ input[type='file']{
     border-color: var(--silver);
 }
 
+.upload-error-label {
+    font-size: 14px;
+    padding-bottom: 8px;
+    color: var(--crimson);
+}
+
 .upload-button-container {
     display: flex;
     gap: 10px

@@ -153,7 +153,7 @@ export function ProjectFolderList() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles['update-page-title']}>Project Folders List Overview</h1>
+                <h1 className={styles.title}>Project Folders List Overview</h1>
             </header>
             <DividerNavBar
                 label1="Projects"
@@ -198,7 +198,7 @@ export function ProjectFolderList() {
                                                 <input
                                                     type="text"
                                                     id="projectTitle"
-                                                    className={styles['folder-input-field-value']}
+                                                    className={styles['folder-input-field']}
                                                     defaultValue={folder.projectTitle}
                                                     onChange={(e) => handleUpdate(e, folder.id, "projectTitle")}
                                                 />
@@ -208,7 +208,7 @@ export function ProjectFolderList() {
                                                     id="projectConcept"
                                                     cols="20"
                                                     rows="4"
-                                                    className={styles['textarea-field-value']}
+                                                    className={styles['folder-textarea-field']}
                                                     defaultValue={folder.projectConcept}
                                                     onChange={(e) => handleUpdate(e, folder.id, "projectConcept")}
                                                 />

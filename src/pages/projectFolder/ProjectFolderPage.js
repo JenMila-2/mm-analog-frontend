@@ -51,6 +51,7 @@ export function ProjectFolderPage() {
                 label1="Photo Logs"
                 path1="/photologs"
                 label2="Upload Photo"
+                path2="/upload/image"
             />
             <main className={styles['project-folder-overview']}>
                 <SidebarNav />

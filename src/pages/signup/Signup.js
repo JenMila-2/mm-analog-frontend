@@ -104,7 +104,7 @@ function Signup() {
                         />
                     </label>
                     {errors.email && <p className={styles['error-label']}>{errors.email.message}</p>}
-                    {error && <p className={styles['error-label']}>Email already exist. Please try another email.</p>}
+                    {error && <p className={styles['error-label']}>Email already exist. Please try a different email.</p>}
                     <label htmlFor="password-field" className={styles['signup-form-label']}>
                         Password
                         <input

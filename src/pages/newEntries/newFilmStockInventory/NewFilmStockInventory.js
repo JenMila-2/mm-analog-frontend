@@ -53,7 +53,7 @@ function NewFilmStockInventory() {
         <>
         <header className={styles['form-header']}>
             <h1>New Entry</h1>
-            <p>Add a new film stock inventory to your film stock overview</p>
+            <p>Add a new film stock inventory to your overview</p>
         </header>
             <main className={styles['new-entry-form-container']}>
                 <div className={styles['new-entry-form-inner-container']}>

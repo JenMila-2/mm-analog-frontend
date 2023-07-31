@@ -54,10 +54,6 @@ function App() {
                     path="/projectfolder/:folderId"
                     element={auth ? <ProjectFolderPage /> : <Navigate to="/" />}
                 />
-               {/* <Route
-                    path="/projectfolders/:folderId/images/:imageName"
-                    element={auth ? <ProjectFolderPage /> : <Navigate to="/" />}
-                />*/}
                 <Route
                     path="/photologs"
                     element={auth ? <PhotoLog /> : <Navigate to="/" />}

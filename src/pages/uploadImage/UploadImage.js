@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
-import axios from 'axios';
-import styles from './UploadImage.module.css';
 import {AuthContext} from "../../context/AuthContext";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {MdOutlineDone} from "react-icons/md";
+import axios from 'axios';
+import styles from './UploadImage.module.css';
 
 function UploadImage() {
     const { user: {username} } = useContext(AuthContext);
@@ -57,20 +57,23 @@ function UploadImage() {
         void fetchProjectFolders();
     }, [username, token]);
 
-
     async function sendImage(e) {
         e.preventDefault();
         toggleError(false);
         const formData = new FormData();
-        formData.append("image", file);
+        formData.append("file", file);
 
         try {
-            const response = await axios.post(`http://localhost:8080/projectfolders/${folderId}/upload/image`, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    Authorization: `Bearer ${token}`,
-                },
-            })
+            const response = await axios.post(
+                `http://localhost:8080/projectfolders/${folderId}/photo`,
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
             console.log(response.data);
             setFile(null);
             setPreviewUrl(null);
@@ -112,19 +115,18 @@ function UploadImage() {
                                 />
                             </label>
                             {previewUrl &&
-                                <label className={styles['preview-image-label']}>
+                                <label className={styles['upload-form-label']}>
                                     Preview of image
-                                    <img src={previewUrl} alt="Image" className={styles['uploaded-image']}/>
+                                    <img src={previewUrl} alt="preview" className={styles['uploaded-image']}/>
                                 </label>
                             }
-                            <label htmlFor="projectFolder" className={styles['image-label']}>
+                            <label htmlFor="projectFolder" className={styles['upload-form-label']}>
                                 Project Folder
                                 <select
                                     id="projectFolder"
                                     className={styles['project-folder-select-field']}
                                     {...register("projectFolder", {
                                         required: "Project Folder is required",
-                                        message: "Select project folder before continuing",
                                     })}
                                     autoComplete="off"
                                     value={folderId}
@@ -139,7 +141,7 @@ function UploadImage() {
                                 </select>
                             </label>
                             {errors.projectFolder && <p className={styles['upload-error-label']}>{errors.projectFolder.message}</p>}
-                            {error && <p className={styles['upload-error-label']}>Project Folder is required</p>}
+                            {error && <p className={styles['upload-error-label']}>Please select a project folder before uploading an image!</p>}
                             <div className={styles['upload-button-container']}>
                                 <button type="button" onClick={handleCancel} className={styles['upload-cancel-button']}>
                                     Cancel

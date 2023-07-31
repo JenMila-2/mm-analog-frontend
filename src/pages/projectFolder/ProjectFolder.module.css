@@ -11,37 +11,6 @@
     font-size: 42px;
 }
 
-.project-concept-container {
-    width: 40%;
-    padding: 15px;
-    display: flex;
-    margin-top: 10px;
-    border-radius: 10px;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
-}
-
-.project-concept-button {
-    padding: 10px;
-    outline: none;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 6px;
-    text-transform: uppercase;
-    border: 0 solid var(--errie-black);
-    font-family: "Open Sans", sans-serif;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-    background: linear-gradient(120deg, #fdfbfb 0%, #ecebe4 100%);
-}
-
-.project-concept-button:hover {
-    color: var(--white);
-    font-weight: bold;
-    background: linear-gradient(to right, #434343 0%, black 100%);
-}
-
 .project-folder-overview {
     width: 100%;
     display: flex;
@@ -83,10 +52,11 @@
     text-decoration: none;
 }
 
-.photo-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.photo-grid-container {
     gap: 10px;
+    display: grid;
+    padding-top: 20px;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .photo-item {
@@ -125,4 +95,35 @@
     cursor: not-allowed;
     color: var(--grey);
     background-color: var(--hover-baby-powder);
+}
+
+.project-concept-container {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    margin-top: 10px;
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
+}
+
+.project-concept-button {
+    padding: 10px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 6px;
+    text-transform: uppercase;
+    border: 0 solid var(--errie-black);
+    font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    background: linear-gradient(120deg, #fdfbfb 0%, #ecebe4 100%);
+}
+
+.project-concept-button:hover {
+    color: var(--white);
+    font-weight: bold;
+    background: linear-gradient(to right, #434343 0%, black 100%);
 }

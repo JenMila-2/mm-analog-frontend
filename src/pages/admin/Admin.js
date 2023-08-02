@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
@@ -17,6 +18,11 @@ function Admin() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalUsers, setTotalUsers] = useState(0);
     const usersPerPage = 10;
+
+    const [searchQueryUser, setSearchQueryUser] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQueryUser(event.target.value);
+    };
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -37,15 +43,20 @@ function Admin() {
                     },
                     cancelToken: source.token,
                 });
-                setUsers(response.data);
-                setTotalUsers(response.data.length);
+                const filteredUsers = response.data.filter((user) =>
+                    Object.values(user).some((value) =>
+                        String(value).toLowerCase().includes(searchQueryUser.toLowerCase())
+                    )
+                );
+                setUsers(filteredUsers);
+                setTotalUsers(filteredUsers.length);
                 console.log(response.data);
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchUsers();
-    }, []);
+    }, [searchQueryUser]);
 
     async function deleteUser(username) {
         try {
@@ -106,6 +117,11 @@ function Admin() {
                 <SidebarNav />
                 <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQueryUser}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
                         <div className={styles['total-users-container']}>
                             <h4>Users Overview</h4>
                             Total users: {totalUsers}

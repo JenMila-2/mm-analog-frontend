@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SidebarNav from "../../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../../components/searchbar/SearchBar";
 import Modal from "../../../components/modal/Modal";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
@@ -17,6 +18,11 @@ export function UserFilmStockInventories() {
     const [stockInventories, setStockInventories] = useState([]);
     const [totalStockInventories, setTotalStockInventories] = useState(0);
     const stockInventoriesPerPage = 10;
+
+    const [searchQueryAdminList, setSearchQueryAdminList] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQueryAdminList(event.target.value);
+    };
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -37,15 +43,20 @@ export function UserFilmStockInventories() {
                     },
                     cancelToken: source.token,
                 });
-                setStockInventories(response.data);
-                setTotalStockInventories(response.data.length);
+                const filteredStockInventories = response.data.filter((inventory) =>
+                    Object.values(inventory).some((value) =>
+                        String(value).toLowerCase().includes(searchQueryAdminList.toLowerCase())
+                    )
+                );
+                setStockInventories(filteredStockInventories);
+                setTotalStockInventories(filteredStockInventories.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchUsersFilmStockInventories();
-    }, []);
+    }, [searchQueryAdminList]);
 
     async function deleteUserFilmStockInventory(inventory) {
         try {
@@ -106,6 +117,11 @@ export function UserFilmStockInventories() {
                 <SidebarNav />
                 <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQueryAdminList}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
                         <div className={styles['total-overview-container']}>
                             <h4>User Film Stock Inventories Overview</h4>
                             Total film stock inventories: {totalStockInventories}

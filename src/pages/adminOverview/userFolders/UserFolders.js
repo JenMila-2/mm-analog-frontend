@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SidebarNav from "../../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../../components/searchbar/SearchBar";
 import Modal from "../../../components/modal/Modal";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
@@ -17,6 +18,11 @@ function UserFolders() {
     const [projectFolders, setProjectFolders] = useState([]);
     const [totalProjectFolders, setTotalProjectFolders] = useState(0);
     const userFoldersPerPage = 10;
+
+    const [searchQueryAdminList, setSearchQueryAdminList] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQueryAdminList(event.target.value);
+    };
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -37,15 +43,20 @@ function UserFolders() {
                     },
                     cancelToken: source.token,
                 });
-                setProjectFolders(response.data);
-                setTotalProjectFolders(response.data.length);
+                const filteredFolders = response.data.filter((folder) =>
+                    Object.values(folder).some((value) =>
+                        String(value).toLowerCase().includes(searchQueryAdminList.toLowerCase())
+                    )
+                );
+                setProjectFolders(filteredFolders);
+                setTotalProjectFolders(filteredFolders.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchUsersProjectFolders();
-    }, []);
+    }, [searchQueryAdminList]);
 
     async function deleteUserProjectFolder(folder) {
         try {
@@ -106,6 +117,11 @@ function UserFolders() {
                 <SidebarNav />
                 <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQueryAdminList}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
                         <div className={styles['total-overview-container']}>
                             <h4>User Project Folders Overview</h4>
                             Total project folders: {totalProjectFolders}

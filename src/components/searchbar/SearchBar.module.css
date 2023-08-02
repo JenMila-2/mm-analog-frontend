@@ -1,0 +1,16 @@
+.search-bar-container {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.search-bar {
+    width: 320px;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 25px;
+    border: 1px solid var(--platinum);
+    font-family: "Open Sans", sans-serif;
+}

@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
 import {AuthContext} from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
@@ -30,6 +31,11 @@ function FilmDevelopmentLog() {
         { label: 'No', value: false },
     ];
 
+    const [searchQuery, setSearchQuery] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
         if (selected) {
@@ -49,15 +55,20 @@ function FilmDevelopmentLog() {
                     },
                     cancelToken: source.token,
                 });
-                setDevelopmentLogs(response.data);
-                setTotalDevelopmentLogs(response.data.length);
+                const filteredDevelopmentLogs = response.data.filter((log) =>
+                    Object.values(log).some((value) =>
+                        String(value).toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                );
+                setDevelopmentLogs(filteredDevelopmentLogs);
+                setTotalDevelopmentLogs(filteredDevelopmentLogs.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchDevelopmentLogsUser();
-    }, []);
+    }, [searchQuery]);
 
     async function deleteDevelopmentLog(id) {
         try {
@@ -173,6 +184,11 @@ function FilmDevelopmentLog() {
                 <SidebarNav />
                 <div className={styles['development-log-container']}>
                     <div className={styles['development-log-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQuery}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
                         <div className={styles['total-log-container']}>
                             <h4>Film Development Logs Overview</h4>
                             Total film development logs: {totalDevelopmentLogs}

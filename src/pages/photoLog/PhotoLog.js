@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
 import { AuthContext } from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
@@ -26,6 +27,11 @@ function PhotoLog() {
     const shutterSpeedOptions = ['30', '15', '8', '4', '2', '1/2', '1/4', '1/8', '1/15', '1/30', '1/60', '1/125', '1/250', '1/500', '1/1000', '1/2000'];
     const apertureOptions = ['f/1', 'f/1.4', 'f/2', 'f/2.8', 'f/4', 'f/5.6', 'f/8', 'f/11', 'f/16', 'f/22', 'f/32', 'f/45'];
 
+    const [searchQuery, setSearchQuery] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
         if (selected) {
@@ -45,15 +51,20 @@ function PhotoLog() {
                     },
                     cancelToken: source.token,
                 });
-                setPhotoLogs(response.data);
-                setTotalPhotoLogs(response.data.length);
+                const filteredPhotoLogs = response.data.filter((log) =>
+                    Object.values(log).some((value) =>
+                        String(value).toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                );
+                setPhotoLogs(filteredPhotoLogs );
+                setTotalPhotoLogs(filteredPhotoLogs.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchPhotoLogsUser();
-    }, []);
+    }, [searchQuery]);
 
     async function deletePhotoLog(id) {
         try {
@@ -169,6 +180,11 @@ function PhotoLog() {
                 <SidebarNav />
                 <div className={styles['photo-log-container']}>
                     <div className={styles['photo-log-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQuery}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
                         <div className={styles['total-log-container']}>
                             <h4>Photo Logs Overview</h4>
                             Total photo logs: {totalPhotoLogs}

@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
 import {AuthContext} from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
@@ -25,6 +26,11 @@ function FilmStockInventory() {
     const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet film (Large)', 'Other'];
     const developmentProcessOptions = ['Black & White', 'C-41 Color', 'E-6 Slide Film'];
 
+    const [searchQuery, setSearchQuery] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
         if (selected) {
@@ -44,15 +50,20 @@ function FilmStockInventory() {
                     },
                     cancelToken: source.token,
                 });
-                setInventories(response.data);
-                setTotalInventories(response.data.length);
+                const filteredInventories = response.data.filter((inventory) =>
+                    Object.values(inventory).some((value) =>
+                    String(value).toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                );
+                setInventories(filteredInventories);
+                setTotalInventories(filteredInventories.length);
                 console.log(response.data);
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchInventoriesUser();
-    }, []);
+    }, [searchQuery]);
 
     async function deleteInventory(id) {
         try {
@@ -169,6 +180,11 @@ function FilmStockInventory() {
                 <SidebarNav/>
                 <div className={styles['film-stock-container']}>
                     <div className={styles['film-stock-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQuery}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
                         <div className={styles['total-inventory-container']}>
                             <h4>Film Stock Inventories Overview</h4>
                             Total film stock inventories: {totalInventories}

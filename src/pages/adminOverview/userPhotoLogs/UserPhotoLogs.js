@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SidebarNav from "../../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../../components/searchbar/SearchBar";
 import Modal from "../../../components/modal/Modal";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
@@ -17,6 +18,11 @@ export function UserPhotoLogs() {
     const [photoLogs, setPhotoLogs] = useState([]);
     const [totalPhotoLogs, setTotalPhotoLogs] = useState(0);
     const photoLogsPerPage = 10;
+
+    const [searchQueryAdminList, setSearchQueryAdminList] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQueryAdminList(event.target.value);
+    };
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -37,15 +43,20 @@ export function UserPhotoLogs() {
                     },
                     cancelToken: source.token,
                 });
-                setPhotoLogs(response.data);
-                setTotalPhotoLogs(response.data.length);
+                const filteredPhotoLogs = response.data.filter((log) =>
+                    Object.values(log).some((value) =>
+                        String(value).toLowerCase().includes(searchQueryAdminList.toLowerCase())
+                    )
+                );
+                setPhotoLogs(filteredPhotoLogs);
+                setTotalPhotoLogs(filteredPhotoLogs.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchUsersPhotoLogs();
-    }, []);
+    }, [searchQueryAdminList]);
 
     async function deleteUserPhotoLog(photoLog) {
         try {
@@ -106,6 +117,11 @@ export function UserPhotoLogs() {
                 <SidebarNav />
                 <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQueryAdminList}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
                         <div className={styles['total-overview-container']}>
                             <h4>User Photo Logs Overview</h4>
                             Total photo logs: {totalPhotoLogs}

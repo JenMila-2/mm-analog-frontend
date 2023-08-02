@@ -8,6 +8,7 @@ import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
 import styles from './ProjectFolderList.module.css';
+import SearchBar from "../../components/searchbar/SearchBar";
 
 export function ProjectFolderList() {
     const { user } = useContext(AuthContext);
@@ -21,6 +22,11 @@ export function ProjectFolderList() {
     const [projectFolders, setProjectFolders] = useState([]);
     const [totalProjectFolders, setTotalProjectFolders] = useState(0);
     const projectFoldersPerPage = 10;
+
+    const [searchQueryFolderList, setSearchQueryFolderList] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQueryFolderList(event.target.value);
+    };
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -41,15 +47,20 @@ export function ProjectFolderList() {
                     },
                     cancelToken: source.token,
                 });
-                setProjectFolders(response.data);
-                setTotalProjectFolders(response.data.length);
+                const filteredProjectFolders = response.data.filter((folder) =>
+                    Object.values(folder).some((value) =>
+                        String(value).toLowerCase().includes(searchQueryFolderList.toLowerCase())
+                    )
+                );
+                setProjectFolders(filteredProjectFolders);
+                setTotalProjectFolders(filteredProjectFolders.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchProjectFoldersUser();
-    }, []);
+    }, [searchQueryFolderList]);
 
     async function deleteProjectFolder(id) {
         try {
@@ -165,6 +176,11 @@ export function ProjectFolderList() {
                 <SidebarNav />
                 <div className={styles['project-folder-container']}>
                     <div className={styles['project-folder-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQueryFolderList}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
                         <div className={styles['total-folders-container']}>
                             <h4>Project Folders Overview</h4>
                             Total project folders: {totalProjectFolders}

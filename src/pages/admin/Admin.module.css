@@ -55,7 +55,7 @@ input {
     border-radius: 10px;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
+    background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
 }
 
 .total-users-container {
@@ -74,7 +74,7 @@ input {
 
 .users-table-head {
     color: var(--jet);
-    background-color: var(--silver);
+    background-color: var(--platinum-two);
 }
 
 .username-field {

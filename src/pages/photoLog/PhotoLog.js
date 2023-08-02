@@ -8,7 +8,7 @@ import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
-import styles from './PhotoLog.module.css';
+import styles from '../styles/TableOverviewStyling.module.css';
 
 function PhotoLog() {
     const { user } = useContext(AuthContext);
@@ -176,16 +176,16 @@ function PhotoLog() {
                 label2="Add new"
                 path2="/new/photolog"
             />
-            <main className={styles['photo-log-overview']}>
+            <main className={styles['table-log-overview']}>
                 <SidebarNav />
-                <div className={styles['photo-log-container']}>
-                    <div className={styles['photo-log-inner-container']}>
+                <div className={styles['table-log-container']}>
+                    <div className={styles['table-log-inner-container']}>
                         <SearchBar
                             searchValue={searchQuery}
                             handleSearchChange={handleSearchChange}
                             placeholder="Search..."
                         />
-                        <div className={styles['total-log-container']}>
+                        <div className={styles['table-total-container']}>
                             <h4>Photo Logs Overview</h4>
                             Total photo logs: {totalPhotoLogs}
                         </div>
@@ -315,7 +315,7 @@ function PhotoLog() {
                                                     id="notes"
                                                     cols="20"
                                                     rows="4"
-                                                    className={styles['textarea-field-value']}
+                                                    className={styles['photo-log-textarea-field']}
                                                     defaultValue={log.notes}
                                                     onChange={(e) => handleUpdate(e, log.id, "notes")}
                                                 />
@@ -367,7 +367,7 @@ function PhotoLog() {
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['photo-log-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['update-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     )

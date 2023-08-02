@@ -1,14 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
+import {AuthContext} from "../../context/AuthContext";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
-import {AuthContext} from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
-import styles from './ProjectFolderList.module.css';
-import SearchBar from "../../components/searchbar/SearchBar";
+import styles from '../styles/TableOverviewStyling.module.css';
 
 export function ProjectFolderList() {
     const { user } = useContext(AuthContext);
@@ -172,16 +172,16 @@ export function ProjectFolderList() {
                 label2="Add new"
                 path2="/new/projectfolder"
             />
-            <main className={styles['project-folder-overview']}>
+            <main className={styles['table-log-overview']}>
                 <SidebarNav />
-                <div className={styles['project-folder-container']}>
-                    <div className={styles['project-folder-inner-container']}>
+                <div className={styles['table-log-container']}>
+                    <div className={styles['table-log-inner-container']}>
                         <SearchBar
                             searchValue={searchQueryFolderList}
                             handleSearchChange={handleSearchChange}
                             placeholder="Search..."
                         />
-                        <div className={styles['total-folders-container']}>
+                        <div className={styles['table-total-container']}>
                             <h4>Project Folders Overview</h4>
                             Total project folders: {totalProjectFolders}
                         </div>
@@ -276,7 +276,7 @@ export function ProjectFolderList() {
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['project-folder-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['update-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     )

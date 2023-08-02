@@ -8,7 +8,7 @@ import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
-import styles from './FilmStockInventory.module.css';
+import styles from '../styles/TableOverviewStyling.module.css';
 
 
 function FilmStockInventory() {
@@ -176,16 +176,16 @@ function FilmStockInventory() {
                 label2="Add new"
                 path2='/new/filmstockinventory'
             />
-            <main className={styles['film-stock-overview']}>
+            <main className={styles['table-log-overview']}>
                 <SidebarNav/>
-                <div className={styles['film-stock-container']}>
-                    <div className={styles['film-stock-inner-container']}>
+                <div className={styles['table-log-container']}>
+                    <div className={styles['table-log-inner-container']}>
                         <SearchBar
                             searchValue={searchQuery}
                             handleSearchChange={handleSearchChange}
                             placeholder="Search..."
                         />
-                        <div className={styles['total-inventory-container']}>
+                        <div className={styles['table-total-container']}>
                             <h4>Film Stock Inventories Overview</h4>
                             Total film stock inventories: {totalInventories}
                         </div>

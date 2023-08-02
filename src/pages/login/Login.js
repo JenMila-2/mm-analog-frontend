@@ -60,7 +60,7 @@ function Login() {
                             placeholder="Username"
                         />
                     </label>
-                    {errors.username && <p className={styles['error-label']}>{errors.username.message}</p>}
+                    {errors.username && <p className={styles['login-error-label']}>{errors.username.message}</p>}
                     <label htmlFor="password-field" className={styles['login-form-label']}>
                         Password
                         <input
@@ -73,7 +73,7 @@ function Login() {
                             placeholder="•••••••••••••••"
                         />
                     </label>
-                    {errors.password && <p className={styles['error-label']}>{errors.password.message}</p>}
+                    {errors.password && <p className={styles['login-error-label']}>{errors.password.message}</p>}
                     <button
                         type="submit"
                         className={styles['login-button']}>

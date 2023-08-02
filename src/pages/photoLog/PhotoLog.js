@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import Modal from "../../components/modal/Modal";
-import {AuthContext} from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
@@ -21,6 +21,7 @@ function PhotoLog() {
     const [photoLogs, setPhotoLogs] = useState([]);
     const [totalPhotoLogs, setTotalPhotoLogs] = useState(0);
     const photoLogsPerPage = 10;
+
     const exposureCompensationOptions = ['-3', '-2', '-1', '0', '+1', '+2', '+3'];
     const shutterSpeedOptions = ['30', '15', '8', '4', '2', '1/2', '1/4', '1/8', '1/15', '1/30', '1/60', '1/125', '1/250', '1/500', '1/1000', '1/2000'];
     const apertureOptions = ['f/1', 'f/1.4', 'f/2', 'f/2.8', 'f/4', 'f/5.6', 'f/8', 'f/11', 'f/16', 'f/22', 'f/32', 'f/45'];

@@ -3,7 +3,7 @@ import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import ProjectCard from "../../components/projectCard/ProjectCard";
 import {AuthContext} from "../../context/AuthContext";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from 'axios';
 import styles from './ProjectFolder.module.css';
 
@@ -11,9 +11,6 @@ function ProjectFolder() {
     const { user } = useContext(AuthContext);
     const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
-    const [loading, setLoading] = useState(false);
-    const [error, toggleError] = useState(false);
-    const [addSuccess, setAddSuccess] = useState(false);
     const [projectFolder, setProjectFolder] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const projectFoldersPerPage = 6;
@@ -37,50 +34,13 @@ function ProjectFolder() {
         void fetchProjectFoldersUser();
     }, []);
 
-    async function deleteProjectFolder(id) {
-        try {
-            await axios.delete(`http://localhost:8080/projectfolders/${id}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                }
-            });
-            window.location.reload();
-        } catch (e) {
-            console.error('Oops, something went wrong...', e);
-        }
-    }
-
-    async function updateProjectFolders(folder) {
-        try {
-            const { id, ...data } = folder;
-            await axios.put(
-                `http://localhost:8080/projectfolder/${id}`,
-                {
-                    ...data,
-                    username: user.username,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            setAddSuccess(true);
-        } catch (e) {
-            console.error('Oops, something went wrong...', e);
-        }
-        setLoading(false);
-    }
-
     return (
         <>
             <header className={styles['title-container']}>
                 <h1 className={styles.title}>Photo Projects</h1>
             </header>
             <DividerNavBar
-                label1="List"
+                label1="List projects"
                 path1="/projectfolders/list"
                 label2="Add new"
                 path2="/new/projectfolder"

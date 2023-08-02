@@ -1,21 +1,21 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
-import {AuthContext} from "../../context/AuthContext";
-import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { useForm } from "react-hook-form";
+import {Link, useNavigate} from "react-router-dom";
 import {MdOutlineDone} from "react-icons/md";
 import axios from 'axios';
 import styles from './UploadImage.module.css';
 
 function UploadImage() {
     const { user: {username} } = useContext(AuthContext);
-    const {register, formState: { errors }, handleSubmit} = useForm();
+    const {register, formState: { errors } } = useForm();
     const token = localStorage.getItem('token');
     const [file, setFile] = useState([]);
     const [previewUrl, setPreviewUrl] = useState('');
-    const [folderId, setFolderId] = useState("");
-    const [projectFolders, setProjectFolders] = useState([]);
+    const [photoLogId, setPhotoLogId] = useState("");
+    const [photoLogs, setPhotoLogs] = useState([]);
     const [addSuccess, setAddSuccess] = useState(false);
     const [error, toggleError] = useState(false);
     const navigate = useNavigate();
@@ -42,19 +42,19 @@ function UploadImage() {
     }
 
     useEffect(() => {
-        async function fetchProjectFolders() {
+        async function fetchPhotoLogs() {
             try {
-                const response = await axios.get(`http://localhost:8080/projectfolders/user/${username}`, {
+                const response = await axios.get(`http://localhost:8080/photologs/user/${username}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setProjectFolders(response.data);
+                setPhotoLogs(response.data);
             } catch (error) {
-                console.error("Error fetching project folders", error);
+                console.error("Error fetching photo logs", error);
             }
         }
-        void fetchProjectFolders();
+        void fetchPhotoLogs();
     }, [username, token]);
 
     async function sendImage(e) {
@@ -65,7 +65,7 @@ function UploadImage() {
 
         try {
             const response = await axios.post(
-                `http://localhost:8080/projectfolders/${folderId}/photo`,
+                `http://localhost:8080/photologs/${photoLogId}/photo`,
                 formData,
                 {
                     headers: {
@@ -77,10 +77,10 @@ function UploadImage() {
             console.log(response.data);
             setFile(null);
             setPreviewUrl(null);
-            setFolderId("");
+            setPhotoLogId("");
             showSuccessMessage();
         } catch (error) {
-            console.error("Error uploading image:", error);
+            console.error("Error uploading image", error);
             toggleError(true);
         }
     }
@@ -92,11 +92,13 @@ function UploadImage() {
             )}
             <header className={styles['title-container']}>
                 <h1 className={styles.title}>Upload Image</h1>
+                <p className={styles['header-subtext']}>Make sure you create the photo log first or select an existing photo log from the list.</p>
+                <p className={styles['header-subtext']}>To create a new photo log go to <Link to={'/new/photolog'} className={styles['link-to-photo-log-upload']}>new photo log</Link></p>
             </header>
             <DividerNavBar
                 label1="Projects"
                 path1="/projectfolders"
-                label2="Photo Logs"
+                label2="Photo Log List"
                 path2="/photologs"
             />
             <main className={styles['upload-image-overview']}>
@@ -104,12 +106,12 @@ function UploadImage() {
                 <div className={styles['upload-image-container']}>
                     <div className={styles['upload-image-inner-container']}>
                         <form onSubmit={sendImage} className={styles.form}>
-                            <label htmlFor="project-image" className={styles['image-label']}>
+                            <label htmlFor="photo-log-image" className={styles['image-label']}>
                                 Choose an image
                                 <input
                                     type="file"
                                     name="image-field"
-                                    id="project-image"
+                                    id="photo-log-image"
                                     onChange={handleImageChange}
                                     className={styles['image-upload-field']}
                                 />
@@ -120,28 +122,28 @@ function UploadImage() {
                                     <img src={previewUrl} alt="preview" className={styles['uploaded-image']}/>
                                 </label>
                             }
-                            <label htmlFor="projectFolder" className={styles['upload-form-label']}>
-                                Project Folder
+                            <label htmlFor="photoLog" className={styles['upload-form-label']}>
+                                Photo Log
                                 <select
-                                    id="projectFolder"
-                                    className={styles['project-folder-select-field']}
-                                    {...register("projectFolder", {
-                                        required: "Project Folder is required",
+                                    id="photoLog"
+                                    className={styles['photo-log-select-field']}
+                                    {...register("photoLog", {
+                                        required: "Photo log is required",
                                     })}
                                     autoComplete="off"
-                                    value={folderId}
-                                    onChange={(e) => setFolderId(e.target.value)}
+                                    value={photoLogId}
+                                    onChange={(e) => setPhotoLogId(e.target.value)}
                                 >
-                                    <option value="">Select a project folder</option>
-                                    {projectFolders.map((folder) => (
-                                        <option key={folder.id} value={folder.id}>
-                                            {folder.projectTitle}
+                                    <option value="">Select a photo log</option>
+                                    {photoLogs.map((log) => (
+                                        <option key={log.id} value={log.id}>
+                                            {log.title}
                                         </option>
                                     ))}
                                 </select>
                             </label>
-                            {errors.projectFolder && <p className={styles['upload-error-label']}>{errors.projectFolder.message}</p>}
-                            {error && <p className={styles['upload-error-label']}>Please select a project folder before uploading an image!</p>}
+                            {errors.photoLog && <p className={styles['upload-error-label']}>{errors.photoLog.message}</p>}
+                            {error && <p className={styles['upload-error-label']}>Please select a photo log before uploading an image!</p>}
                             <div className={styles['upload-button-container']}>
                                 <button type="button" onClick={handleCancel} className={styles['upload-cancel-button']}>
                                     Cancel

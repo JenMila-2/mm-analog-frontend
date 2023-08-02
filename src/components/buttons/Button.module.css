@@ -58,7 +58,7 @@
 }
 
 .nav-button-small {
-    width: 80px;
+    width: 120px;
     border-radius: 50px;
     color: var(--errie-black);
     background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);

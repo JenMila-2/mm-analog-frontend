@@ -1,0 +1,162 @@
+table, td {
+    border: 1px solid var(--alabaster);
+}
+
+th {
+    font-size: 14px;
+    color: var(--errie-black);
+    text-transform: uppercase;
+}
+
+td, th {
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+    text-align: center;
+    border-collapse: collapse;
+    background-color: var(--white);
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    font-size: 40px;
+}
+
+.admin-dashboard-overview {
+    width: 100%;
+    display: flex;
+}
+
+.admin-dashboard-container {
+    padding: 20px;
+    margin-left: 30px;
+    overflow-y: hidden;
+}
+
+.admin-dashboard-inner-container {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    margin-top: 60px;
+    border-radius: 10px;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+}
+
+.total-overview-container {
+    display: flex;
+    font-size: 14px;
+    text-align: left;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.table-wrapper {
+    max-width: 100%;
+    position: relative;
+    overflow-x: scroll;
+}
+
+.id-column {
+    font-size: 12px;
+    color: var(--grey);
+}
+
+.username-field {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--davys-gray);
+}
+
+.input-field-value {
+    font-size: 14px;
+    min-width: 150px;
+    border-radius: 5px;
+    border-color: var(--platinum);
+    font-family: "Open Sans", sans-serif;
+}
+
+.input-field-value-notes {
+    font-size: 14px;
+    text-align: left;
+    min-width: 350px;
+    border-radius: 5px;
+    border-color: var(--platinum);
+    font-family: "Open Sans", sans-serif;
+}
+
+.icon {
+    cursor: pointer;
+    margin-right: 10px;
+    align-content: center;
+    color: var(--jet);
+}
+
+.disabled-icon {
+    opacity: 0.5;
+    margin-right: 10px;
+    color: var(--grey);
+    pointer-events: none;
+}
+
+.page-navigation-container {
+    gap: 10px;
+    display: flex;
+    padding-top: 15px;
+}
+
+.page-navigation-button {
+    width: 80px;
+    padding: 5px;
+    outline: none;
+    text-align: center;
+    border-radius: 6px;
+    border: 0 solid var(--errie-black);
+    font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}
+
+.page-navigation-button:hover {
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--errie-black);
+}
+
+.page-navigation-button:disabled {
+    cursor: not-allowed;
+    color: var(--grey);
+    background-color: var(--hover-baby-powder);
+}
+
+.user-projects-success-message {
+    top: 50%;
+    left: 50%;
+    padding: 15px;
+    z-index: 9999;
+    position: fixed;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--errie-black);
+    background-color: var(--white);
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--errie-black);
+}
+
+.check-icon {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--emerald);
+}

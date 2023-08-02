@@ -1,0 +1,106 @@
+.form-header {
+    display: flex;
+    margin-top: 25px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.new-entry-form-container {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.new-entry-form-inner-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-entry-success-message {
+    display: flex;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--errie-black);
+    background-color: var(--white);
+}
+
+.form-wrapper {
+    width: 100%;
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+}
+
+.form {
+    width: 50%;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    font-family: "Open Sans", sans-serif;
+}
+
+.label-form {
+    font-size: 14px;
+    padding-top: 5px;
+    color: var(--jet);
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+}
+
+.new-entry-input-field {
+    width: 100%;
+    margin: 6px 0;
+    display: block;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--platinum);
+    font-family: "Open Sans", sans-serif;
+}
+
+.new-entry-select-field {
+    display: block;
+    margin: 6px 0;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border-color: var(--platinum);
+    font-family: "Open Sans", sans-serif;
+}
+
+.error-label {
+    font-size: 12px;
+    margin-top: -4px;
+    padding-bottom: 8px;
+    color: var(--crimson);
+}
+
+.buttons-container {
+    gap: 10px;
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+}
+
+.form-button {
+    width: 80px;
+    outline: none;
+    border-radius: 50px;
+    color: var(--errie-black);
+    padding: 5px 10px 5px 10px;
+    border: 0 solid var(--errie-black);
+    background-color: var(--alabaster);
+    font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}
+
+.form-button:hover {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    background-color: var(--hover-raisin-black);
+}

@@ -2,27 +2,62 @@ import React from 'react';
 
 export const SidebarData = [
     {
-        title: "My Projects",
-        path: "/projects"
+        title: "Photo Projects",
+        path: "/projectfolders",
+        roles: ['ROLE_USER'],
     },
 
     {
-        title: "My Photo Gallery",
-        path: "/photogallery"
+        title: "Stock Inventories",
+        path: "/filmstockinventories",
+        roles: ['ROLE_USER'],
     },
 
     {
-        title: "My Account",
-        path: "/accountsettings"
+        title: "Development Logs",
+        path: "/filmdevelopmentlogs",
+        roles: ['ROLE_USER'],
     },
 
     {
-        title: "Log off",
-        path: "/logoff"
+        title: "Profile",
+        path: "/profile",
+        roles: ['ROLE_USER'],
     },
 
     {
-        title: "Admin",
-        path: "/admin"
-    }
+        title: "Users",
+        path: "/admin/dashboard/users",
+        roles: ['ROLE_ADMIN'],
+    },
+
+    {
+        title: "All Folders",
+        path: "/admin/dashboard/projectfolders",
+        roles: ['ROLE_ADMIN'],
+    },
+
+    {
+        title: "All Photo Logs",
+        path: "/admin/dashboard/photologs",
+        roles: ['ROLE_ADMIN'],
+    },
+
+    {
+        title: "All Stock Inventories",
+        path: "/admin/dashboard/filmstockinventories",
+        roles: ['ROLE_ADMIN'],
+    },
+
+    {
+        title: "All Development Logs",
+        path: "/admin/dashboard/filmdevelopmentlogs",
+        roles: ['ROLE_ADMIN'],
+    },
+
+    {
+        title: "Admin Profile",
+        path: "/profile",
+        roles: ['ROLE_ADMIN'],
+    },
 ]

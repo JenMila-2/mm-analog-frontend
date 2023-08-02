@@ -1,0 +1,25 @@
+.welcome-page-container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.welcome-title {
+    font-size: 40px;
+    padding-bottom: 10px;
+}
+
+.welcome-text {
+    text-align: center;
+    padding: 25px 0 25px 0;
+}
+
+.camera-icon {
+    font-size: 30px;
+}
+
+.photo-quote {
+    padding-top: 30px;
+}

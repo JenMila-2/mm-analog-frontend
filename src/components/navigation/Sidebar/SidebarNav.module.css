@@ -1,0 +1,60 @@
+.sidebar-color-admin {
+    background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
+}
+
+.sidebar-color-user {
+    background: linear-gradient(90deg, hsla(52, 17%, 91%, 1) 15%, hsla(51, 11%, 87%, 1) 58%, hsla(0, 0%, 87%, 1) 100%);
+}
+
+.left-sidebar-nav {
+    z-index: 10;
+    width: 200px;
+    height: 100vh;
+    position: sticky;
+    padding-top: 25px;
+    margin-left: 15px;
+    border-radius: 6px;
+    transition: width 0.3s ease-in-out;
+}
+
+.left-sidebar-closed {
+    width: 60px;
+    composes: left-sidebar-nav;
+    transition: width 0.3s ease-in-out;
+}
+
+.left-sidebar-icon {
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.left-sidebar-item {
+    display: flex;
+    cursor: pointer;
+    font-size: 15px;
+    overflow: hidden;
+    border-radius: 8px;
+    padding: 10px 20px;
+    align-items: center;
+    color: var(--errie-black);
+}
+
+.left-sidebar-item a {
+    text-decoration: none;
+    color: var(--errie-black);
+    transition: background-color 0.4s ease;
+}
+
+.left-sidebar-item a:active {
+    font-weight: bold;
+}
+
+.left-sidebar-item:hover {
+    font-weight: bold;
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+.left-sidebar-item-title {
+    padding-left: 16px;
+}

@@ -27,6 +27,7 @@ import NewPhotoLog from "./pages/newEntries/newPhotoLog/NewPhotoLog";
 import ProjectFolderPage from "./pages/projectFolder/ProjectFolderPage";
 import NewProjectFolder from "./pages/newEntries/newProjectFolder/NewProjectFolder";
 import ProjectFolderList from "./pages/projectFolderList/ProjectFolderList";
+import PageNotFound from "./pages/notFound/PageNotFound";
 import './App.css';
 
 function App() {
@@ -122,6 +123,7 @@ function App() {
                     path="/admin/dashboard/filmdevelopmentlogs"
                     element={auth ? <UserDevelopmentLogs /> : <Navigate to="/" />}
                 />
+                <Route path="*" element={<PageNotFound />}/>
             </Routes>
         </>
     );

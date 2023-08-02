@@ -1,0 +1,43 @@
+.page-not-found-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page-not-found-404-title {
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.page-not-found-title {
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+.page-not-found-text {
+    text-align: center;
+    padding: 25px 0 25px 0;
+}
+
+.image-container-page-not-found {
+    width: 20%;
+}
+
+.image-page-not-found {
+    width: 100%;
+    padding-top: 20px;
+}
+
+.link-to-home {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--errie-black);
+}
+
+.link-to-home:hover {
+    color: var(--mikado-yellow);
+}

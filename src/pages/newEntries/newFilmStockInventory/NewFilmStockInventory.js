@@ -133,7 +133,7 @@ function NewFilmStockInventory() {
                                     Format
                                     <select
                                         id="format"
-                                        className={styles['new-entry-input-field']}
+                                        className={styles['new-entry-select-field']}
                                         {...register("format", {
                                             required: "Please select a format",
                                         })}
@@ -162,7 +162,7 @@ function NewFilmStockInventory() {
                                     Development Process
                                     <select
                                         id="developmentProcess"
-                                        className={styles['new-entry-input-field']}
+                                        className={styles['new-entry-select-field']}
                                         {...register("developmentProcess", {
                                             required: "Please select a process",
                                         })}

@@ -94,6 +94,9 @@ function UploadImage() {
                 <h1 className={styles.title}>Upload Image</h1>
                 <p className={styles['header-subtext']}>Make sure you create the photo log first or select an existing photo log from the list.</p>
                 <p className={styles['header-subtext']}>To create a new photo log go to <Link to={'/new/photolog'} className={styles['link-to-photo-log-upload']}>new photo log</Link></p>
+                <br/>
+                <p className={styles['header-subtext']}>If you select a photo log that already has a photo assigned to it, the existing photo will be replaced with the new upload.</p>
+                <br/>
             </header>
             <DividerNavBar
                 label1="Projects"

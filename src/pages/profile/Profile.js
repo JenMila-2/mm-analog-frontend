@@ -46,7 +46,7 @@ function Profile() {
                     </div>
                     <div className={styles['user-details-field']}>
                         <p><strong>Danger zone!</strong></p>
-                        <p className={styles['delete-account-message']}>Delete my account</p>
+                        <p><Link to="/delete/account" className={styles['delete-account-link']}>Delete my account</Link></p>
                     </div>
                 </div>
             </main>

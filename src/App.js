@@ -29,6 +29,7 @@ import NewProjectFolder from "./pages/newEntries/newProjectFolder/NewProjectFold
 import ProjectFolderList from "./pages/projectFolderList/ProjectFolderList";
 import PageNotFound from "./pages/notFound/PageNotFound";
 import './App.css';
+import DeleteAccount from "./pages/updateProfileDetails/DeleteAccount";
 
 function App() {
     const { auth } = useContext(AuthContext);
@@ -54,6 +55,10 @@ function App() {
                 <Route
                     path="/projectfolder/:folderId"
                     element={auth ? <ProjectFolderPage /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/projectfolders/list"
+                    element={auth ? <ProjectFolderList /> : <Navigate to="/" />}
                 />
                 <Route
                     path="/photologs"
@@ -88,10 +93,6 @@ function App() {
                     element={auth ? <NewProjectFolder /> : <Navigate to="/" />}
                 />
                 <Route
-                    path="/projectfolders/list"
-                    element={auth ? <ProjectFolderList /> : <Navigate to="/" />}
-                />
-                <Route
                     path="/new/photolog"
                     element={auth ? <NewPhotoLog /> : <Navigate to="/" />}
                 />
@@ -122,6 +123,10 @@ function App() {
                 <Route
                     path="/admin/dashboard/filmdevelopmentlogs"
                     element={auth ? <UserDevelopmentLogs /> : <Navigate to="/" />}
+                />
+                <Route
+                    path="/delete/account"
+                    element={auth ? <DeleteAccount /> : <Navigate to="/" />}
                 />
                 <Route path="*" element={<PageNotFound />}/>
             </Routes>

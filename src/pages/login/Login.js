@@ -88,7 +88,7 @@ function Login() {
                             Log off
                         </button>
                     }
-                    {error && <p className={styles['error-label']}>Oops, something went wrong... Please try again!</p> }
+                    {error && <p className={styles['login-error-label']}>Oops, something went wrong... Please try again!</p> }
                     <p>Don't have an account? <Link className={styles['signup-link']} to="/signup">Sign up</Link>!</p>
                 </div>
             {addSuccess === true && <p>Log in to your account was successful!</p>}

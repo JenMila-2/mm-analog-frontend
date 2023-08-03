@@ -13,8 +13,8 @@
 }
 
 .update-page-sub-text {
-    padding-top: 10px;
     font-size: 14px;
+    padding-top: 10px;
 }
 
 .update-link-profile {
@@ -39,8 +39,8 @@
     display: flex;
     padding: 15px;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
 }
 
 .update-profile-form {
@@ -109,4 +109,76 @@
     transform: translateY(-2px);
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     background-color: var(--hover-raisin-black);
+}
+
+/*-----------Delete Account------------*/
+.delete-page-title {
+    font-size: 40px;
+    padding-bottom: 20px;
+}
+
+.delete-page-sub-text {
+    font-size: 16px;
+    padding-top: 5px;
+}
+
+.delete-warning-sub-text {
+    font-size: 14px;
+    padding-top: 30px;
+    font-weight: bold;
+    color: var(--crimson);
+}
+
+.delete-page-container {
+    display: flex;
+    padding: 15px;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.delete-button-containers {
+    gap: 15px;
+    display: flex;
+    padding-top: 25px;
+}
+
+.confirm-delete-account-button, .cancel-delete-account-button {
+    width: 200px;
+    outline: none;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50px;
+    color: var(--white);
+    border: 0 solid var(--white-light-background);
+    background-color: var(--crimson);
+    font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}
+
+.confirm-delete-account-button:hover {
+    cursor: pointer;
+    color: var(--white);
+    text-transform: uppercase;
+    transform: translateY(-2px);
+    border: 1px solid var(--crimson);
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+
+.cancel-delete-account-button {
+    color: var(--errie-black);
+    background-color: var(--anti-flash-white);
+}
+
+.cancel-delete-account-button:hover {
+    transform: translateY(-2px);
+    border: 1px solid var(--jet);
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+
+.delete-icon-container {
+    font-size: 60px;
+    padding-top: 20px;
 }

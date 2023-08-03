@@ -1,7 +1,5 @@
-/*--------------------------------------Global styling for pages--------------------------------------*/
+/*--------------------------------------Styling for pages--------------------------------------*/
 /*-------------film development log, film stock inventory, photo log, project folder list-------------*/
-
-/*-------------Main-------------*/
 
 table, td {
     border: 1px solid var(--alabaster);
@@ -166,7 +164,6 @@ input[type='number']{
 
 
 /*-------------Photo Log page-------------*/
-
 .project-folder-field {
     font-size: 14px;
     color: var(--jet);
@@ -185,7 +182,6 @@ input[type='number']{
 }
 
 /*-------------Project Folder page-------------*/
-
 .folder-textarea-field {
     padding: 5px;
     min-width: 400px;

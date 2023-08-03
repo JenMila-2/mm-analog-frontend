@@ -60,7 +60,7 @@ function Login() {
                             placeholder="Username"
                         />
                     </label>
-                    {errors.username && <p className={styles['error-label']}>{errors.username.message}</p>}
+                    {errors.username && <p className={styles['login-error-label']}>{errors.username.message}</p>}
                     <label htmlFor="password-field" className={styles['login-form-label']}>
                         Password
                         <input
@@ -73,7 +73,7 @@ function Login() {
                             placeholder="•••••••••••••••"
                         />
                     </label>
-                    {errors.password && <p className={styles['error-label']}>{errors.password.message}</p>}
+                    {errors.password && <p className={styles['login-error-label']}>{errors.password.message}</p>}
                     <button
                         type="submit"
                         className={styles['login-button']}>
@@ -88,7 +88,7 @@ function Login() {
                             Log off
                         </button>
                     }
-                    {error && <p className={styles['error-label']}>Oops, something went wrong... Please try again!</p> }
+                    {error && <p className={styles['login-error-label']}>Oops, something went wrong... Please try again!</p> }
                     <p>Don't have an account? <Link className={styles['signup-link']} to="/signup">Sign up</Link>!</p>
                 </div>
             {addSuccess === true && <p>Log in to your account was successful!</p>}

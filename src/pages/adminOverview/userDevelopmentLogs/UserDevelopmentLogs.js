@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SidebarNav from "../../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../../components/searchbar/SearchBar";
 import Modal from "../../../components/modal/Modal";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
@@ -18,6 +19,11 @@ export function UserDevelopmentLogs() {
     const [totalDevelopmentLogs, setTotalDevelopmentLogs] = useState(0);
     const developmentLogsPerPage = 10;
     const renderYesNo = (value) => (value ? 'Yes' : 'No');
+
+    const [searchQueryAdminList, setSearchQueryAdminList] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQueryAdminList(event.target.value);
+    };
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -38,15 +44,20 @@ export function UserDevelopmentLogs() {
                     },
                     cancelToken: source.token,
                 });
-                setDevelopmentLogs(response.data);
-                setTotalDevelopmentLogs(response.data.length);
+                const filteredDevelopmentLogs = response.data.filter((log) =>
+                    Object.values(log).some((value) =>
+                        String(value).toLowerCase().includes(searchQueryAdminList.toLowerCase())
+                    )
+                );
+                setDevelopmentLogs(filteredDevelopmentLogs);
+                setTotalDevelopmentLogs(filteredDevelopmentLogs.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchUsersFilmDevelopmentLogs();
-    }, []);
+    }, [searchQueryAdminList]);
 
     async function deleteUserFilmDevelopmentLog(developmentLog) {
         try {
@@ -107,6 +118,11 @@ export function UserDevelopmentLogs() {
                 <SidebarNav />
                 <div className={styles['admin-dashboard-container']}>
                     <div className={styles['admin-dashboard-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQueryAdminList}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
                         <div className={styles['total-overview-container']}>
                             <h4>User Film Development Logs Overview</h4>
                             Total film development logs: {totalDevelopmentLogs}

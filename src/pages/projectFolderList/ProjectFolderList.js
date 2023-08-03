@@ -1,13 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
+import {AuthContext} from "../../context/AuthContext";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
-import {AuthContext} from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
-import styles from './ProjectFolderList.module.css';
+import styles from '../styles/TableOverviewStyling.module.css';
 
 export function ProjectFolderList() {
     const { user } = useContext(AuthContext);
@@ -21,6 +22,11 @@ export function ProjectFolderList() {
     const [projectFolders, setProjectFolders] = useState([]);
     const [totalProjectFolders, setTotalProjectFolders] = useState(0);
     const projectFoldersPerPage = 10;
+
+    const [searchQueryFolderList, setSearchQueryFolderList] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQueryFolderList(event.target.value);
+    };
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -41,15 +47,20 @@ export function ProjectFolderList() {
                     },
                     cancelToken: source.token,
                 });
-                setProjectFolders(response.data);
-                setTotalProjectFolders(response.data.length);
+                const filteredProjectFolders = response.data.filter((folder) =>
+                    Object.values(folder).some((value) =>
+                        String(value).toLowerCase().includes(searchQueryFolderList.toLowerCase())
+                    )
+                );
+                setProjectFolders(filteredProjectFolders);
+                setTotalProjectFolders(filteredProjectFolders.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchProjectFoldersUser();
-    }, []);
+    }, [searchQueryFolderList]);
 
     async function deleteProjectFolder(id) {
         try {
@@ -161,11 +172,16 @@ export function ProjectFolderList() {
                 label2="Add new"
                 path2="/new/projectfolder"
             />
-            <main className={styles['project-folder-overview']}>
+            <main className={styles['table-log-overview']}>
                 <SidebarNav />
-                <div className={styles['project-folder-container']}>
-                    <div className={styles['project-folder-inner-container']}>
-                        <div className={styles['total-folders-container']}>
+                <div className={styles['table-log-container']}>
+                    <div className={styles['table-log-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQueryFolderList}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
+                        <div className={styles['table-total-container']}>
                             <h4>Project Folders Overview</h4>
                             Total project folders: {totalProjectFolders}
                         </div>
@@ -260,7 +276,7 @@ export function ProjectFolderList() {
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['project-folder-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['update-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     )

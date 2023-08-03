@@ -58,8 +58,13 @@
     color: var(--mikado-yellow);
 }
 
-.delete-account-message {
+.delete-account-link {
     font-size: 14px;
     font-weight: bold;
     color: var(--crimson);
+    text-decoration: none;
+}
+
+.delete-account-link:hover {
+    text-transform: uppercase;
 }

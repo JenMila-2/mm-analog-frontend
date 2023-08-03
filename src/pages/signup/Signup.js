@@ -67,7 +67,7 @@ function Signup() {
                             autoComplete="off"
                         />
                     </label>
-                    {errors.name && <p className={styles['error-label']}>{errors.name.message}</p>}
+                    {errors.name && <p className={styles['signup-error-label']}>{errors.name.message}</p>}
                     <label htmlFor="username-field" className={styles['signup-form-label']}>
                         Username
                         <input
@@ -85,7 +85,7 @@ function Signup() {
                             autoComplete="off"
                         />
                     </label>
-                    {errors.username && <p className={styles['error-label']}>{errors.username.message}</p>}
+                    {errors.username && <p className={styles['signup-error-label']}>{errors.username.message}</p>}
                     <label htmlFor="email-field" className={styles['signup-form-label']}>
                         Email
                         <input
@@ -103,8 +103,8 @@ function Signup() {
                             autoComplete="off"
                         />
                     </label>
-                    {errors.email && <p className={styles['error-label']}>{errors.email.message}</p>}
-                    {error && <p className={styles['error-label']}>Email already exist. Please try a different email.</p>}
+                    {errors.email && <p className={styles['signup-error-label']}>{errors.email.message}</p>}
+                    {error && <p className={styles['signup-error-label']}>Email already exist. Please try a different email.</p>}
                     <label htmlFor="password-field" className={styles['signup-form-label']}>
                         Password
                         <input
@@ -122,7 +122,7 @@ function Signup() {
                             autoComplete="off"
                         />
                     </label>
-                    {errors.password && <p className={styles['error-label']}>{errors.password.message}</p>}
+                    {errors.password && <p className={styles['signup-error-label']}>{errors.password.message}</p>}
                     <button type="submit" className={styles['create-account-button']}>
                         Create account
                     </button>

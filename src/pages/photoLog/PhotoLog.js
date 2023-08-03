@@ -1,13 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
 import { AuthContext } from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
-import styles from './PhotoLog.module.css';
+import styles from '../styles/TableOverviewStyling.module.css';
 
 function PhotoLog() {
     const { user } = useContext(AuthContext);
@@ -25,6 +26,11 @@ function PhotoLog() {
     const exposureCompensationOptions = ['-3', '-2', '-1', '0', '+1', '+2', '+3'];
     const shutterSpeedOptions = ['30', '15', '8', '4', '2', '1/2', '1/4', '1/8', '1/15', '1/30', '1/60', '1/125', '1/250', '1/500', '1/1000', '1/2000'];
     const apertureOptions = ['f/1', 'f/1.4', 'f/2', 'f/2.8', 'f/4', 'f/5.6', 'f/8', 'f/11', 'f/16', 'f/22', 'f/32', 'f/45'];
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
 
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
@@ -45,15 +51,20 @@ function PhotoLog() {
                     },
                     cancelToken: source.token,
                 });
-                setPhotoLogs(response.data);
-                setTotalPhotoLogs(response.data.length);
+                const filteredPhotoLogs = response.data.filter((log) =>
+                    Object.values(log).some((value) =>
+                        String(value).toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                );
+                setPhotoLogs(filteredPhotoLogs );
+                setTotalPhotoLogs(filteredPhotoLogs.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchPhotoLogsUser();
-    }, []);
+    }, [searchQuery]);
 
     async function deletePhotoLog(id) {
         try {
@@ -165,11 +176,16 @@ function PhotoLog() {
                 label2="Add new"
                 path2="/new/photolog"
             />
-            <main className={styles['photo-log-overview']}>
+            <main className={styles['table-log-overview']}>
                 <SidebarNav />
-                <div className={styles['photo-log-container']}>
-                    <div className={styles['photo-log-inner-container']}>
-                        <div className={styles['total-log-container']}>
+                <div className={styles['table-log-container']}>
+                    <div className={styles['table-log-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQuery}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
+                        <div className={styles['table-total-container']}>
                             <h4>Photo Logs Overview</h4>
                             Total photo logs: {totalPhotoLogs}
                         </div>
@@ -299,7 +315,7 @@ function PhotoLog() {
                                                     id="notes"
                                                     cols="20"
                                                     rows="4"
-                                                    className={styles['textarea-field-value']}
+                                                    className={styles['photo-log-textarea-field']}
                                                     defaultValue={log.notes}
                                                     onChange={(e) => handleUpdate(e, log.id, "notes")}
                                                 />
@@ -351,7 +367,7 @@ function PhotoLog() {
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['photo-log-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['update-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     )

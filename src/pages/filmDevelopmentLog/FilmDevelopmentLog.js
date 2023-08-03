@@ -1,13 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
 import {AuthContext} from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
 import axios from 'axios';
-import styles from './FilmDevelopmentLog.module.css';
+import styles from '../styles/TableOverviewStyling.module.css';
 
 function FilmDevelopmentLog() {
     const { user } = useContext(AuthContext);
@@ -30,6 +31,11 @@ function FilmDevelopmentLog() {
         { label: 'No', value: false },
     ];
 
+    const [searchQuery, setSearchQuery] = useState('');
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
     const handleRowSelect = (id) => {
         const selected = selectedRows.includes(id);
         if (selected) {
@@ -49,15 +55,20 @@ function FilmDevelopmentLog() {
                     },
                     cancelToken: source.token,
                 });
-                setDevelopmentLogs(response.data);
-                setTotalDevelopmentLogs(response.data.length);
+                const filteredDevelopmentLogs = response.data.filter((log) =>
+                    Object.values(log).some((value) =>
+                        String(value).toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                );
+                setDevelopmentLogs(filteredDevelopmentLogs);
+                setTotalDevelopmentLogs(filteredDevelopmentLogs.length);
                 console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
         }
         void fetchDevelopmentLogsUser();
-    }, []);
+    }, [searchQuery]);
 
     async function deleteDevelopmentLog(id) {
         try {
@@ -169,11 +180,16 @@ function FilmDevelopmentLog() {
             label2="Add new"
             path2="/new/filmdevelopmentlog"
             />
-            <main className={styles['development-log-overview']}>
+            <main className={styles['table-log-overview']}>
                 <SidebarNav />
-                <div className={styles['development-log-container']}>
-                    <div className={styles['development-log-inner-container']}>
-                        <div className={styles['total-log-container']}>
+                <div className={styles['table-log-container']}>
+                    <div className={styles['table-log-inner-container']}>
+                        <SearchBar
+                            searchValue={searchQuery}
+                            handleSearchChange={handleSearchChange}
+                            placeholder="Search..."
+                        />
+                        <div className={styles['table-total-container']}>
                             <h4>Film Development Logs Overview</h4>
                             Total film development logs: {totalDevelopmentLogs}
                         </div>
@@ -416,7 +432,7 @@ function FilmDevelopmentLog() {
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['log-update-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['update-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     );

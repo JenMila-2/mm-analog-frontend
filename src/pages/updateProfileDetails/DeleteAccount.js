@@ -1,9 +1,9 @@
-import React, {useContext} from 'react';
-import {AuthContext} from "../../context/AuthContext";
-import {useNavigate} from "react-router-dom";
+import React, { useContext } from 'react';
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineUserDelete } from "react-icons/ai";
 import axios from "axios";
 import styles from './UpdateProfileDetails.module.css';
-import {AiOutlineUserDelete} from "react-icons/ai";
 
 export function DeleteAccount() {
     const { user } = useContext(AuthContext);
@@ -14,7 +14,7 @@ export function DeleteAccount() {
         navigate(-1);
     };
 
-    async function deleteMyAccount(username) {
+    async function deleteMyAccount() {
         try {
             await axios.delete(`http://localhost:8080/users/${user.username}`, {
                 headers: {

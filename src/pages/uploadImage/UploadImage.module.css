@@ -81,6 +81,11 @@
     font-family: "Open Sans", sans-serif;
 }
 
+.upload-form-label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .uploaded-image {
     width: 60%;
     padding: 20px;
@@ -92,16 +97,11 @@ input[type='file']{
     border-color: var(--silver);
 }
 
-.upload-form-label {
-    font-size: 14px;
-    font-weight: bold;
-}
-
 .photo-log-select-field {
-    display: block;
     padding: 5px;
-    border-radius: 5px;
+    display: block;
     margin-top: 5px;
+    border-radius: 5px;
     border-color: var(--silver);
 }
 

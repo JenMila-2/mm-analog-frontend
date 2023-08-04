@@ -1,16 +1,16 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import ProjectCard from "../../components/projectCard/ProjectCard";
-import {AuthContext} from "../../context/AuthContext";
-import {Link} from "react-router-dom";
 import axios from 'axios';
 import styles from './ProjectFolder.module.css';
 
 function ProjectFolder() {
     const { user } = useContext(AuthContext);
-    const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
+    const token = localStorage.getItem('token');
     const [projectFolder, setProjectFolder] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const projectFoldersPerPage = 6;

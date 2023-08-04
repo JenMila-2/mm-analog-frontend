@@ -1,4 +1,4 @@
-.log-modal-overlay {
+.modal-overlay {
     top: 0;
     left: 0;
     right: 0;
@@ -10,7 +10,7 @@
     background-color: var(--errie-black);
 }
 
-.log-modal-content {
+.modal-content {
     padding: 20px;
     max-width: 400px;
     border-radius: 5px;

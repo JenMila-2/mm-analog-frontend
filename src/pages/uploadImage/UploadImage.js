@@ -1,24 +1,24 @@
-import React, {useContext, useEffect, useState} from 'react';
-import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
-import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from "../../context/AuthContext";
 import { useForm } from "react-hook-form";
-import {Link, useNavigate} from "react-router-dom";
-import {MdOutlineDone} from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
+import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
+import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
+import { MdOutlineDone } from "react-icons/md";
 import axios from 'axios';
 import styles from './UploadImage.module.css';
 
 function UploadImage() {
     const { user: {username} } = useContext(AuthContext);
-    const {register, formState: { errors } } = useForm();
+    const { register, formState: {errors} } = useForm();
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
     const [file, setFile] = useState([]);
     const [previewUrl, setPreviewUrl] = useState('');
     const [photoLogId, setPhotoLogId] = useState("");
     const [photoLogs, setPhotoLogs] = useState([]);
     const [addSuccess, setAddSuccess] = useState(false);
     const [error, toggleError] = useState(false);
-    const navigate = useNavigate();
 
     function showSuccessMessage() {
         setAddSuccess(true);
@@ -95,13 +95,13 @@ function UploadImage() {
                 <p className={styles['header-subtext']}>Make sure you create the photo log first or select an existing photo log from the list.</p>
                 <p className={styles['header-subtext']}>To create a new photo log go to <Link to={'/new/photolog'} className={styles['link-to-photo-log-upload']}>new photo log</Link></p>
                 <br/>
-                <p className={styles['header-subtext']}>If you select a photo log that already has a photo assigned to it, the existing photo will be replaced with the new upload.</p>
+                <p className={styles['header-subtext']}>If you select a photo log that already has an image assigned to it, the existing image will be replaced with the new upload.</p>
                 <br/>
             </header>
             <DividerNavBar
                 label1="Projects"
                 path1="/projectfolders"
-                label2="Photo Log List"
+                label2="List photo logs"
                 path2="/photologs"
             />
             <main className={styles['upload-image-overview']}>

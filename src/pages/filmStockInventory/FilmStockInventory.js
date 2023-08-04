@@ -1,20 +1,20 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
-import {AuthContext} from "../../context/AuthContext";
-import {RiDeleteBin6Line} from "react-icons/ri";
-import {MdOutlineDone} from "react-icons/md";
-import {AiFillEdit} from "react-icons/ai";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineDone } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
 import axios from 'axios';
 import styles from '../styles/TableOverviewStyling.module.css';
 
 
 function FilmStockInventory() {
     const { user } = useContext(AuthContext);
-    const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
+    const token = localStorage.getItem('token');
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
@@ -23,6 +23,7 @@ function FilmStockInventory() {
     const [inventories, setInventories] = useState([]);
     const [totalInventories, setTotalInventories] = useState(0);
     const inventoriesPerPage = 10;
+
     const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet film (Large)', 'Other'];
     const developmentProcessOptions = ['Black & White', 'C-41 Color', 'E-6 Slide Film'];
 
@@ -39,68 +40,6 @@ function FilmStockInventory() {
             setSelectedRows([...selectedRows, id]);
         }
     };
-
-    useEffect(() => {
-        async function fetchInventoriesUser() {
-            try {
-                const response = await axios.get(`http://localhost:8080/filmstockinventories/user/${user.username}`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    cancelToken: source.token,
-                });
-                const filteredInventories = response.data.filter((inventory) =>
-                    Object.values(inventory).some((value) =>
-                    String(value).toLowerCase().includes(searchQuery.toLowerCase())
-                    )
-                );
-                setInventories(filteredInventories);
-                setTotalInventories(filteredInventories.length);
-                console.log(response.data);
-            } catch (e) {
-                console.error(e);
-            }
-        }
-        void fetchInventoriesUser();
-    }, [searchQuery]);
-
-    async function deleteInventory(id) {
-        try {
-            await axios.delete(`http://localhost:8080/filmstockinventories/${id}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                }
-            });
-            window.location.reload();
-        } catch (e) {
-            console.error('Oops, something went wrong...', e);
-        }
-    }
-
-    async function updateInventoryEntry(inventory) {
-        try {
-            const { id, ...data } = inventory;
-            await axios.put(
-                `http://localhost:8080/filmstockinventories/${id}`,
-                {
-                    ...data,
-                    username: user.username,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            setAddSuccess(true);
-        } catch (e) {
-            console.error('Oops, something went wrong...', e);
-        }
-        setLoading(false);
-    }
 
     const paginateInventories = (inventories) => {
         const startIndex = (currentPage - 1) * inventoriesPerPage;
@@ -164,6 +103,68 @@ function FilmStockInventory() {
             return () => clearTimeout(timeoutId);
         }
     }, [addSuccess]);
+
+    useEffect(() => {
+        async function fetchInventoriesUser() {
+            try {
+                const response = await axios.get(`http://localhost:8080/filmstockinventories/user/${user.username}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    cancelToken: source.token,
+                });
+                const filteredInventories = response.data.filter((inventory) =>
+                    Object.values(inventory).some((value) =>
+                    String(value).toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                );
+                setInventories(filteredInventories);
+                setTotalInventories(filteredInventories.length);
+                console.log(response.data);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        void fetchInventoriesUser();
+    }, [searchQuery]);
+
+    async function deleteInventory(id) {
+        try {
+            await axios.delete(`http://localhost:8080/filmstockinventories/${id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
+            window.location.reload();
+        } catch (e) {
+            console.error('Oops, something went wrong...', e);
+        }
+    }
+
+    async function updateInventoryEntry(inventory) {
+        try {
+            const { id, ...data } = inventory;
+            await axios.put(
+                `http://localhost:8080/filmstockinventories/${id}`,
+                {
+                    ...data,
+                    username: user.username,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            setAddSuccess(true);
+        } catch (e) {
+            console.error('Oops, something went wrong...', e);
+        }
+        setLoading(false);
+    }
 
     return (
         <>
@@ -367,8 +368,8 @@ function FilmStockInventory() {
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected film stock inventory(s)?</p>
                 <div>
-                    <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
+                    <button onClick={handleModalConfirm}>Delete</button>
                 </div>
             </Modal>
             {addSuccess && (

@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
-import {AuthContext} from "../../context/AuthContext";
-import {Link, useNavigate} from "react-router-dom";
 import styles from './Profile.module.css';
 
 

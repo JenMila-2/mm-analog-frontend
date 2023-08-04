@@ -1,14 +1,14 @@
-import React, {useContext, useState} from 'react';
-import {AuthContext} from "../../context/AuthContext";
-import {Link, useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form";
+import React, { useContext, useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import Modal from "../../components/modal/Modal";
 import axios from "axios";
 import styles from './UpdateProfileDetails.module.css';
 
 export function UpdatePassword() {
-    const {user} = useContext(AuthContext);
-    const {register, formState: {errors}, handleSubmit} = useForm();
+    const { user } = useContext(AuthContext);
+    const { register, formState: {errors}, handleSubmit } = useForm();
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
     const [error, toggleError] = useState(false);
@@ -59,8 +59,8 @@ export function UpdatePassword() {
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles['update-page-title']}>Update password</h1>
-                <p className={styles['update-page-sub-text']}>On this page you can update your password. After saving your changes it can take a few minutes before the changes are visible. Refreshing the page may be needed.</p>
+                <h1 className={styles['update-profile-title']}>Update password</h1>
+                <p className={styles['update-profile-sub-text']}>On this page you can update your password. After saving your changes it can take a few minutes before the changes are visible. Refreshing the page may be needed.</p>
                 <p>To update your profile details go to <Link className={styles['update-link-profile']} to={'/update/profile'}>update profile</Link></p>
             </header>
             <main className={styles['profile-update-form-container']}>
@@ -93,21 +93,21 @@ export function UpdatePassword() {
                                         })}
                                     />
                                 </label>
-                                {errors.password && <p className={styles['error-label']}>{error.password.message}</p>}
+                                {errors.password && <p className={styles['error-label']}>{errors.password.message}</p>}
                                 <div className={styles['button-container']}>
                                     <button
                                         type="button"
-                                        className={styles['form-buttons']}
-                                        onClick={handleSubmit(handleSaveButtonClick)}
-                                    >
-                                        Save
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className={styles['form-buttons']}
+                                        className={styles['form-button-cancel']}
                                         onClick={() => navigate(-1)}
                                     >
                                         Cancel
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className={styles['form-button-save']}
+                                        onClick={handleSubmit(handleSaveButtonClick)}
+                                    >
+                                        Save
                                     </button>
                                 </div>
                             </form>
@@ -115,8 +115,8 @@ export function UpdatePassword() {
                                 <h3>Confirm Save</h3>
                                 <p>Are you sure you want to update your password?</p>
                                 <div>
-                                    <button onClick={handleModalConfirm}>Save</button>
                                     <button onClick={handleModalCancel}>Cancel</button>
+                                    <button onClick={handleModalConfirm}>Save</button>
                                 </div>
                             </Modal>
                         </>

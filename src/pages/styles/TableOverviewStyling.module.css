@@ -182,6 +182,14 @@ input[type='number']{
 }
 
 /*-------------Project Folder page-------------*/
+
+.folder-input-field {
+    border-radius: 5px;
+    min-width: 300px;
+    border-color: var(--platinum);
+    font-family: "Open Sans", sans-serif;
+}
+
 .folder-textarea-field {
     padding: 5px;
     min-width: 400px;
@@ -190,11 +198,4 @@ input[type='number']{
     color: var(--davys-gray);
     font-family: "Open Sans", sans-serif;
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-}
-
-.folder-input-field {
-    border-radius: 5px;
-    min-width: 300px;
-    border-color: var(--platinum);
-    font-family: "Open Sans", sans-serif;
 }

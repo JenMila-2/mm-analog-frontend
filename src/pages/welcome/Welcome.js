@@ -1,6 +1,6 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
-import {BsCameraFill} from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { BsCameraFill } from "react-icons/bs";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/buttons/Button";
 import styles from './Welcome.module.css';

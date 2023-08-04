@@ -1,18 +1,18 @@
-import React, {useContext, useState} from 'react';
-import {Link} from 'react-router-dom';
-import {useForm} from 'react-hook-form';
-import {AuthContext} from "../../context/AuthContext";
+import React, { useContext, useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import styles from './Login.module.css';
 import coverImage2 from '../../assets/Danny_Feng_1.jpg';
 
 
 function Login() {
-    const {register, formState: {errors}, reset, handleSubmit} = useForm();
-    const {login, logoff, auth} = useContext(AuthContext);
+    const { register, formState: {errors}, reset, handleSubmit } = useForm();
+    const { login, logoff, auth } = useContext(AuthContext);
+    const source = axios.CancelToken.source();
     const [error, toggleError] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
-    const source = axios.CancelToken.source();
 
     async function loginUser(data) {
         try {
@@ -27,7 +27,7 @@ function Login() {
             setAddSuccess(true);
             reset();
         } catch (error) {
-            console.error('Oops, an error occurred!', error);
+            console.error('Oops, something went wrong...', error);
             toggleError(true);
         }
     }

@@ -8,11 +8,11 @@
     justify-content: center;
 }
 
-.update-page-title {
+.update-profile-title {
     font-size: 38px;
 }
 
-.update-page-sub-text {
+.update-profile-sub-text {
     font-size: 14px;
     padding-top: 10px;
 }
@@ -90,11 +90,12 @@
     justify-content: center;
 }
 
-.form-buttons {
+.form-button-save,.form-button-cancel {
     width: 80px;
     outline: none;
     border-radius: 50px;
     color: var(--errie-black);
+    font-weight: bold;
     padding: 5px 10px 5px 10px;
     border: 0 solid var(--errie-black);
     background-color: var(--alabaster);
@@ -102,13 +103,18 @@
     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
 }
 
-.form-buttons:hover {
+.form-button-save:hover, .form-button-cancel:hover {
     cursor: pointer;
     font-weight: bold;
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     background-color: var(--hover-raisin-black);
+}
+
+.form-button-cancel {
+    border: 1px solid var(--grey);
+    background-color: var(--white);
 }
 
 /*-----------Delete Account------------*/
@@ -122,11 +128,9 @@
     padding-top: 5px;
 }
 
-.delete-warning-sub-text {
-    font-size: 14px;
-    padding-top: 30px;
-    font-weight: bold;
-    color: var(--crimson);
+.delete-icon-container {
+    font-size: 60px;
+    padding-top: 20px;
 }
 
 .delete-page-container {
@@ -136,6 +140,13 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+}
+
+.delete-warning-sub-text {
+    font-size: 14px;
+    padding-top: 30px;
+    font-weight: bold;
+    color: var(--crimson);
 }
 
 .delete-button-containers {
@@ -152,10 +163,10 @@
     font-weight: bold;
     border-radius: 50px;
     color: var(--white);
-    border: 0 solid var(--white-light-background);
     background-color: var(--crimson);
     font-family: "Open Sans", sans-serif;
     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    border: 0 solid var(--white-light-background);
 }
 
 .confirm-delete-account-button:hover {
@@ -169,16 +180,12 @@
 
 .cancel-delete-account-button {
     color: var(--errie-black);
-    background-color: var(--anti-flash-white);
+    border: 1px solid var(--grey);
+    background-color: var(--white);
 }
 
 .cancel-delete-account-button:hover {
     transform: translateY(-2px);
-    border: 1px solid var(--jet);
+    background-color: var(--anti-flash-white);
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-}
-
-.delete-icon-container {
-    font-size: 60px;
-    padding-top: 20px;
 }

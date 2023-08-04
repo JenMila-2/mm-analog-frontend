@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
-import {RiDeleteBin6Line} from "react-icons/ri";
-import {MdOutlineDone} from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineDone } from "react-icons/md";
 import axios from "axios"
 import styles from './Admin.module.css';
 
@@ -32,6 +32,36 @@ function Admin() {
             setSelectedRows([...selectedRows, id]);
         }
     };
+
+    const paginateUsers = (users) => {
+        const startIndex = (currentPage - 1) * usersPerPage;
+        const endIndex = Math.min(startIndex + usersPerPage, users.length);
+        return users.slice(startIndex, endIndex);
+    };
+
+    const handleDelete = () => {
+        setModalOpen(true);
+    };
+
+    const handleModalConfirm = () => {
+        setModalOpen(false);
+        selectedRows.forEach((username) => deleteUser(username));
+    };
+
+    const handleModalCancel = () => {
+        setModalOpen(false);
+    };
+
+    useEffect(() => {
+        if (addSuccess) {
+            const timeoutId = setTimeout(() => {
+                setAddSuccess(false);
+                window.location.reload();
+            }, 2000);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [addSuccess]);
 
     useEffect(() => {
         async function fetchUsers() {
@@ -72,36 +102,6 @@ function Admin() {
         }
     }
 
-    const paginateUsers = (users) => {
-        const startIndex = (currentPage - 1) * usersPerPage;
-        const endIndex = Math.min(startIndex + usersPerPage, users.length);
-        return users.slice(startIndex, endIndex);
-    };
-
-    const handleDelete = () => {
-        setModalOpen(true);
-    };
-
-    const handleModalConfirm = () => {
-        setModalOpen(false);
-        selectedRows.forEach((username) => deleteUser(username));
-    };
-
-    const handleModalCancel = () => {
-        setModalOpen(false);
-    };
-
-    useEffect(() => {
-        if (addSuccess) {
-            const timeoutId = setTimeout(() => {
-                setAddSuccess(false);
-                window.location.reload();
-            }, 2000);
-
-            return () => clearTimeout(timeoutId);
-        }
-    }, [addSuccess]);
-
     return (
         <>
             <header className={styles['title-container']}>
@@ -127,7 +127,7 @@ function Admin() {
                             Total users: {totalUsers}
                         </div>
                         <div className={styles['table-wrapper']}>
-                        <table className={styles['users-dashboard-table']}>
+                        <table>
                             <thead>
                             <tr>
                                 <th className={styles['users-table-head']}></th>
@@ -191,8 +191,8 @@ function Admin() {
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected user(s)?</p>
                 <div>
-                    <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
+                    <button onClick={handleModalConfirm}>Delete</button>
                 </div>
             </Modal>
             {addSuccess && (

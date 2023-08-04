@@ -1,14 +1,14 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {NavLink} from "react-router-dom";
-import {HiOutlineMenuAlt4} from "react-icons/hi";
-import {AuthContext} from "../../../context/AuthContext";
-import {adminNavItems, publicNavItems, userNavItems} from "./NavBarData";
+import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
+import { adminNavItems, publicNavItems, userNavItems } from "./NavBarData";
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import styles from './NavBar.module.css';
 
 const NavBar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const sidebarClose = useRef(null);
-    const {user, logoff} = useContext(AuthContext);
+    const { user, logoff } = useContext(AuthContext);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);

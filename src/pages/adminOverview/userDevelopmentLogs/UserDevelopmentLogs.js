@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import SidebarNav from "../../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../../components/navigation/dividerNavBar/DividerNavBar";
 import SearchBar from "../../../components/searchbar/SearchBar";
 import Modal from "../../../components/modal/Modal";
-import {RiDeleteBin6Line} from "react-icons/ri";
-import {MdOutlineDone} from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineDone } from "react-icons/md";
 import axios from 'axios';
 import styles from '../ListOverviews.module.css';
 
 export function UserDevelopmentLogs() {
-    const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
+    const token = localStorage.getItem('token');
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
@@ -33,6 +33,36 @@ export function UserDevelopmentLogs() {
             setSelectedRows([...selectedRows, id]);
         }
     };
+
+    const paginateUserDevelopmentLogs = (logs) => {
+        const startIndex = (currentPage - 1) * developmentLogsPerPage;
+        const endIndex = Math.min(startIndex + developmentLogsPerPage, logs.length);
+        return logs.slice(startIndex, endIndex);
+    };
+
+    const handleDelete = () => {
+        setModalOpen(true);
+    };
+
+    const handleModalConfirm = () => {
+        setModalOpen(false);
+        selectedRows.forEach((log) => deleteUserFilmDevelopmentLog(log));
+    };
+
+    const handleModalCancel = () => {
+        setModalOpen(false);
+    };
+
+    useEffect(() => {
+        if (addSuccess) {
+            const timeoutId = setTimeout(() => {
+                setAddSuccess(false);
+                window.location.reload();
+            }, 2000);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [addSuccess]);
 
     useEffect(() => {
         async function fetchUsersFilmDevelopmentLogs() {
@@ -73,36 +103,6 @@ export function UserDevelopmentLogs() {
         }
     }
 
-    const paginateUserDevelopmentLogs = (logs) => {
-        const startIndex = (currentPage - 1) * developmentLogsPerPage;
-        const endIndex = Math.min(startIndex + developmentLogsPerPage, logs.length);
-        return logs.slice(startIndex, endIndex);
-    };
-
-    const handleDelete = () => {
-        setModalOpen(true);
-    };
-
-    const handleModalConfirm = () => {
-        setModalOpen(false);
-        selectedRows.forEach((log) => deleteUserFilmDevelopmentLog(log));
-    };
-
-    const handleModalCancel = () => {
-        setModalOpen(false);
-    };
-
-    useEffect(() => {
-        if (addSuccess) {
-            const timeoutId = setTimeout(() => {
-                setAddSuccess(false);
-                window.location.reload();
-            }, 2000);
-
-            return () => clearTimeout(timeoutId);
-        }
-    }, [addSuccess]);
-
     return (
         <>
             <header className={styles['title-container']}>
@@ -111,7 +111,7 @@ export function UserDevelopmentLogs() {
             <DividerNavBar
                 label1="Users"
                 path1="/admin/dashboard/users"
-                label2="All Folders"
+                label2="All folders"
                 path2="/admin/dashboard/projectfolders"
             />
             <main className={styles['admin-dashboard-overview']}>
@@ -214,12 +214,12 @@ export function UserDevelopmentLogs() {
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected user development log(s)?</p>
                 <div>
-                    <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
+                    <button onClick={handleModalConfirm}>Delete</button>
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['user-projects-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['admin-change-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     )

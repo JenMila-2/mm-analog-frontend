@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
+import { useParams } from 'react-router-dom';
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
-import { useParams } from 'react-router-dom';
-import { AuthContext } from "../../context/AuthContext";
 import axios from 'axios';
 import styles from './ProjectFolder.module.css';
 
 export function ProjectFolderPage() {
-    const { user: { username } } = useContext(AuthContext);
+    const { user: {username} } = useContext(AuthContext);
     const { folderId } = useParams();
     const token = localStorage.getItem('token');
     const [projectFolderData, setProjectFolderData] = useState({});
@@ -66,7 +66,7 @@ export function ProjectFolderPage() {
                 <h1 className={styles.title}>{projectTitle}</h1>
             </header>
             <DividerNavBar
-                label1="List photo log"
+                label1="List photo logs"
                 path1="/photologs"
                 label2="Upload photo"
                 path2="/upload/image"

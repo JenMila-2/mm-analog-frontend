@@ -1,9 +1,9 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
-import { AuthContext } from "../../context/AuthContext";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {MdOutlineDone} from "react-icons/md";
 import {AiFillEdit} from "react-icons/ai";
@@ -12,8 +12,8 @@ import styles from '../styles/TableOverviewStyling.module.css';
 
 function PhotoLog() {
     const { user } = useContext(AuthContext);
-    const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
+    const token = localStorage.getItem('token');
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
@@ -40,67 +40,6 @@ function PhotoLog() {
             setSelectedRows([...selectedRows, id]);
         }
     };
-
-    useEffect(() => {
-        async function fetchPhotoLogsUser() {
-            try {
-                const response = await axios.get(`http://localhost:8080/photologs/user/${user.username}`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    cancelToken: source.token,
-                });
-                const filteredPhotoLogs = response.data.filter((log) =>
-                    Object.values(log).some((value) =>
-                        String(value).toLowerCase().includes(searchQuery.toLowerCase())
-                    )
-                );
-                setPhotoLogs(filteredPhotoLogs );
-                setTotalPhotoLogs(filteredPhotoLogs.length);
-                console.log(response.data)
-            } catch (e) {
-                console.error(e);
-            }
-        }
-        void fetchPhotoLogsUser();
-    }, [searchQuery]);
-
-    async function deletePhotoLog(id) {
-        try {
-            await axios.delete(`http://localhost:8080/photologs/${id}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                }
-            });
-            window.location.reload();
-        } catch (e) {
-            console.error('Oops, something went wrong...', e)
-        }
-    }
-
-    async function updatePhotoLogEntry(log) {
-        try {
-            const { id, ...data } = log;
-            await axios.put(
-                `http://localhost:8080/photologs/${id}`, {
-                    ...data,
-                    username: user.username,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            setAddSuccess(true);
-        } catch (e) {
-            console.error('Oops, something went wrong...', e);
-        }
-        setLoading(false);
-    }
 
     const paginatePhotoLogs = (logs) => {
         const startIndex = (currentPage - 1) * photoLogsPerPage;
@@ -165,6 +104,67 @@ function PhotoLog() {
         }
     }, [addSuccess]);
 
+    useEffect(() => {
+        async function fetchPhotoLogsUser() {
+            try {
+                const response = await axios.get(`http://localhost:8080/photologs/user/${user.username}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    cancelToken: source.token,
+                });
+                const filteredPhotoLogs = response.data.filter((log) =>
+                    Object.values(log).some((value) =>
+                        String(value).toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                );
+                setPhotoLogs(filteredPhotoLogs );
+                setTotalPhotoLogs(filteredPhotoLogs.length);
+                console.log(response.data)
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        void fetchPhotoLogsUser();
+    }, [searchQuery]);
+
+    async function deletePhotoLog(id) {
+        try {
+            await axios.delete(`http://localhost:8080/photologs/${id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
+            window.location.reload();
+        } catch (e) {
+            console.error('Oops, something went wrong...', e)
+        }
+    }
+
+    async function updatePhotoLogEntry(log) {
+        try {
+            const { id, ...data } = log;
+            await axios.put(
+                `http://localhost:8080/photologs/${id}`, {
+                    ...data,
+                    username: user.username,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            setAddSuccess(true);
+        } catch (e) {
+            console.error('Oops, something went wrong...', e);
+        }
+        setLoading(false);
+    }
+
     return (
         <>
             <header className={styles['title-container']}>
@@ -210,7 +210,7 @@ function PhotoLog() {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {paginatePhotoLogs(photoLogs).map((log, index) => {
+                                {paginatePhotoLogs(photoLogs).map((log) => {
                                     const isSelected = selectedRows.includes(log.id);
                                     return (
                                         <tr key={log.id}>
@@ -362,8 +362,8 @@ function PhotoLog() {
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected photo log(s)?</p>
                 <div>
-                    <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
+                    <button onClick={handleModalConfirm}>Delete</button>
                 </div>
             </Modal>
             {addSuccess && (

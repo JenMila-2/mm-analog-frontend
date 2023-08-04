@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
-import {AuthContext} from "../../context/AuthContext";
 import Button from '../buttons/Button';
 import styles from './HomeSection.module.css';
 
-const HomeSection = ({heading, text, subtext, altText, buttonLabel, buttonColor, buttonPath, imageSource1, imageSource2}) => {
+const HomeSection = ({ heading, text, subtext, altText, buttonLabel, buttonColor, buttonPath, imageSource1, imageSource2 }) => {
     const navigate = useNavigate();
     const { auth } = useContext(AuthContext);
 

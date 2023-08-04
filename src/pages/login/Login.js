@@ -1,24 +1,18 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-import {useForm} from 'react-hook-form';
-import {AuthContext} from "../../context/AuthContext";
+import React, { useContext, useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import styles from './Login.module.css';
 import coverImage2 from '../../assets/Danny_Feng_1.jpg';
 
 
 function Login() {
-    const {register, formState: {errors}, reset, handleSubmit} = useForm();
-    const {login, logoff, auth} = useContext(AuthContext);
+    const { register, formState: {errors}, reset, handleSubmit } = useForm();
+    const { login, logoff, auth } = useContext(AuthContext);
+    const source = axios.CancelToken.source();
     const [error, toggleError] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
-    const source = axios.CancelToken.source();
-
-    useEffect(() => {
-       return function cleanup() {
-            source.cancel();
-        }
-    }, []);
 
     async function loginUser(data) {
         try {
@@ -33,7 +27,7 @@ function Login() {
             setAddSuccess(true);
             reset();
         } catch (error) {
-            console.error('Oops, an error occurred!', error);
+            console.error('Oops, something went wrong...', error);
             toggleError(true);
         }
     }
@@ -88,7 +82,7 @@ function Login() {
                             Log off
                         </button>
                     }
-                    {error && <p className={styles['login-error-label']}>Oops, something went wrong... Please try again!</p> }
+                    {error && <p className={styles['login-error-label']}>Oops, something went wrong... Please check your credentials and try again!</p> }
                     <p>Don't have an account? <Link className={styles['signup-link']} to="/signup">Sign up</Link>!</p>
                 </div>
             {addSuccess === true && <p>Log in to your account was successful!</p>}

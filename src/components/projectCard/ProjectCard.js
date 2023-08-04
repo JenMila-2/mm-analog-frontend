@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './ProjectCard.module.css';
 
-export function ProjectCard({img, label, imageDescription, onClick}) {
+export function ProjectCard({ img, label, imageDescription, onClick }) {
 
     return (
         <>
-        <section className={styles['project-cards']}>
+        <section className={styles['project-card']}>
             <span className={styles['project-card-image']}>
                 <img
                     src={img}

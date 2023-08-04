@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import SidebarNav from "../../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../../components/navigation/dividerNavBar/DividerNavBar";
 import SearchBar from "../../../components/searchbar/SearchBar";
 import Modal from "../../../components/modal/Modal";
-import {RiDeleteBin6Line} from "react-icons/ri";
-import {MdOutlineDone} from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineDone } from "react-icons/md";
 import axios from 'axios';
 import styles from '../ListOverviews.module.css';
 
 export function UserPhotoLogs() {
-    const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
+    const token = localStorage.getItem('token');
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
@@ -32,6 +32,36 @@ export function UserPhotoLogs() {
             setSelectedRows([...selectedRows, id]);
         }
     };
+
+    const paginateUserPhotoLogs = (logs) => {
+        const startIndex = (currentPage - 1) * photoLogsPerPage;
+        const endIndex = Math.min(startIndex + photoLogsPerPage, logs.length);
+        return photoLogs.slice(startIndex, endIndex);
+    };
+
+    const handleDelete = () => {
+        setModalOpen(true);
+    };
+
+    const handleModalConfirm = () => {
+        setModalOpen(false);
+        selectedRows.forEach((log) => deleteUserPhotoLog(log));
+    };
+
+    const handleModalCancel = () => {
+        setModalOpen(false);
+    };
+
+    useEffect(() => {
+        if (addSuccess) {
+            const timeoutId = setTimeout(() => {
+                setAddSuccess(false);
+                window.location.reload();
+            }, 2000);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [addSuccess]);
 
     useEffect(() => {
         async function fetchUsersPhotoLogs() {
@@ -71,36 +101,6 @@ export function UserPhotoLogs() {
             console.error('Oops, something went wrong...', e);
         }
     }
-
-    const paginateUserPhotoLogs = (logs) => {
-        const startIndex = (currentPage - 1) * photoLogsPerPage;
-        const endIndex = Math.min(startIndex + photoLogsPerPage, logs.length);
-        return photoLogs.slice(startIndex, endIndex);
-    };
-
-    const handleDelete = () => {
-        setModalOpen(true);
-    };
-
-    const handleModalConfirm = () => {
-        setModalOpen(false);
-        selectedRows.forEach((log) => deleteUserPhotoLog(log));
-    };
-
-    const handleModalCancel = () => {
-        setModalOpen(false);
-    };
-
-    useEffect(() => {
-        if (addSuccess) {
-            const timeoutId = setTimeout(() => {
-                setAddSuccess(false);
-                window.location.reload();
-            }, 2000);
-
-            return () => clearTimeout(timeoutId);
-        }
-    }, [addSuccess]);
 
     return (
         <>
@@ -205,12 +205,12 @@ export function UserPhotoLogs() {
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected user photo log(s)?</p>
                 <div>
-                    <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
+                    <button onClick={handleModalConfirm}>Delete</button>
                 </div>
             </Modal>
             {addSuccess && (
-                <div className={styles['user-projects-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
+                <div className={styles['admin-change-success-message']}>Changes saved successfully! <MdOutlineDone className={styles['check-icon']}/></div>
             )}
         </>
     )

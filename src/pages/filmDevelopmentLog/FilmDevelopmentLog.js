@@ -1,19 +1,19 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
 import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Modal from "../../components/modal/Modal";
-import {AuthContext} from "../../context/AuthContext";
-import {RiDeleteBin6Line} from "react-icons/ri";
-import {MdOutlineDone} from "react-icons/md";
-import {AiFillEdit} from "react-icons/ai";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineDone } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
 import axios from 'axios';
 import styles from '../styles/TableOverviewStyling.module.css';
 
 function FilmDevelopmentLog() {
     const { user } = useContext(AuthContext);
-    const token = localStorage.getItem('token');
     const source = axios.CancelToken.source();
+    const token = localStorage.getItem('token');
     const [selectedRows, setSelectedRows] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
@@ -22,6 +22,7 @@ function FilmDevelopmentLog() {
     const [developmentLogs, setDevelopmentLogs] = useState([]);
     const [totalDevelopmentLogs, setTotalDevelopmentLogs] = useState(0);
     const developmentLogsPerPage = 10;
+
     const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet film (Large)', 'Other'];
     const developmentProcessOptions = ['Black & White', 'C-41 Color', 'E-6 Slide Film'];
     const statusOptions = ['Not started', 'In progress', 'Done'];
@@ -44,67 +45,6 @@ function FilmDevelopmentLog() {
             setSelectedRows([...selectedRows, id]);
         }
     };
-
-    useEffect(() => {
-        async function fetchDevelopmentLogsUser() {
-            try {
-                const response = await axios.get(`http://localhost:8080/filmdevelopmentlogs/user/${user.username}`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    cancelToken: source.token,
-                });
-                const filteredDevelopmentLogs = response.data.filter((log) =>
-                    Object.values(log).some((value) =>
-                        String(value).toLowerCase().includes(searchQuery.toLowerCase())
-                    )
-                );
-                setDevelopmentLogs(filteredDevelopmentLogs);
-                setTotalDevelopmentLogs(filteredDevelopmentLogs.length);
-                console.log(response.data)
-            } catch (e) {
-                console.error(e);
-            }
-        }
-        void fetchDevelopmentLogsUser();
-    }, [searchQuery]);
-
-    async function deleteDevelopmentLog(id) {
-        try {
-            await axios.delete(`http://localhost:8080/filmdevelopmentlogs/${id}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                }
-            });
-            window.location.reload();
-        } catch (e) {
-            console.error('Oops, something went wrong...', e)
-        }
-    }
-
-    async function updateDevelopmentLogEntry(log) {
-        try {
-            const { id, ...data } = log;
-            await axios.put(
-                `http://localhost:8080/filmdevelopmentlogs/${id}`, {
-                    ...data,
-                    username: user.username,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            setAddSuccess(true);
-        } catch (e) {
-            console.error('Oops, something went wrong...', e);
-        }
-        setLoading(false);
-    }
 
     const paginateLogs = (logs) => {
         const startIndex = (currentPage - 1) * developmentLogsPerPage;
@@ -169,6 +109,67 @@ function FilmDevelopmentLog() {
         }
     }, [addSuccess]);
 
+    useEffect(() => {
+        async function fetchDevelopmentLogsUser() {
+            try {
+                const response = await axios.get(`http://localhost:8080/filmdevelopmentlogs/user/${user.username}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    cancelToken: source.token,
+                });
+                const filteredDevelopmentLogs = response.data.filter((log) =>
+                    Object.values(log).some((value) =>
+                        String(value).toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                );
+                setDevelopmentLogs(filteredDevelopmentLogs);
+                setTotalDevelopmentLogs(filteredDevelopmentLogs.length);
+                console.log(response.data)
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        void fetchDevelopmentLogsUser();
+    }, [searchQuery]);
+
+    async function deleteDevelopmentLog(id) {
+        try {
+            await axios.delete(`http://localhost:8080/filmdevelopmentlogs/${id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
+            window.location.reload();
+        } catch (e) {
+            console.error('Oops, something went wrong...', e)
+        }
+    }
+
+    async function updateDevelopmentLogEntry(log) {
+        try {
+            const { id, ...data } = log;
+            await axios.put(
+                `http://localhost:8080/filmdevelopmentlogs/${id}`, {
+                    ...data,
+                    username: user.username,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            setAddSuccess(true);
+        } catch (e) {
+            console.error('Oops, something went wrong...', e);
+        }
+        setLoading(false);
+    }
+
     return (
         <>
             <header className={styles['title-container']}>
@@ -218,7 +219,7 @@ function FilmDevelopmentLog() {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {paginateLogs(developmentLogs).map((log, index) => {
+                                {paginateLogs(developmentLogs).map((log) => {
                                 const isSelected = selectedRows.includes(log.id);
                                 return (
                                     <tr key={log.id}>
@@ -427,8 +428,8 @@ function FilmDevelopmentLog() {
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete the selected film stock development log(s)?</p>
                 <div>
-                    <button onClick={handleModalConfirm}>Delete</button>
                     <button onClick={handleModalCancel}>Cancel</button>
+                    <button onClick={handleModalConfirm}>Delete</button>
                 </div>
             </Modal>
             {addSuccess && (

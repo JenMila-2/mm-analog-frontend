@@ -1,22 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import axios from 'axios';
 import styles from './Signup.module.css';
 import coverImage from '../../assets/Florian_Weichert_1.jpg';
 
 function Signup() {
-    const {register, formState: {errors}, handleSubmit} = useForm();
+    const { register, formState: {errors}, handleSubmit } = useForm();
+    const source = axios.CancelToken.source();
     const [error, toggleError] = useState(false);
     const [addSuccess, setAddSucces] = useState(false);
-    const source = axios.CancelToken.source();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        return function cleanup() {
-            source.cancel();
-        }
-    }, []);
 
     async function addNewUser(data, e) {
         e.preventDefault();
@@ -35,7 +29,7 @@ function Signup() {
             setAddSucces(true);
             navigate('/welcomepage');
         } catch(error) {
-            console.error("Oops, an error occurred!", error);
+            console.error("Oops, something went wrong...", error);
             toggleError(true);
         }
     }

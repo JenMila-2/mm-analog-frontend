@@ -1,15 +1,12 @@
-import React, {useContext, useState} from 'react';
-import {AuthContext} from "../../../context/AuthContext";
-import {useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form";
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import axios from 'axios';
 import styles from '../NewEntries.module.css';
 
 export function NewUsers() {
-    const { user: {username} } = useContext(AuthContext);
     const {register, formState: {errors}, handleSubmit} = useForm();
     const token = localStorage.getItem('token');
-    const source = axios.CancelToken.source();
     const navigate = useNavigate();
     const [addSuccess, setAddSuccess] = useState(false);
     const [error, toggleError] = useState(false);
@@ -69,7 +66,7 @@ export function NewUsers() {
                                             required: "Name is required",
                                             minLength: {
                                                 value: 5,
-                                                message: "Film name must have at least 5 characters",
+                                                message: "Nme must have at least 5 characters",
                                             },
                                         })}
                                         autoComplete="off"

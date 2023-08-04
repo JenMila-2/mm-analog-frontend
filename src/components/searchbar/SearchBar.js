@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './SearchBar.module.css';
-import {AiOutlineSearch} from "react-icons/ai";
 
-function SearchBar({ searchValue, handleSearchChange, placeholder}) {
+function SearchBar({ searchValue, handleSearchChange, placeholder }) {
     return (
         <div className={styles['search-bar-container']}>
             <input

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from './PageNotFound.module.css';
 import pageNotFoundImage from '../../assets/Page_not_found_2.png';
 

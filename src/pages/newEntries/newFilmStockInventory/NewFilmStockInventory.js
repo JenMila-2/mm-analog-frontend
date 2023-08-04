@@ -1,18 +1,19 @@
-import React, {useContext, useState} from 'react';
-import {AuthContext} from "../../../context/AuthContext";
-import {useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form";
+import React, { useContext, useState } from 'react';
+import { AuthContext } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import axios from 'axios';
 import styles from '../NewEntries.module.css';
 
 function NewFilmStockInventory() {
     const { user: {username} } = useContext(AuthContext);
-    const {register, formState: {errors}, handleSubmit} = useForm();
+    const { register, formState: {errors}, handleSubmit } = useForm();
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
     const [addSuccess, setAddSuccess] = useState(false);
     const [error, toggleError] = useState(false);
     const [loading, setLoading] = useState(false);
+
     const formatOptions = ['110 film', '35mm', '120 film (Medium)', 'Sheet film (Large)', 'Other'];
     const developmentProcessOptions = ['Black & White', 'C-41 Color', 'E-6 Slide Film'];
 
@@ -213,17 +214,17 @@ function NewFilmStockInventory() {
                                 </label>
                                 <div className={styles['buttons-container']}>
                                     <button
-                                     type="submit"
-                                     className={styles['form-button']}
-                                    >
-                                        Save
-                                    </button>
-                                    <button
                                         type="submit"
-                                        className={styles['form-button']}
+                                        className={styles['form-button-cancel']}
                                         onClick={() => navigate(-1)}
                                     >
                                         Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className={styles['form-button-save']}
+                                    >
+                                        Save
                                     </button>
                                 </div>
                             </form>

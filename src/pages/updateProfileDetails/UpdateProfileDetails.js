@@ -1,20 +1,33 @@
-import React, {useContext, useState} from 'react';
-import {AuthContext} from "../../context/AuthContext";
-import {Link, useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form";
+import React, { useContext, useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import Modal from "../../components/modal/Modal";
 import axios from "axios";
 import styles from './UpdateProfileDetails.module.css';
 
 export function UpdateProfileDetails() {
-    const {user} = useContext(AuthContext);
-    const {register, formState: {errors}, handleSubmit} = useForm();
+    const { user } = useContext(AuthContext);
+    const { register, formState: {errors}, handleSubmit } = useForm();
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
     const [error, toggleError] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setModalOpen] = useState(false);
+
+    const handleSaveButtonClick = () => {
+        setModalOpen(true);
+    };
+
+    const handleModalConfirm = () => {
+        setModalOpen(false);
+        handleSubmit(updateProfileDetails)();
+    };
+
+    const handleModalCancel = () => {
+        setModalOpen(false);
+    };
 
     async function updateProfileDetails(data) {
         toggleError(false);
@@ -43,24 +56,11 @@ export function UpdateProfileDetails() {
         setLoading(false);
     }
 
-    const handleSaveButtonClick = () => {
-        setModalOpen(true);
-    };
-
-    const handleModalConfirm = () => {
-        setModalOpen(false);
-        handleSubmit(updateProfileDetails)();
-    };
-
-    const handleModalCancel = () => {
-        setModalOpen(false);
-    };
-
     return (
         <>
             <header className={styles['title-container']}>
-                <h1 className={styles['update-page-title']}>Update profile details</h1>
-                <p className={styles['update-page-sub-text']}>On this page you can update your profile details. After saving your changes it can take a few minutes before the changes are visible.</p>
+                <h1 className={styles['update-profile-title']}>Update profile details</h1>
+                <p className={styles['update-profile-sub-text']}>On this page you can update your profile details. After saving your changes it can take a few minutes before the changes are visible. Refreshing the page may be needed.</p>
                 <p>To update your password go to <Link className={styles['update-link-profile']} to={'/update/password'}>update password</Link></p>
             </header>
             <main className={styles['profile-update-form-container']}>
@@ -80,10 +80,16 @@ export function UpdateProfileDetails() {
                                         id="name"
                                         defaultValue={user.name}
                                         className={styles['update-profile-input']}
-                                        {...register('name')}
+                                        {...register("name", {
+                                            required: "Name is required",
+                                            minLength: {
+                                                value: 5,
+                                                message: "Name must have at least 5 characters long"
+                                            }
+                                        })}
                                     />
                                 </label>
-                                {errors.name && <p className={styles['error-label']}>{error.name.message}</p>}
+                                {errors.name && <p className={styles['error-label']}>{errors.name.message}</p>}
                                 <label htmlFor="email" className={styles['update-profile-label']}>
                                     New email
                                     <input
@@ -92,6 +98,7 @@ export function UpdateProfileDetails() {
                                         defaultValue={user.email}
                                         className={styles['update-profile-input']}
                                         {...register("email", {
+                                            required: "Email is required",
                                             pattern: {
                                                 value: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                                                 message: "Please enter a valid email"
@@ -99,21 +106,21 @@ export function UpdateProfileDetails() {
                                         })}
                                     />
                                 </label>
-                                {errors.email && <p className={styles['error-label']}>{error.email.message}</p>}
+                                {errors.email && <p className={styles['error-label']}>{errors.email.message}</p>}
                                 <div className={styles['button-container']}>
                                     <button
                                         type="button"
-                                        className={styles['form-buttons']}
-                                        onClick={handleSubmit(handleSaveButtonClick)}
-                                    >
-                                        Save
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className={styles['form-buttons']}
+                                        className={styles['form-button-cancel']}
                                         onClick={() => navigate(-1)}
                                     >
                                         Cancel
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className={styles['form-button-save']}
+                                        onClick={handleSubmit(handleSaveButtonClick)}
+                                    >
+                                        Save
                                     </button>
                                 </div>
                             </form>
@@ -121,8 +128,8 @@ export function UpdateProfileDetails() {
                                 <h3>Confirm Save</h3>
                                 <p>Are you sure you want to save the changes?</p>
                                 <div>
-                                    <button onClick={handleModalConfirm}>Save</button>
                                     <button onClick={handleModalCancel}>Cancel</button>
+                                    <button onClick={handleModalConfirm}>Save</button>
                                 </div>
                             </Modal>
                         </>

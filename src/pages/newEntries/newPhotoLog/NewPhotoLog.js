@@ -1,13 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {AuthContext} from "../../../context/AuthContext";
-import {useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form";
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import axios from 'axios';
 import styles from '../NewEntries.module.css';
 
 export function NewPhotoLog() {
-    const { user: { username } } = useContext(AuthContext);
-    const {register, formState: { errors }, handleSubmit} = useForm();
+    const { user: {username} } = useContext(AuthContext);
+    const { register, formState: {errors}, handleSubmit } = useForm();
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
     const [addSuccess, setAddSuccess] = useState(false);
@@ -15,6 +15,7 @@ export function NewPhotoLog() {
     const [loading, setLoading] = useState(false);
     const [projectFolders, setProjectFolders] = useState([]);
     const [folderId, setFolderId] = useState('');
+
     const exposureCompensationOptions = ['-3', '-2', '-1', '0', '+1', '+2', '+3'];
     const shutterSpeedOptions = ['30', '15', '8', '4', '2', '1/2', '1/4', '1/8', '1/15', '1/30', '1/60', '1/125', '1/250', '1/500', '1/1000', '1/2000'];
     const apertureOptions = ['f/1', 'f/1.4', 'f/2', 'f/2.8', 'f/4', 'f/5.6', 'f/8', 'f/11', 'f/16', 'f/22', 'f/32', 'f/45'];
@@ -243,16 +244,16 @@ export function NewPhotoLog() {
                                 <div className={styles['buttons-container']}>
                                     <button
                                         type="submit"
-                                        className={styles['form-button']}
-                                    >
-                                        Save
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        className={styles['form-button']}
+                                        className={styles['form-button-cancel']}
                                         onClick={() => navigate(-1)}
                                     >
                                         Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className={styles['form-button-save']}
+                                    >
+                                        Save
                                     </button>
                                 </div>
                             </form>

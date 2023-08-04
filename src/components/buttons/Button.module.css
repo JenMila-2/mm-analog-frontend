@@ -20,14 +20,6 @@
     background-color: var(--alabaster);
 }
 
-.explore {
-    width: 120px;
-    height: 45px;
-    font-size: 16px;
-    color: var(--white);
-    background-color: var(--errie-black);
-}
-
 .signup {
     font-size: 15px;
     color: var(--white);

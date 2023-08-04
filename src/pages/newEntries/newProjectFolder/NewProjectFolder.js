@@ -1,7 +1,7 @@
-import React, {useContext, useState} from 'react';
-import {AuthContext} from "../../../context/AuthContext";
-import {useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form";
+import React, { useContext, useState } from 'react';
+import { AuthContext } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import axios from 'axios';
 import styles from '../NewEntries.module.css';
 
@@ -93,16 +93,16 @@ export function NewProjectFolder() {
                                 <div className={styles['buttons-container']}>
                                     <button
                                         type="submit"
-                                        className={styles['form-button']}
-                                    >
-                                        Save
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        className={styles['form-button']}
+                                        className={styles['form-button-cancel']}
                                         onClick={() => navigate(-1)}
                                     >
                                         Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className={styles['form-button-save']}
+                                    >
+                                        Save
                                     </button>
                                 </div>
                             </form>

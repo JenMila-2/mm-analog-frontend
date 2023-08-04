@@ -20,9 +20,8 @@ export function UpdatePassword() {
         toggleError(false);
         setAddSuccess(false);
         setLoading(true);
-
         try {
-            await axios.put(`http://localhost:8080/users/$user{user.username}`, {
+            await axios.put(`http://localhost:8080/users/${user.username}`, {
                 password: password.password,
                 name: user.name,
                 email: user.email,
@@ -61,7 +60,7 @@ export function UpdatePassword() {
         <>
             <header className={styles['title-container']}>
                 <h1 className={styles['update-page-title']}>Update password</h1>
-                <p className={styles['update-page-sub-text']}>On this page you can update your password. After saving your changes it can take a few minutes before the changes are visible.</p>
+                <p className={styles['update-page-sub-text']}>On this page you can update your password. After saving your changes it can take a few minutes before the changes are visible. Refreshing the page may be needed.</p>
                 <p>To update your profile details go to <Link className={styles['update-link-profile']} to={'/update/profile'}>update profile</Link></p>
             </header>
             <main className={styles['profile-update-form-container']}>

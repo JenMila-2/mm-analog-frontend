@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import {AuthContext} from "../../context/AuthContext";
@@ -13,12 +13,6 @@ function Login() {
     const [error, toggleError] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     const source = axios.CancelToken.source();
-
-    useEffect(() => {
-       return function cleanup() {
-            source.cancel();
-        }
-    }, []);
 
     async function loginUser(data) {
         try {
@@ -88,7 +82,7 @@ function Login() {
                             Log off
                         </button>
                     }
-                    {error && <p className={styles['login-error-label']}>Oops, something went wrong... Please try again!</p> }
+                    {error && <p className={styles['login-error-label']}>Oops, something went wrong... Please check your credentials and try again!</p> }
                     <p>Don't have an account? <Link className={styles['signup-link']} to="/signup">Sign up</Link>!</p>
                 </div>
             {addSuccess === true && <p>Log in to your account was successful!</p>}

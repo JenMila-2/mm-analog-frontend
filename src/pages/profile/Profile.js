@@ -12,7 +12,7 @@ function Profile() {
 
     if (!user) {
         navigate('/login');
-        return null;
+        return <p>Loading...</p>;
     }
 
     return (

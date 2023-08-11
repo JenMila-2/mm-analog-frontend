@@ -54,7 +54,7 @@ De juiste inloggegevens zijn te vinden in de installatiehandleiding.
 ![](src/assets/Inlog-page-screenshot.png)
 _Photo by Danny Feng on Unsplash_
 
-![](src/assets/Home _ Desktop.jpg)
+![](src/assets/Home.png)
 _Photos by:_
 _SAJAD FI on Unsplash_,
 _Robin Spielmann on Unsplash_ &

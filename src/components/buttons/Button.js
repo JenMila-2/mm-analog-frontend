@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Button.module.css';
 
-const Button = ({children, color, clickHandler, disabled}) => {
+function Button({children, color, clickHandler, disabled}) {
     const buttonClassName = `${styles['main--button']} ${styles[color]}`;
 
     return (
@@ -13,7 +13,7 @@ const Button = ({children, color, clickHandler, disabled}) => {
         >
             {children}
         </button>
-    )
+    );
 }
 
 export default Button;

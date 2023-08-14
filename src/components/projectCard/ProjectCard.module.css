@@ -4,19 +4,21 @@
     display: flex;
     flex-shrink: 0;
     font-weight: 300;
-    background: var(--hover-baby-powder);
     flex-basis: 140px;
     border-radius: 10px;
     align-items: center;
     flex-direction: column;
     padding: 10px 15px 10px 15px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background: radial-gradient(circle at 10% 20%, rgb(255, 246, 236) 39.5%, rgb(187, 178, 180) 100.2%);
 }
 
 .project-card-label {
     margin: 5px;
     border-radius: 4px;
     text-align: center;
+    font-weight: bold;
+    color: var(--davys-gray);
+    background: transparent;
     padding: 6px 15px 6px 15px;
-    background: var(--hover-baby-powder);
 }

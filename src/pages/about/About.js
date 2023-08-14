@@ -3,7 +3,6 @@ import Footer from "../../components/footer/Footer";
 import portraitJensy from '../../assets/Self_Portrait_Jensy.jpg';
 import styles from "./About.module.css";
 
-
 function About() {
     return (
         <>
@@ -28,4 +27,5 @@ function About() {
         </>
     )
 }
+
 export default About;

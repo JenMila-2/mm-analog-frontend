@@ -80,7 +80,6 @@ export function UserFilmStockInventories() {
                 );
                 setStockInventories(filteredStockInventories);
                 setTotalStockInventories(filteredStockInventories.length);
-                console.log(response.data)
             } catch (e) {
                 console.error(e);
             }

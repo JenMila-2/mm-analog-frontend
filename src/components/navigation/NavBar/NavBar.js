@@ -28,7 +28,7 @@ const NavBar = () => {
         };
     }, []);
 
-   let navigationItems;
+    let navigationItems;
 
     if (user && user.role === 'ROLE_ADMIN') {
         navigationItems = adminNavItems;

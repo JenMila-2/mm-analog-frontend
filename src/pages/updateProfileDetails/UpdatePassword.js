@@ -123,7 +123,7 @@ export function UpdatePassword() {
                     }
                 </div>
             </main>
-            </>
+        </>
     );
 }
 

@@ -10,7 +10,6 @@ import { AiFillEdit } from "react-icons/ai";
 import axios from 'axios';
 import styles from '../styles/TableOverviewStyling.module.css';
 
-
 function FilmStockInventory() {
     const { user } = useContext(AuthContext);
     const source = axios.CancelToken.source();
@@ -116,12 +115,11 @@ function FilmStockInventory() {
                 });
                 const filteredInventories = response.data.filter((inventory) =>
                     Object.values(inventory).some((value) =>
-                    String(value).toLowerCase().includes(searchQuery.toLowerCase())
+                        String(value).toLowerCase().includes(searchQuery.toLowerCase())
                     )
                 );
                 setInventories(filteredInventories);
                 setTotalInventories(filteredInventories.length);
-                console.log(response.data);
             } catch (e) {
                 console.error(e);
             }
@@ -191,159 +189,159 @@ function FilmStockInventory() {
                             Total film stock inventories: {totalInventories}
                         </div>
                         <div className={styles['table-wrapper']}>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Id</th>
-                                <th>Film Name</th>
-                                <th>Remaining Rolls</th>
-                                <th>Brand</th>
-                                <th>Stock</th>
-                                <th>Format</th>
-                                <th>Iso</th>
-                                <th>Development Process</th>
-                                <th>Storage</th>
-                                <th>Rolls Shot</th>
-                                <th>Film Exp. Date</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {paginateInventories(inventories).map((inventory) => {
-                                const isSelected = selectedRows.includes(inventory.id);
-                                return (
-                                    <tr key={inventory.id}>
-                                        <td>
-                                            <input
-                                                type="checkbox"
-                                                checked={isSelected}
-                                                onChange={() => handleRowSelect(inventory.id)}
-                                            />
-                                        </td>
-                                        <td className={styles['id-column']}>{inventory.id}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="filmStockName"
-                                                className={styles['input-field-value']}
-                                                defaultValue={inventory.filmStockName}
-                                                onChange={(e) => handleUpdate(e, inventory.id, "filmStockName")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                id="remainingRolls"
-                                                className={styles['input-field-value']}
-                                                defaultValue={inventory.remainingRolls}
-                                                min="0"
-                                                onChange={(e) => handleUpdate(e, inventory.id, "remainingRolls")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="brand"
-                                                className={styles['input-field-value']}
-                                                defaultValue={inventory.brand}
-                                                onChange={(e) => handleUpdate(e, inventory.id, "brand")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="stock"
-                                                className={styles['input-field-value']}
-                                                defaultValue={inventory.stock}
-                                                onChange={(e) => handleUpdate(e, inventory.id, "stock")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={inventory.format}
-                                                onChange={(e) => handleUpdate(e, inventory.id, "format")}
-                                                className={styles['input-field-value']}
-                                            >
-                                                <option value="">Select Format</option>
-                                                {formatOptions.map((option) => (
-                                                    <option key={option} value={option}>
-                                                        {option}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                id="iso"
-                                                className={styles['input-field-value']}
-                                                defaultValue={inventory.iso}
-                                                min="0"
-                                                onChange={(e) => handleUpdate(e, inventory.id, "iso")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={inventory.developmentProcess}
-                                                onChange={(e) => handleUpdate(e, inventory.id, "developmentProcess")}
-                                                className={styles['input-field-value']}
-                                            >
-                                                <option value="">Select Process</option>
-                                                {developmentProcessOptions.map((option) => (
-                                                    <option key={option} value={option}>
-                                                        {option}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="storage"
-                                                className={styles['input-field-value']}
-                                                defaultValue={inventory.storage}
-                                                onChange={(e) => handleUpdate(e, inventory.id, "storage")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                id="rollsShot"
-                                                className={styles['input-field-value']}
-                                                defaultValue={inventory.rollsShot}
-                                                min="0"
-                                                onChange={(e) => handleUpdate(e, inventory.id, "rollsShot")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="date"
-                                                id="filmExpirationDate"
-                                                className={styles['input-field-value']}
-                                                defaultValue={inventory.filmExpirationDate}
-                                                onChange={(e) => handleUpdate(e, inventory.id, "filmExpirationDate")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <AiFillEdit
-                                                className={`${styles.icon} ${selectedRows.includes(inventory.id) ? '' : styles['disabled-icon']}`}/>
-                                            {isSelected ? (
-                                                <button onClick={handleSave}>Save</button>
-                                            ) : null}
-                                        </td>
-                                        <td>
-                                            <RiDeleteBin6Line
-                                                className={`${styles.icon} ${selectedRows.includes(inventory.id) ? '' : styles['disabled-icon']}`}
-                                                onClick={handleDelete}
-                                            />
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                            </tbody>
-                        </table>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Id</th>
+                                    <th>Film Name</th>
+                                    <th>Remaining Rolls</th>
+                                    <th>Brand</th>
+                                    <th>Stock</th>
+                                    <th>Format</th>
+                                    <th>Iso</th>
+                                    <th>Development Process</th>
+                                    <th>Storage</th>
+                                    <th>Rolls Shot</th>
+                                    <th>Film Exp. Date</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {paginateInventories(inventories).map((inventory) => {
+                                    const isSelected = selectedRows.includes(inventory.id);
+                                    return (
+                                        <tr key={inventory.id}>
+                                            <td>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={isSelected}
+                                                    onChange={() => handleRowSelect(inventory.id)}
+                                                />
+                                            </td>
+                                            <td className={styles['id-column']}>{inventory.id}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    id="filmStockName"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={inventory.filmStockName}
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "filmStockName")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    id="remainingRolls"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={inventory.remainingRolls}
+                                                    min="0"
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "remainingRolls")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    id="brand"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={inventory.brand}
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "brand")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    id="stock"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={inventory.stock}
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "stock")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={inventory.format}
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "format")}
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    <option value="">Select Format</option>
+                                                    {formatOptions.map((option) => (
+                                                        <option key={option} value={option}>
+                                                            {option}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    id="iso"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={inventory.iso}
+                                                    min="0"
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "iso")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={inventory.developmentProcess}
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "developmentProcess")}
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    <option value="">Select Process</option>
+                                                    {developmentProcessOptions.map((option) => (
+                                                        <option key={option} value={option}>
+                                                            {option}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    id="storage"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={inventory.storage}
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "storage")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    id="rollsShot"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={inventory.rollsShot}
+                                                    min="0"
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "rollsShot")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="date"
+                                                    id="filmExpirationDate"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={inventory.filmExpirationDate}
+                                                    onChange={(e) => handleUpdate(e, inventory.id, "filmExpirationDate")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <AiFillEdit
+                                                    className={`${styles.icon} ${selectedRows.includes(inventory.id) ? '' : styles['disabled-icon']}`}/>
+                                                {isSelected ? (
+                                                    <button onClick={handleSave}>Save</button>
+                                                ) : null}
+                                            </td>
+                                            <td>
+                                                <RiDeleteBin6Line
+                                                    className={`${styles.icon} ${selectedRows.includes(inventory.id) ? '' : styles['disabled-icon']}`}
+                                                    onClick={handleDelete}
+                                                />
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                                </tbody>
+                            </table>
                         </div>
                         <div className={styles['page-navigation-container']}>
                             <button

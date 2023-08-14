@@ -5,7 +5,6 @@ import SidebarNav from "../../components/navigation/Sidebar/SidebarNav";
 import DividerNavBar from "../../components/navigation/dividerNavBar/DividerNavBar";
 import styles from './Profile.module.css';
 
-
 function Profile() {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();

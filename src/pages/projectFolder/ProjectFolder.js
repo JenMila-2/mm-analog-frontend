@@ -26,7 +26,6 @@ function ProjectFolder() {
                     cancelToken: source.token,
                 });
                 setProjectFolder(response.data);
-                console.log(response.data)
             } catch (e) {
                 console.error(e);
             }

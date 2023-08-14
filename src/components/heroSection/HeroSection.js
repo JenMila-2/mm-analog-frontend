@@ -5,7 +5,6 @@ import Button from "../buttons/Button";
 import image from '../../assets/Sajad_Fi_1.jpg';
 import styles from './HeroSection.module.css';
 
-
 const HeroSection = () => {
     const navigate = useNavigate();
     const { auth } = useContext(AuthContext);
@@ -20,15 +19,15 @@ const HeroSection = () => {
 
     return (
         <>
-        <main className={styles['hero-container']}>
-            <div className={styles['hero-background']}>
-                <img src={image} alt="" className={styles['hero-image']}/>
-            </div>
-            <div className={styles['hero-content']}>
-                <h1 className={styles['hero-title']}>welcome</h1>
-                <p className={styles['hero-sub-title']}>Keep shooting film!</p>
-            </div>
-        </main>
+            <main className={styles['hero-container']}>
+                <div className={styles['hero-background']}>
+                    <img src={image} alt="" className={styles['hero-image']}/>
+                </div>
+                <div className={styles['hero-content']}>
+                    <h1 className={styles['hero-title']}>welcome</h1>
+                    <p className={styles['hero-sub-title']}>Keep shooting film!</p>
+                </div>
+            </main>
             {!auth && (
                 <div className={styles['hero-button-wrapper']}>
                     <Button type="button" color="login" clickHandler={handleLoginClick}>
@@ -39,7 +38,7 @@ const HeroSection = () => {
                     </Button>
                 </div>
             )}
-    </>
+        </>
     )
 }
 

@@ -74,7 +74,7 @@ export function UpdateProfileDetails() {
                         <>
                             <form className={styles['update-profile-form']} onSubmit={handleSubmit(updateProfileDetails)}>
                                 <label htmlFor="name" className={styles['update-profile-label']}>
-                                   New name
+                                    New name
                                     <input
                                         type="text"
                                         id="name"

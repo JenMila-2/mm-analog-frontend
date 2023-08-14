@@ -109,7 +109,6 @@ export function NewProjectFolder() {
                         </section>
                     }
                 </div>
-
             </main>
         </>
     )

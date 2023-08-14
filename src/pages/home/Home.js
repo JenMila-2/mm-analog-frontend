@@ -7,7 +7,6 @@ import image1 from '../../assets/Tibor_Krizsak _1.jpg';
 import image2 from '../../assets/Robin_Spielmann_1.jpg';
 import styles from "../home/Home.module.css";
 
-
 function Home() {
     return (
         <>

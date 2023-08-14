@@ -5,7 +5,7 @@ export function ProjectCard({ img, label, imageDescription, onClick }) {
 
     return (
         <>
-        <section className={styles['project-card']}>
+            <section className={styles['project-card']}>
             <span className={styles['project-card-image']}>
                 <img
                     src={img}
@@ -13,11 +13,10 @@ export function ProjectCard({ img, label, imageDescription, onClick }) {
                     onClick={onClick}
                 />
             </span>
-            <span className={styles['project-card-label']}>
+                <span className={styles['project-card-label']}>
                 <p>{label}</p>
             </span>
-
-        </section>
+            </section>
         </>
     )
 }

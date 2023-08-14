@@ -80,7 +80,6 @@ function UserFolders() {
                 );
                 setProjectFolders(filteredFolders);
                 setTotalProjectFolders(filteredFolders.length);
-                console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
@@ -104,9 +103,9 @@ function UserFolders() {
 
     return (
         <>
-        <header className={styles['title-container']}>
-            <h1 className={styles.title}>All Project Folders</h1>
-        </header>
+            <header className={styles['title-container']}>
+                <h1 className={styles.title}>All Project Folders</h1>
+            </header>
             <DividerNavBar
                 label1="Users"
                 path1="/admin/dashboard/users"
@@ -199,4 +198,5 @@ function UserFolders() {
         </>
     );
 }
+
 export default UserFolders;

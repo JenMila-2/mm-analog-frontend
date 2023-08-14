@@ -80,7 +80,6 @@ function Admin() {
                 );
                 setUsers(filteredUsers);
                 setTotalUsers(filteredUsers.length);
-                console.log(response.data);
             } catch (e) {
                 console.error(e);
             }
@@ -127,46 +126,46 @@ function Admin() {
                             Total users: {totalUsers}
                         </div>
                         <div className={styles['table-wrapper']}>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th className={styles['users-table-head']}></th>
-                                <th className={styles['users-table-head']}>Username</th>
-                                <th className={styles['users-table-head']}>Name</th>
-                                <th className={styles['users-table-head']}>Email</th>
-                                <th className={styles['users-table-head']}>Status</th>
-                                <th className={styles['users-table-head']}>Role</th>
-                                <th className={styles['users-table-head']}>Delete</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {paginateUsers(users).map((user) => {
-                                const isSelected = selectedRows.includes(user.username);
-                                return (
-                                    <tr key={user.username}>
-                                        <td>
-                                            <input
-                                                type="checkbox"
-                                                checked={isSelected}
-                                                onChange={() => handleRowSelect(user.username)}
-                                            />
-                                        </td>
-                                        <td className={styles['username-field']}>{user.username}</td>
-                                        <td className={styles['input-field-value']}>{user.name}</td>
-                                        <td className={styles['input-field-value']}>{user.email}</td>
-                                        <td><span className={styles['status-text']}>{user.enabled ? "Active" : "Blocked"}</span></td>
-                                        <td className={styles['authority-text']}>{user.authorities[0].authority}</td>
-                                        <td>
-                                            <RiDeleteBin6Line
-                                                className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles['disabled-icon']}`}
-                                                onClick={handleDelete}
-                                            />
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                            </tbody>
-                        </table>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th className={styles['users-table-head']}></th>
+                                    <th className={styles['users-table-head']}>Username</th>
+                                    <th className={styles['users-table-head']}>Name</th>
+                                    <th className={styles['users-table-head']}>Email</th>
+                                    <th className={styles['users-table-head']}>Status</th>
+                                    <th className={styles['users-table-head']}>Role</th>
+                                    <th className={styles['users-table-head']}>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {paginateUsers(users).map((user) => {
+                                    const isSelected = selectedRows.includes(user.username);
+                                    return (
+                                        <tr key={user.username}>
+                                            <td>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={isSelected}
+                                                    onChange={() => handleRowSelect(user.username)}
+                                                />
+                                            </td>
+                                            <td className={styles['username-field']}>{user.username}</td>
+                                            <td className={styles['input-field-value']}>{user.name}</td>
+                                            <td className={styles['input-field-value']}>{user.email}</td>
+                                            <td><span className={styles['status-text']}>{user.enabled ? "Active" : "Blocked"}</span></td>
+                                            <td className={styles['authority-text']}>{user.authorities[0].authority}</td>
+                                            <td>
+                                                <RiDeleteBin6Line
+                                                    className={`${styles.icon} ${selectedRows.includes(user.username) ? '' : styles['disabled-icon']}`}
+                                                    onClick={handleDelete}
+                                                />
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                                </tbody>
+                            </table>
                         </div>
                         <div className={styles['page-navigation-container']}>
                             <button

@@ -64,7 +64,7 @@ function UploadImage() {
         formData.append("file", file);
 
         try {
-            const response = await axios.post(
+            await axios.post(
                 `http://localhost:8080/photologs/${photoLogId}/photo`,
                 formData,
                 {
@@ -74,7 +74,6 @@ function UploadImage() {
                     },
                 }
             );
-            console.log(response.data);
             setFile(null);
             setPreviewUrl(null);
             setPhotoLogId("");

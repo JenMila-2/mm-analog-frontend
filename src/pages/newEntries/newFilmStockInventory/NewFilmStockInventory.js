@@ -52,16 +52,16 @@ function NewFilmStockInventory() {
 
     return (
         <>
-        <header className={styles['form-header']}>
-            <h1>New Entry</h1>
-            <p>Add a new film stock inventory to your overview</p>
-        </header>
+            <header className={styles['form-header']}>
+                <h1>New Entry</h1>
+                <p>Add a new film stock inventory to your overview</p>
+            </header>
             <main className={styles['new-entry-form-container']}>
                 <div className={styles['new-entry-form-inner-container']}>
                     {addSuccess ?
                         <section className={styles['new-entry-success-message']}>
-                        <h4>New entry saved successfully!</h4>
-                        <p>The new film stock inventory was added to your overview.</p>
+                            <h4>New entry saved successfully!</h4>
+                            <p>The new film stock inventory was added to your overview.</p>
                         </section>
                         :
                         <section className={styles['form-wrapper']}>
@@ -85,7 +85,7 @@ function NewFilmStockInventory() {
                                 {errors.filmStockName && <p className={styles['error-label']}>{errors.filmStockName.message}</p>}
                                 <label htmlFor="remainingRolls" className={styles['label-form']}>
                                     Remaining Rolls
-                                    <input 
+                                    <input
                                         type="number"
                                         id="remainingRolls"
                                         min="0"

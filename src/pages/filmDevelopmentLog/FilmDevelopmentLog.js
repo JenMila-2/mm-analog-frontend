@@ -126,7 +126,6 @@ function FilmDevelopmentLog() {
                 );
                 setDevelopmentLogs(filteredDevelopmentLogs);
                 setTotalDevelopmentLogs(filteredDevelopmentLogs.length);
-                console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
@@ -176,10 +175,10 @@ function FilmDevelopmentLog() {
                 <h1 className={styles.title}>Film Development Logs</h1>
             </header>
             <DividerNavBar
-            label1="Projects"
-            path1="/projectfolders"
-            label2="Add new"
-            path2="/new/filmdevelopmentlog"
+                label1="Projects"
+                path1="/projectfolders"
+                label2="Add new"
+                path2="/new/filmdevelopmentlog"
             />
             <main className={styles['table-log-overview']}>
                 <SidebarNav />
@@ -220,187 +219,187 @@ function FilmDevelopmentLog() {
                                 </thead>
                                 <tbody>
                                 {paginateLogs(developmentLogs).map((log) => {
-                                const isSelected = selectedRows.includes(log.id);
-                                return (
-                                    <tr key={log.id}>
-                                        <td>
-                                            <input
-                                                type="checkbox"
-                                                checked={isSelected}
-                                                onChange={() => handleRowSelect(log.id)}
-                                            />
-                                        </td>
-                                        <td className={styles['id-column']}>{log.id}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="rollName"
-                                                className={styles['input-field-value']}
-                                                defaultValue={log.rollName}
-                                                onChange={(e) => handleUpdate(e, log.id, "rollName")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="project"
-                                                className={styles['input-field-value']}
-                                                defaultValue={log.project}
-                                                onChange={(e) => handleUpdate(e, log.id, "project")}
-                                            />
-                                        </td>
+                                    const isSelected = selectedRows.includes(log.id);
+                                    return (
+                                        <tr key={log.id}>
+                                            <td>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={isSelected}
+                                                    onChange={() => handleRowSelect(log.id)}
+                                                />
+                                            </td>
+                                            <td className={styles['id-column']}>{log.id}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    id="rollName"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={log.rollName}
+                                                    onChange={(e) => handleUpdate(e, log.id, "rollName")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    id="project"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={log.project}
+                                                    onChange={(e) => handleUpdate(e, log.id, "project")}
+                                                />
+                                            </td>
 
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="camera"
-                                                className={styles['input-field-value']}
-                                                defaultValue={log.camera}
-                                                onChange={(e) => handleUpdate(e, log.id, "camera")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="stock"
-                                                className={styles['input-field-value']}
-                                                defaultValue={log.stock}
-                                                onChange={(e) => handleUpdate(e, log.id, "stock")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={log.format}
-                                                onChange={(e) => handleUpdate(e, log.id, "format")}
-                                                className={styles['input-field-value']}
-                                            >
-                                                <option value="">Select Format</option>
-                                                {formatOptions.map((option) => (
-                                                    <option key={option} value={option}>
-                                                        {option}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                id="shotAtIso"
-                                                className={styles['input-field-value']}
-                                                defaultValue={log.shotAtIso}
-                                                min="0"
-                                                onChange={(e) => handleUpdate(e, log.id, "shotAtIso")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={log.developmentProcess}
-                                                onChange={(e) => handleUpdate(e, log.id, "developmentProcess")}
-                                                className={styles['input-field-value']}
-                                            >
-                                                <option value="">Select Process</option>
-                                                {developmentProcessOptions.map((option) => (
-                                                    <option key={option} value={option}>
-                                                        {option}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={log.status}
-                                                onChange={(e) => handleUpdate(e, log.id, "status")}
-                                                className={styles['input-field-value']}
-                                            >
-                                                <option value="">Select Status</option>
-                                                {statusOptions.map((option) => (
-                                                    <option key={option} value={option}>
-                                                        {option}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="date"
-                                                id="rollStarted"
-                                                className={styles['input-field-value']}
-                                                defaultValue={log.rollStarted}
-                                                onChange={(e) => handleUpdate(e, log.id, "rollStarted")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="date"
-                                                id="rollFinished"
-                                                className={styles['input-field-value']}
-                                                defaultValue={log.rollFinished}
-                                                onChange={(e) => handleUpdate(e, log.id, "rollFinished")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={log.exposed}
-                                                onChange={(e) => handleUpdate(e, log.id, "exposed")}
-                                                className={styles['input-field-value']}
-                                            >
-                                                {yesNoOptions.map((option) => (
-                                                    <option key={option.value} value={option.value}>
-                                                        {option.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={log.developed}
-                                                onChange={(e) => handleUpdate(e, log.id, "developed")}
-                                                className={styles['input-field-value']}
-                                            >
-                                                {yesNoOptions.map((option) => (
-                                                    <option key={option.value} value={option.value}>
-                                                        {option.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={log.scanned}
-                                                onChange={(e) => handleUpdate(e, log.id, "scanned")}
-                                                className={styles['input-field-value']}
-                                            >
-                                                {yesNoOptions.map((option) => (
-                                                    <option key={option.value} value={option.value}>
-                                                        {option.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                id="developedByLab"
-                                                className={styles['input-field-value']}
-                                                defaultValue={log.developedByLab}
-                                                onChange={(e) => handleUpdate(e, log.id, "developedByLab")}
-                                            />
-                                        </td>
-                                        <td>
-                                            <AiFillEdit
-                                                className={`${styles.icon} ${selectedRows.includes(log.id) ? '' : styles['disabled-icon']}`}/>
-                                            {isSelected ? (
-                                                <button onClick={handleSave}>Save</button>
-                                            ) : null}
-                                        </td>
-                                        <td>
-                                            <RiDeleteBin6Line
-                                                className={`${styles.icon} ${selectedRows.includes(log.id) ? '' : styles['disabled-icon']}`}
-                                                onClick={handleDelete}
-                                            />
-                                        </td>
-                                    </tr>
-                                );
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    id="camera"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={log.camera}
+                                                    onChange={(e) => handleUpdate(e, log.id, "camera")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    id="stock"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={log.stock}
+                                                    onChange={(e) => handleUpdate(e, log.id, "stock")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={log.format}
+                                                    onChange={(e) => handleUpdate(e, log.id, "format")}
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    <option value="">Select Format</option>
+                                                    {formatOptions.map((option) => (
+                                                        <option key={option} value={option}>
+                                                            {option}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    id="shotAtIso"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={log.shotAtIso}
+                                                    min="0"
+                                                    onChange={(e) => handleUpdate(e, log.id, "shotAtIso")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={log.developmentProcess}
+                                                    onChange={(e) => handleUpdate(e, log.id, "developmentProcess")}
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    <option value="">Select Process</option>
+                                                    {developmentProcessOptions.map((option) => (
+                                                        <option key={option} value={option}>
+                                                            {option}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={log.status}
+                                                    onChange={(e) => handleUpdate(e, log.id, "status")}
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    <option value="">Select Status</option>
+                                                    {statusOptions.map((option) => (
+                                                        <option key={option} value={option}>
+                                                            {option}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="date"
+                                                    id="rollStarted"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={log.rollStarted}
+                                                    onChange={(e) => handleUpdate(e, log.id, "rollStarted")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="date"
+                                                    id="rollFinished"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={log.rollFinished}
+                                                    onChange={(e) => handleUpdate(e, log.id, "rollFinished")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={log.exposed}
+                                                    onChange={(e) => handleUpdate(e, log.id, "exposed")}
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    {yesNoOptions.map((option) => (
+                                                        <option key={option.value} value={option.value}>
+                                                            {option.label}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={log.developed}
+                                                    onChange={(e) => handleUpdate(e, log.id, "developed")}
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    {yesNoOptions.map((option) => (
+                                                        <option key={option.value} value={option.value}>
+                                                            {option.label}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={log.scanned}
+                                                    onChange={(e) => handleUpdate(e, log.id, "scanned")}
+                                                    className={styles['input-field-value']}
+                                                >
+                                                    {yesNoOptions.map((option) => (
+                                                        <option key={option.value} value={option.value}>
+                                                            {option.label}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    id="developedByLab"
+                                                    className={styles['input-field-value']}
+                                                    defaultValue={log.developedByLab}
+                                                    onChange={(e) => handleUpdate(e, log.id, "developedByLab")}
+                                                />
+                                            </td>
+                                            <td>
+                                                <AiFillEdit
+                                                    className={`${styles.icon} ${selectedRows.includes(log.id) ? '' : styles['disabled-icon']}`}/>
+                                                {isSelected ? (
+                                                    <button onClick={handleSave}>Save</button>
+                                                ) : null}
+                                            </td>
+                                            <td>
+                                                <RiDeleteBin6Line
+                                                    className={`${styles.icon} ${selectedRows.includes(log.id) ? '' : styles['disabled-icon']}`}
+                                                    onClick={handleDelete}
+                                                />
+                                            </td>
+                                        </tr>
+                                    );
                                 })}
                                 </tbody>
                             </table>

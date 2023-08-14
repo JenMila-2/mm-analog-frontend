@@ -117,7 +117,6 @@ export function ProjectFolderList() {
                 );
                 setProjectFolders(filteredProjectFolders);
                 setTotalProjectFolders(filteredProjectFolders.length);
-                console.log(response.data)
             } catch (e) {
                 console.error(e);
             }

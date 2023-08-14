@@ -45,7 +45,6 @@ export function DeleteAccount() {
                     <button className={styles['confirm-delete-account-button']} onClick={deleteMyAccount}>Yes, Delete My Account</button>
                 </div>
             </main>
-
         </>
     )
 }

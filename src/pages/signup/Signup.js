@@ -22,10 +22,9 @@ function Signup() {
                 email: data.email,
                 password: data.password,
                 role: ["user"]
-                }, {
+            }, {
                 cancelToken: source.token,
-                });
-            console.log(response.data);
+            });
             setAddSucces(true);
             navigate('/welcomepage');
         } catch(error) {
@@ -41,7 +40,7 @@ function Signup() {
             </div>
             <div className={styles['right-section-signup']}>
                 <h1>Create an account</h1>
-                    <p className={styles['sub-text']}>Welcome. Nice to see you!</p>
+                <p className={styles['sub-text']}>Welcome. Nice to see you!</p>
                 {addSuccess === true && <p>Yeaahh, your account has been created!</p>}
                 <form className={styles['signup-form']} onSubmit={handleSubmit(addNewUser)}>
                     <label htmlFor="name-field" className={styles['signup-form-label']}>

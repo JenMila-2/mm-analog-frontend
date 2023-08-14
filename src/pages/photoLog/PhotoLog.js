@@ -121,7 +121,6 @@ function PhotoLog() {
                 );
                 setPhotoLogs(filteredPhotoLogs );
                 setTotalPhotoLogs(filteredPhotoLogs.length);
-                console.log(response.data)
             } catch (e) {
                 console.error(e);
             }
